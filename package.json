@@ -1,5 +1,5 @@
 {
-  "name": "world-data-mapper",
+  "name": "crypton",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stevensecreti/WorldDataMapper.git"
+    "url": "git+https://github.com/stevensecreti/Crypton.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stevensecreti/WorldDataMapper/issues"
+    "url": "https://github.com/stevensecreti/Crypton/issues"
   },
-  "homepage": "https://github.com/stevensecreti/WorldDataMapper#readme",
+  "homepage": "https://github.com/stevensecreti/Crypton#readme",
   "dependencies": {
     "@apollo/client": "^3.3.7",
     "apollo-server": "^2.14.5",

@@ -7,7 +7,7 @@ const Logo = (props) => {
 
     return (
         <div className='logo' onClick = {handleSetActive}>
-            The World Data Mapper
+            CRYPTON
         </div>
     );
 };

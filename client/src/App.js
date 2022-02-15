@@ -2,12 +2,10 @@ import React, {useState} 			from 'react';
 import Homescreen 		from './components/homescreen/Homescreen';
 import { useQuery } 	from '@apollo/client';
 import * as queries 	from './cache/queries';
-import { jsTPS } 		from './utils/jsTPS';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
  
 const App = () => {
 	let user = null;
-    let transactionStack = new jsTPS();
 
 	const [routePath, setRoutePath] = useState("/welcome");
 	
@@ -32,7 +30,7 @@ const App = () => {
 					path={routePath}
 					name="home" 
 					render={() => 
-						<Homescreen tps={transactionStack} fetchUser={refetch} user={user} route = {handleRoute}/>
+						<Homescreen fetchUser={refetch} user={user} route = {handleRoute}/>
 					} 
 				/>
 				<Route/>

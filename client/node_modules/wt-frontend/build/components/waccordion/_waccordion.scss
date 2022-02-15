@@ -1,0 +1,32 @@
+.waccordion {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  //transition: 0s;
+}
+
+.waccordion-header, .waccordion-body.active {
+  padding: 10px 20px;
+  text-align: left;
+}
+
+.waccordion-header {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.waccordion-header:hover {
+}
+
+.waccordion-body {
+  max-height: 0;
+  overflow: hidden;
+  // visibility: hidden;
+  background-color: #fafafa;
+  transition: 200ms ease-in-out;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.waccordion-body.active {
+  max-height: 600px;
+}

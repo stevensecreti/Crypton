@@ -1,0 +1,91 @@
+@use '../../global/wolfie' as *;
+@use 'sass:color';
+
+$table-border: none !default;
+$table-border-color: black !default;
+$table-background-color: none !default; //would overwrite any class color
+$table-light-text: $text-color-light !default;
+$table-dark-text: $text-color !default;
+$table-row-border: 1px solid $table-border-color !default;
+$table-column-border: $table-row-border !default;
+$header-padding: 0.25rem !default;
+$content-padding: 1rem !default;
+
+.wtable{
+    margin: 0;
+    border: $table-border;
+    tr{
+        border: $table-row-border;
+        border-left: none;
+        border-right: none;
+    }
+    tr:first-child{
+        border-top: none;
+    }
+    tr:last-child{
+        border-bottom: none;
+    }
+    td, th{
+        border-left: $table-column-border;
+        border-right: $table-column-border;
+    }
+    td:first-child, th:first-child{
+        border-left: none;
+    }
+    td:last-child, th:last-child{
+        border-right: none;
+    }
+    th{
+        padding: $header-padding;
+    }
+    td{
+        padding: $content-padding;
+    }
+    &.outer-border{
+        tr, td, th{
+            border: $table-row-border;
+        }
+    }
+    &.alt-bg-white{
+        tr:nth-child(even){
+            background-color:white;
+        }
+        tr{
+            color: $table-dark-text;
+        }
+        th{
+            background-color: white;
+        }
+    }
+    &.alt-bg-light{
+        tr:nth-child(even){
+            background-color:#ffffff7e;
+        }
+        tr{
+            color: $table-dark-text;
+        }
+        th{
+            background-color: white;
+        }
+    }
+    &.alt-bg-dark{
+        tr:nth-child(even){
+            background-color: #0000007e;
+        }
+        tr{
+            color: $table-light-text;
+        }
+        th{
+            background-color: black;
+        }
+    }
+
+    th:hover, td:hover{
+        &.hover-darken{
+            background-color: #0000007e;
+        }
+        &.hover-lighten{
+            background-color:#ffffff7e;
+        }
+    }
+}

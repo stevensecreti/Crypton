@@ -1,16 +1,14 @@
 import React    from 'react';
-import {WCard, WCMedia}      from 'wt-frontend';
-import WCContent from 'wt-frontend/build/components/wcard/WCContent';
-import globe    from '../images/globe.jpg'
+import cryptonLogo    from '../images/CryptonLogo@2x.png'
 
 const Welcome = (props) =>{
     return(
         <div>
             <div className='welcome-image'>
-                <img src={globe} alt="Welcome Globe" className='welcome-image'></img>
+                <img src={cryptonLogo} alt="Crypton" className='welcome-image'></img>
             </div>
             <h1 className='welcome-text'>
-                Welcome to the World Data Mapper!
+                Welcome to Crypton!
             </h1>   
         </div>  
     );
