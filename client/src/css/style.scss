@@ -1,22 +1,10 @@
-@use 'node_modules/wt-frontend/build/global/theme' with (
-    $primary-color: #a31616,
-    $background-color: rgb(70, 104, 255),//#d9d6cc,
-    $navbar-background-color: #0757f7,//rgb(64, 69, 78),
-    $sidebar-background-color: #2b2e36,//#353a44,
-    $text-color: #c6d8ff,
-    $modal-background: rgb(64, 69, 78),
-    $modal-section-padding: 24px,
-    $modal-radius: 4px,
-    $modal-border: 1px solid rgb(87, 93, 105),
-    $modal-button-color: rgba(255,255,255, 0.7),
-    $modal-button-hover: #e9edf0,
-    $button-text-color: black,
-    // other variable changes here
+@use 'node_modules/wt-frontend/build/global/theme' with ( $primary-color: #a31616, $background-color: rgb(70, 104, 255), //#d9d6cc,
+$navbar-background-color: #0757f7, //rgb(64, 69, 78),
+$sidebar-background-color: #2b2e36, //#353a44,
+$text-color: #c6d8ff, $modal-background: rgb(64, 69, 78), $modal-section-padding: 24px, $modal-radius: 4px, $modal-border: 1px solid rgb(87, 93, 105), $modal-button-color: rgba(255, 255, 255, 0.7), $modal-button-hover: #e9edf0, $button-text-color: black, // other variable changes here
 );
-
 @use 'node_modules/wt-frontend/build/global/wolfie' as *;
 @use 'node_modules/wt-frontend/build/global/components';
-
 :root {
     --warm-white: #f9f7f1;
     --warm-white-transparent: #f9f7f111;
@@ -31,21 +19,22 @@
     --light-yellow: #e6db74;
     --light-beige: #d9d6cc;
     --light-gray: #e9edf0;
-	--bright-orange: #fca234;
-	--yellow-orange: #ffc800;
-    --hover-light: rgba(255,255,255, 0.7);
-    --deep-blue:  rgb(64, 69, 78);
-    --deep-blue-lighter:  rgb(87, 93, 105);
+    --bright-orange: #fca234;
+    --yellow-orange: #ffc800;
+    --hover-light: rgba(255, 255, 255, 0.7);
+    --deep-blue: rgb(64, 69, 78);
+    --deep-blue-lighter: rgb(87, 93, 105);
     /* --deep-blue:  #282c34; */
-    --button-transparent:  rgba(255,255,255, 0);
-    --deep-blue-darker:  #353a44;
-	/* --deep-blue-darker:  #282c34; */
-	--blue-gray: #7e8084;
-	--darkblue-gray: #2b2e36;
+    --button-transparent: rgba(255, 255, 255, 0);
+    --deep-blue-darker: #353a44;
+    /* --deep-blue-darker:  #282c34; */
+    --blue-gray: #7e8084;
+    --darkblue-gray: #2b2e36;
     --warm-black: #322d2d;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     font-family: 'Monaco', monospace;
     -webkit-font-smoothing: antialiased;
@@ -53,15 +42,37 @@ html, body {
     background-color: $background-color;
 }
 
-
-.welcome-text{
+.welcome-text {
     text-align: center;
     color: $text-color;
 }
 
-.navbar-options{
+.navbar-options {
     text-align: center;
-    color: $text-color;
-    background-color: $navbar-background-color;
+    color: white;
+    background-color: #00ff7f;
+    font-weight: 900;
 }
 
+#menu-outer {
+    height: 84px;
+}
+
+.table {
+    display: table;
+    /* Allow the centering to work */
+    margin: 0 auto;
+}
+
+ul#horizontal-list {
+    min-width: 696px;
+    font-family: Arial, Helvetica, sans-serif;
+    word-wrap: break-word;
+    word-break: break-all;
+    list-style: none;
+    background-color: black;
+}
+
+ul#horizontal-list li {
+    display: inline;
+}

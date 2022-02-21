@@ -3,7 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const resolvers = require('./resolvers/root-resolver');
-const { typeDefs }  = require('./typedefs/root-def');
+const { typeDefs } = require('./typedefs/root-def');
 const serverOptions = require('./server-config');
 require('dotenv').config();
 const { MONGO_URI, BACKEND_PORT, CLIENT_LOCAL_ORIGIN, SERVER_LOCAL_DOMAIN } = process.env;
@@ -20,9 +20,9 @@ const corsPolicy = async(req, res, next) => {
         TODO for 316 students: res.set(), Access-Control-Allow-Origin and Access-Control-Allow-Credentials headers,
         have them set these, inspect error messages, understand why they're needed
     */
-	res.set("Access-Control-Allow-Origin", req.headers.origin.toString());
+    res.set("Access-Control-Allow-Origin", req.headers.origin);
     res.set("Access-Control-Allow-Credentials", true);
-	next();
+    next();
 }
 
 app.options('*', cors());
@@ -34,21 +34,21 @@ serverOptions(app);
 
 const server = new ApolloServer({
     typeDefs: typeDefs,
-	resolvers: resolvers,
-	context: ({req, res}) => ({ req, res })
+    resolvers: resolvers,
+    context: ({ req, res }) => ({ req, res })
 });
 
 // since the express server has cors configured, cors on the apollo server
 // can be false; passing the same options as defined on the express instance
 // works as well
-server.applyMiddleware({ app , cors: false});
+server.applyMiddleware({ app, cors: false });
 
-mongoose.connect(MONGO_URI, {useNewUrlParser: true , useUnifiedTopology: true})
-        .then(() => {
-            app.listen({ port: BACKEND_PORT }, CLIENT_LOCAL_ORIGIN, () => {
-                console.log(`Server ready at ${SERVER_LOCAL_DOMAIN}:${BACKEND_PORT}`);
-            })
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        app.listen({ port: BACKEND_PORT }, CLIENT_LOCAL_ORIGIN, () => {
+            console.log(`Server ready at ${SERVER_LOCAL_DOMAIN}:${BACKEND_PORT}`);
         })
-        .catch(error => {
-            console.log(error)
-        });
+    })
+    .catch(error => {
+        console.log(error)
+    });

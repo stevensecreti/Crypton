@@ -1,14 +1,16 @@
 import React from 'react';
 
 const Logo = (props) => {
-    const handleSetActive = () =>{
+    const handleSetActive = () => {
         props.closeActiveMap();
     }
 
-    return (
-        <div className='logo' onClick = {handleSetActive}>
-            CRYPTON
-        </div>
+    return ( <
+        div className = 'logo'
+        onClick = { handleSetActive } >
+
+        <
+        /div>
     );
 };
 
