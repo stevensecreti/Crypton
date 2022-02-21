@@ -91,6 +91,19 @@ const LoggedIn = (props) => {
         /ul> <
         /div> <
         /div>
+
+        <>
+            <WNavItem hoverAnimation="lighten">
+                <WButton className="navbar-options" onClick={props.setShowUpdate} wType="texted" >
+                    {name}
+                </WButton>
+            </WNavItem >
+            <WNavItem hoverAnimation="lighten">
+                <WButton className="navbar-options" onClick={handleLogout} wType="texted">
+                    Logout
+                </WButton>
+             </WNavItem >
+        </>
     );
 };
 
@@ -169,6 +182,19 @@ const LoggedOut = (props) => {
         /ul> <
         /div> <
         /div>
+
+        <>
+            <WNavItem hoverAnimation="lighten">
+                <WButton className="navbar-options" onClick={props.setShowLogin} wType="texted">
+                    Login
+                </WButton>
+            </WNavItem>
+            <WNavItem hoverAnimation="lighten">
+                <WButton className="navbar-options" onClick={props.setShowCreate} wType="texted"> 
+                    Create Account 
+                </WButton>
+            </WNavItem>
+        </>
     );
 };
 
