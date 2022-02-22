@@ -88,77 +88,43 @@ const Homescreen = (props) => {
             toggleShowWallet(!showUpdate);
         };
 
-        return ( <
-                div className = "homescreen" >
-                <
-                div className = "header" >
-                <
-                div className = "navbar" >
-                <
-                ul >
-                <
-                div className = "logo" >
-                <
-                Logo className = 'logo' / >
-                <
-                /div> <
-                /ul> <
-                ul >
-                <
-                NavbarOptions fetchUser = { props.fetchUser }
-                auth = { auth }
-                setShowCreate = { setShowCreate }
-                setShowLogin = { setShowLogin }
-                setShowUpdate = { setShowUpdate }
-                setShowAccount = { setShowAccount }
-                setShowEducation = { setShowEducation }
-                setShowExchange = { setShowExchange }
-                setShowGFreezzee = { setShowGFreezzee }
-                setShowGaming = { setShowGaming }
-                setShowHome = { setShowHome }
-                setShowTrading = { setShowTrading }
-                setShowWallet = { setShowWallet }
-
-                /> <
-                /ul> <
-                /div> <
-                /div> <
-                div className = "main" > {
+        return( 
+            <div className = "homescreen" >
+                <div className = "header" >
+                    <div className = "navbar" >
+                    <ul>
+                        <div className = "logo" >
+                            <Logo className = 'logo'/>
+                        </div> </ul> 
+                    <ul>
+                        <NavbarOptions fetchUser = { props.fetchUser }
+                        auth = { auth }
+                        setShowCreate = { setShowCreate }
+                        setShowLogin = { setShowLogin }
+                        setShowUpdate = { setShowUpdate }
+                        setShowAccount = { setShowAccount }
+                        setShowEducation = { setShowEducation }
+                        setShowExchange = { setShowExchange }
+                        setShowGFreezzee = { setShowGFreezzee }
+                        setShowGaming = { setShowGaming }
+                        setShowHome = { setShowHome }
+                        setShowTrading = { setShowTrading }
+                        setShowWallet = { setShowWallet }/> 
+                    </ul> 
+                    </div> 
+                </div> 
+                <div className = "main" >{
                     auth ?
-                    <
-                    MainContents / >
+                    <MainContents />
                     :
-                        <
-                        Welcome / >
-                } <
-                /div> {
-                    showAccount && ( < Account fetchUser = { props.fetchUser }
-                            setShowAccount = { setShowAccount }
-                            />)
-                        } {
-                            showCreate && ( < CreateAccount fetchUser = { props.fetchUser }
-                                setShowCreate = { setShowCreate }
-                                />)
-                            }
-
-                            {
-                                showLogin && ( < Login fetchUser = { props.fetchUser }
-                                    setShowLogin = { setShowLogin }
-                                    />)
-                                }
-
-                                {
-                                    showUpdate && ( < Update fetchUser = { props.fetchUser }
-                                        setShowUpdate = { setShowUpdate }
-                                        userId = { props.user._id }
-                                        user = { props.user }
-                                        />)
-                                    }
-
-                                    <
-                                    /div>
-                                );
-
-                            };
-
-                            export default Homescreen;
+                    <Welcome />
+                } 
+                </div> 
+                {showAccount && ( <Account fetchUser = { props.fetchUser }setShowAccount = { setShowAccount }/>)} 
+                {showCreate && (<CreateAccount fetchUser = {props.fetchUser} setShowCreate = { setShowCreate }/>)}
+                {showLogin && ( < Login fetchUser = { props.fetchUser } setShowLogin = { setShowLogin }/>)}
+                {showUpdate && ( < Update fetchUser = { props.fetchUser } setShowUpdate = {setShowUpdate} userId = {props.user._id} user = {props.user}/>)}
+            </div>
+        );
+};
+export default Homescreen;

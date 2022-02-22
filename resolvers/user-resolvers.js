@@ -43,6 +43,7 @@ module.exports = {
 			@returns {object} the user object or an object with an error message
 		**/
 		register: async (_, args, { res }) => {
+			console.log("In Register");
 			const { email, password, firstName, lastName } = args;
 			const alreadyRegistered = await User.findOne({email: email});
 			if(alreadyRegistered) {
@@ -65,6 +66,7 @@ module.exports = {
 				password: hashed,
 				initials: `${firstName[0]}.${lastName[0]}.`
 			})
+			console.log("Created new User")
 			const saved = await user.save();
 			// After registering the user, their tokens are generated here so they
 			// are automatically logged in on account creation.
@@ -78,11 +80,6 @@ module.exports = {
 			@param 	 {object} res - response object containing the current access/refresh tokens  
 			@returns {boolean} true 
 		**/
-		logout:(_, __, { res }) => {
-			res.clearCookie('refresh-token');
-			res.clearCookie('access-token');
-			return true;
-		},
 		update: async (_, args) => {
 			const { email, password, firstName, lastName, _id} = args;
 			let { value } = args;
@@ -96,7 +93,11 @@ module.exports = {
 				return true
 			}
 			return false;
+		},
+		logout:(_, __, { res }) => {
+			res.clearCookie('refresh-token');
+			res.clearCookie('access-token');
+			return true;
 		}
-
 	}
 }

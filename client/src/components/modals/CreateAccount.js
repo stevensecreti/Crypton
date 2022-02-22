@@ -22,10 +22,14 @@ const CreateAccount = (props) => {
 				alert('All fields must be filled out to register');
 				return;
 			}
+		
 		}
+		console.log("Before Register:)")
 		const { loading, error, data } = await Register({ variables: { ...input } });
 		if (loading) { toggleLoading(true) };
-		if (error) { return `Error: ${error.message}` };
+		if (error) { return `Error: ${error.message}` 
+			console.log(`Error: ${error.message}`)
+		};
 		if (data) {
 			console.log(data)
 			toggleLoading(false);

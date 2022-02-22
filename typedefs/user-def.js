@@ -11,13 +11,12 @@ const typeDefs = gql `
 	}
 	extend type Query {
 		getCurrentUser: User
-		testQuery: String
 	}
 	extend type Mutation {
 		login(email: String!, password: String!): User
 		register(email: String!, password: String!, firstName: String!, lastName: String!): User
-		logout: Boolean!
 		update(email: String!, password: String!, firstName: String!, lastName: String!, _id: String!): Boolean!
+		logout: Boolean!
 	}
 `;
 
