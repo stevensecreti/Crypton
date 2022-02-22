@@ -200,8 +200,10 @@ const LoggedOut = (props) => {
 
 
 const NavbarOptions = (props) => {
-    return ( <
-        > {
+    return ( 
+    
+    {
+        <
             props.auth === false ? < LoggedOut setShowLogin = { props.setShowLogin }
             setShowCreate = { props.setShowCreate }
             setShowAccount = { props.setShowAccount }
@@ -213,14 +215,14 @@ const NavbarOptions = (props) => {
             setShowTrading = { props.setShowTrading }
             setShowWallet = { props.setShowWallet }
             /> :
+            <
                 < LoggedIn fetchUser = { props.fetchUser }
             setActiveMap = { props.setActiveMap }
             logout = { props.logout }
             displayName = { props.displayName }
             setShowUpdate = { props.setShowUpdate }
             />
-        } <
-        />
+        } </>
 
     );
 };
