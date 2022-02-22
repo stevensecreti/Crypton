@@ -55,13 +55,18 @@ body {
 }
 
 #menu-outer {
-    height: 84px;
+    height: 15%;
+    width: 80%;
+    background-color: $navbar-background-color;
+    display: block;
+    margin: auto;
 }
 
 .table {
     display: table;
     /* Allow the centering to work */
     margin: 0 auto;
+    background-color: $navbar-background-color;
 }
 
 ul#horizontal-list {
