@@ -18,190 +18,111 @@ const LoggedIn = (props) => {
     };
 
     let name = props.displayName;
-    return ( <
-        div id = "menu-outer" >
-        <
-        div class = "table" >
-        <
-        ul id = "horizontal-list" >
-        <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShow }
-        wType = "texted" >
-        Home <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowExchange }
-        wType = "texted" >
-        Exchange <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowWallet }
-        wType = "texted" >
-        Wallet <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowTrading }
-        wType = "texted" >
-        Trading Bot <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowEducation }
-        wType = "texted" >
-        Education Center <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowGamingCenter }
-        wType = "texted" >
-        Gaming Center <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowAccount }
-        wType = "texted" > { name } <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowGFreezzee }
-        wType = "texted" >
-        GFreezzee <
-        /WButton> <
-        /WNavItem> <
-        /ul> <
-        /div> <
-        /div>
-
-        <>
-            <WNavItem hoverAnimation="lighten">
-                <WButton className="navbar-options" onClick={props.setShowUpdate} wType="texted" >
-                    {name}
-                </WButton>
-            </WNavItem >
-            <WNavItem hoverAnimation="lighten">
-                <WButton className="navbar-options" onClick={handleLogout} wType="texted">
-                    Logout
-                </WButton>
-             </WNavItem >
-        </>
+    return ( 
+    <div id = "menu-outer" >
+        <div class = "table" >
+            <ul id = "horizontal-list" >
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShow }
+                wType = "texted" >
+                Home </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowExchange }
+                wType = "texted" >
+                Exchange </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowWallet }
+                wType = "texted" >
+                Wallet </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowTrading }
+                wType = "texted" >
+                Trading Bot </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowEducation }
+                wType = "texted" >
+                Education Center </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowGamingCenter }
+                wType = "texted" >
+                Gaming Center </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowAccount }
+                wType = "texted" > { name } </WButton> 
+                </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { handleLogout }
+                wType = "texted" >
+                Logout </WButton> </WNavItem> 
+            </ul> 
+        </div> 
+        </div>
     );
 };
 
 const LoggedOut = (props) => {
-    return ( <
-        div id = "menu-outer" >
-        <
-        div class = "table" >
-        <
-        ul id = "horizontal-list" >
-        <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShow }
-        wType = "texted" >
-        Home <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowExchange }
-        wType = "texted" >
-        Exchange <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowWallet }
-        wType = "texted" >
-        Wallet <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowTrading }
-        wType = "texted" >
-        Trading Bot <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowEducation }
-        wType = "texted" >
-        Education Center <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowGamingCenter }
-        wType = "texted" >
-        Gaming Center <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowAccount }
-        wType = "texted" >
-        Account Details <
-        /WButton> <
-        /WNavItem> <
-        WNavItem hoverAnimation = "lighten" >
-        <
-        WButton className = "navbar-options"
-        onClick = { props.setShowGFreezzee }
-        wType = "texted" >
-        GFreezzee <
-        /WButton> <
-        /WNavItem> <
-        /ul> <
-        /div> <
-        /div>
-
-        <>
-            <WNavItem hoverAnimation="lighten">
-                <WButton className="navbar-options" onClick={props.setShowLogin} wType="texted">
-                    Login
-                </WButton>
-            </WNavItem>
-            <WNavItem hoverAnimation="lighten">
-                <WButton className="navbar-options" onClick={props.setShowCreate} wType="texted"> 
-                    Create Account 
-                </WButton>
-            </WNavItem>
-        </>
+    return ( 
+        <div id = "menu-outer" >
+        <div class = "table" >
+            <ul id = "horizontal-list" >
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShow }
+                wType = "texted" >
+                Home </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowExchange }
+                wType = "texted" >
+                Exchange </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowWallet }
+                wType = "texted" >
+                Wallet </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowTrading }
+                wType = "texted" >
+                Trading Bot </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowEducation }
+                wType = "texted" >
+                Education Center </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowGamingCenter }
+                wType = "texted" >
+                Gaming Center </WButton> </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowLogin }
+                wType = "texted" >  Log In </WButton> 
+                </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowCreate }
+                wType = "texted" >
+                Create Account </WButton> </WNavItem> 
+            </ul> 
+        </div> 
+        </div>      
     );
 };
 
 
 const NavbarOptions = (props) => {
-    return ( <
-        > {
+    return ( <> 
+        {
             props.auth === false ? < LoggedOut setShowLogin = { props.setShowLogin }
             setShowCreate = { props.setShowCreate }
             setShowAccount = { props.setShowAccount }
@@ -219,8 +140,7 @@ const NavbarOptions = (props) => {
             displayName = { props.displayName }
             setShowUpdate = { props.setShowUpdate }
             />
-        } <
-        />
+        } </>
 
     );
 };
