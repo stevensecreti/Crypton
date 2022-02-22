@@ -32,6 +32,8 @@ const Homescreen = (props) => {
         const [showTrading, toggleShowTrading] = useState(false);
         const [showWallet, toggleShowWallet] = useState(false);
 
+
+
         const auth = props.user === null ? false : true;
         let displayName = "";
         if (auth) {
@@ -86,15 +88,24 @@ const Homescreen = (props) => {
             toggleShowWallet(!showUpdate);
         };
 
-    return ( 
-        <div className = "homescreen" >
-                <div className = "header" >
-                <div className = "navbar" >
-                <ul>
-                <div className = "logo" >
-                <Logo className = 'logo'/>
-                </div> </ul> <ul>
-                <NavbarOptions fetchUser = { props.fetchUser }
+        return ( <
+                div className = "homescreen" >
+                <
+                div className = "header" >
+                <
+                div className = "navbar" >
+                <
+                ul >
+                <
+                div className = "logo" >
+                <
+                Logo className = 'logo' / >
+                <
+                /div> <
+                /ul> <
+                ul >
+                <
+                NavbarOptions fetchUser = { props.fetchUser }
                 auth = { auth }
                 setShowCreate = { setShowCreate }
                 setShowLogin = { setShowLogin }
@@ -106,17 +117,21 @@ const Homescreen = (props) => {
                 setShowGaming = { setShowGaming }
                 setShowHome = { setShowHome }
                 setShowTrading = { setShowTrading }
-                setShowWallet = { setShowWallet }/> </ul> 
-                </div> </div> 
-                <div className = "main" > {
+                setShowWallet = { setShowWallet }
+
+                /> <
+                /ul> <
+                /div> <
+                /div> <
+                div className = "main" > {
                     auth ?
                     <
                     MainContents / >
                     :
                         <
                         Welcome / >
-                } 
-                </div> {
+                } <
+                /div> {
                     showAccount && ( < Account fetchUser = { props.fetchUser }
                             setShowAccount = { setShowAccount }
                             />)
@@ -133,14 +148,17 @@ const Homescreen = (props) => {
                                 }
 
                                 {
-                showUpdate && ( < Update fetchUser = { props.fetchUser }
-                         setShowUpdate = { setShowUpdate }
-                         userId = { props.user._id }
-                    user = { props.user }
-                    />)
-             }
+                                    showUpdate && ( < Update fetchUser = { props.fetchUser }
+                                        setShowUpdate = { setShowUpdate }
+                                        userId = { props.user._id }
+                                        user = { props.user }
+                                        />)
+                                    }
 
-        </div>
-    );
-};
-export default Homescreen;
+                                    <
+                                    /div>
+                                );
+
+                            };
+
+                            export default Homescreen;
