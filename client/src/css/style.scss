@@ -1,7 +1,7 @@
-@use 'node_modules/wt-frontend/build/global/theme' with ( $primary-color: #a31616, $background-color: rgb(70, 104, 255), //#d9d6cc,
+@use 'node_modules/wt-frontend/build/global/theme' with ( $primary-color: #db0468, $background-color: rgb(97, 125, 253), //#d9d6cc,
 $navbar-background-color: #0757f7, //rgb(64, 69, 78),
 $sidebar-background-color: #2b2e36, //#353a44,
-$text-color: #c6d8ff, $modal-background: rgb(64, 69, 78), $modal-section-padding: 24px, $modal-radius: 4px, $modal-border: 1px solid rgb(87, 93, 105), $modal-button-color: rgba(255, 255, 255, 0.7), $modal-button-hover: #e9edf0, $button-text-color: black, // other variable changes here
+$text-color: #90d6ff, $modal-background: rgb(64, 69, 78), $modal-section-padding: 24px, $modal-radius: 4px, $modal-border: 1px solid rgb(87, 93, 105), $modal-button-color: rgba(255, 255, 255, 0.7), $modal-button-hover: #e9edf0, $button-text-color: black, // other variable changes here
 );
 @use 'node_modules/wt-frontend/build/global/wolfie' as *;
 @use 'node_modules/wt-frontend/build/global/components';
@@ -42,6 +42,23 @@ body {
     background-color: $background-color;
 }
 
+.wallet-main{
+    background-color: $navbar-background-color;
+}
+
+.wallet-header{
+    background-color: $primary-color;
+}
+
+.wallet-pannel{
+    background-color: red;
+}
+
+#wallet-container{
+    color: $text-color;
+    background-color: $navbar-background-color;
+}
+
 .welcome-text {
     text-align: center;
     color: $text-color;
@@ -49,16 +66,14 @@ body {
 
 .navbar-options {
     text-align: center;
-    color: white;
+    color: $text-color;
     background-color: #00ff7f;
     font-weight: 900;
 }
 
 #menu-outer {
     height: 15%;
-    width: 80%;
-    background-color: $navbar-background-color;
-    display: block;
+    width: 65%;
     margin: auto;
 }
 
@@ -70,12 +85,12 @@ body {
 }
 
 ul#horizontal-list {
-    min-width: 696px;
+    min-width: 70%;
     font-family: Arial, Helvetica, sans-serif;
     word-wrap: break-word;
     word-break: break-all;
     list-style: none;
-    background-color: black;
+    background-color: $navbar-background-color;
 }
 
 ul#horizontal-list li {

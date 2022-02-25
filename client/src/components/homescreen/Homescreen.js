@@ -114,8 +114,10 @@ const Homescreen = (props) => {
                     </div> 
                 </div> 
                 <div className = "main" >{
-                    auth ?
-                    <MainContents />
+                    !auth ?
+                    <MainContents 
+                    showWallet = {showWallet}
+                    />
                     :
                     <Welcome />
                 } 
