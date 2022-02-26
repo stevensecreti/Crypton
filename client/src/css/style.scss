@@ -31,6 +31,9 @@ $text-color: #90d6ff, $modal-background: rgb(64, 69, 78), $modal-section-padding
     --blue-gray: #7e8084;
     --darkblue-gray: #2b2e36;
     --warm-black: #322d2d;
+    --window-text-color: #013292;
+    --button-color: #0096d1;
+    --button-hover-color:rgb(0, 169, 236);
 }
 
 html,
@@ -50,13 +53,57 @@ body {
     background-color: $primary-color;
 }
 
-.wallet-pannel{
-    background-color: red;
+.wallet-pannel-left{
+    background-color: $primary-color;
+}
+
+.wallet-pannel-right{
+    background-color: $primary-color;
 }
 
 #wallet-container{
-    color: $text-color;
+    color: var(--window-text-color);
     background-color: $navbar-background-color;
+}
+
+#wallet-button{
+    background-color: var(--button-color);
+    font-size: 1em;
+    color: var(--window-text-color);
+    text-align: center;
+}
+
+#wallet-button:hover{
+    background-color: var(--button-hover-color);
+    cursor: pointer;
+}
+
+#wallet-button:active{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+#wallet-balance{
+    font-size: 1.2em;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--window-text-color);
+}
+
+#wallet-trend-pos{
+    font-size: 1.2em;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--window-text-color);
+    color: rgb(0, 209, 0);
+}
+#wallet-trend-neg{
+    font-size: 1.2em;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--window-text-color);
+    color: rgb(139, 2, 121);
 }
 
 .welcome-text {
