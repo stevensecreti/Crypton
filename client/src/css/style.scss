@@ -81,3 +81,34 @@ ul#horizontal-list {
 ul#horizontal-list li {
     display: inline;
 }
+
+/* Navbar Modals */
+.modal-header {
+    color: white;
+    background-color: black;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.modal-main {
+    color: white;
+    background-color: rgb(70, 104, 255);
+    font-size: 28px;
+    font-weight: 900;
+    //border-color: #0757f7;
+}
+
+.modal-footer {
+    color: white;
+    background-color: black;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.modal-button {
+    color: white;
+    background-color: rgb(70, 104, 255);
+    font-size: 28px;
+    font-weight: 900;
+}
+

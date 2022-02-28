@@ -106,7 +106,7 @@ const LoggedOut = (props) => {
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShowLogin }
-                wType = "texted" >  Log In </WButton> 
+                wType = "texted" >  Login </WButton> 
                 </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
