@@ -5,14 +5,7 @@ import Login from '../modals/Login';
 import Update from '../modals/Update';
 import CreateAccount from '../modals/CreateAccount';
 import Account from '../modals/Account';
-import EducationCenter from '../modals/EducationCenter';
-import Exchange from '../modals/Exchange';
-import GamingCenter from '../modals/GamingCenter';
-import GFreezzee from '../modals/GFreezzee';
-import Home from '../modals/Home';
 import Welcome from '../main/Welcome';
-import TradingBot from '../modals/TradingBot';
-import Wallet from '../modals/Wallet';
 import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
 import { useMutation, useQuery } from '@apollo/client';
@@ -27,12 +20,10 @@ const Homescreen = (props) => {
         const [showExchange, toggleShowExchange] = useState(false);
         const [showEducation, toggleShowEducation] = useState(false);
         const [showGaming, toggleShowGaming] = useState(false);
-        const [showGFreezzee, toggleShowGFreezzee] = useState(false);
+        const [showProfile, toggleShowProfile] = useState(false);
         const [showHome, toggleShowHome] = useState(false);
         const [showTrading, toggleShowTrading] = useState(false);
         const [showWallet, toggleShowWallet] = useState(false);
-
-
 
         const auth = props.user === null ? false : true;
         let displayName = "";
@@ -57,35 +48,35 @@ const Homescreen = (props) => {
         };
 
         const setShowAccount = () => {
-            toggleShowAccount(!showUpdate);
+            toggleShowAccount(!showAccount);
         };
 
         const setShowEducation = () => {
-            toggleShowEducation(!showUpdate);
+            toggleShowEducation(!showEducation);
         };
 
         const setShowExchange = () => {
-            toggleShowExchange(!showUpdate);
+            toggleShowExchange(!showExchange);
         };
 
         const setShowGaming = () => {
-            toggleShowGaming(!showUpdate);
+            toggleShowGaming(!showGaming);
         };
 
-        const setShowGFreezzee = () => {
-            toggleShowGFreezzee(!showUpdate);
+        const setShowProfile = () => {
+            toggleShowProfile(!showProfile);
         };
 
         const setShowHome = () => {
-            toggleShowHome(!showUpdate);
+            toggleShowHome(!showHome);
         };
 
         const setShowTrading = () => {
-            toggleShowTrading(!showUpdate);
+            toggleShowTrading(!showTrading);
         };
 
         const setShowWallet = () => {
-            toggleShowWallet(!showUpdate);
+            toggleShowWallet(!showWallet);
         };
 
         return( 
@@ -105,7 +96,7 @@ const Homescreen = (props) => {
                         setShowAccount = { setShowAccount }
                         setShowEducation = { setShowEducation }
                         setShowExchange = { setShowExchange }
-                        setShowGFreezzee = { setShowGFreezzee }
+                        setShowProfile = { setShowProfile }
                         setShowGaming = { setShowGaming }
                         setShowHome = { setShowHome }
                         setShowTrading = { setShowTrading }
@@ -114,7 +105,7 @@ const Homescreen = (props) => {
                     </div> 
                 </div> 
                 <div className = "main" >{
-                    !auth ?
+                    auth ?
                     <MainContents 
                     showWallet = {showWallet}
                     />
