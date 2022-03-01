@@ -1,7 +1,7 @@
 import React            from 'react';
-import Wallet           from '../Wallet/Wallet'
 import { PromiseProvider } from 'mongoose';
 import cryptonLogo         from '../images/CryptonLogo@2x.png'
+import Wallet from '../Wallet/Wallet';
 
 const MainContents = (props) => {
     return (
