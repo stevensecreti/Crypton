@@ -1,7 +1,7 @@
-@use 'node_modules/wt-frontend/build/global/theme' with ( $primary-color: #00ccff, $background-color: rgb(97, 125, 253), //#d9d6cc,
-$navbar-background-color: #013292, //rgb(64, 69, 78),
+@use 'node_modules/wt-frontend/build/global/theme' with ( $primary-color: #DEF2F1, $background-color: #2B7A78, //#d9d6cc,
+$navbar-background-color: #3AAFA9, //rgb(64, 69, 78),
 $sidebar-background-color: #2b2e36, //#353a44,
-$text-color: #90d6ff, $modal-background: rgb(64, 69, 78), $modal-section-padding: 24px, $modal-radius: 4px, $modal-border: 1px solid rgb(87, 93, 105), $modal-button-color: rgba(255, 255, 255, 0.7), $modal-button-hover: #e9edf0, $button-text-color: black, // other variable changes here
+$text-color: #17252A, $modal-background: rgb(64, 69, 78), $modal-section-padding: 24px, $modal-radius: 4px, $modal-border: 1px solid rgb(87, 93, 105), $modal-button-color: rgba(255, 255, 255, 0.7), $modal-button-hover: #e9edf0, $button-text-color: black, // other variable changes here
 );
 @use 'node_modules/wt-frontend/build/global/wolfie' as *;
 @use 'node_modules/wt-frontend/build/global/components';
@@ -46,7 +46,7 @@ body {
 
 .qr-header{
     background-color: $navbar-background-color;
-    color: $primary-color;
+    color: $text-color;
     text-align: center;
     font-size: 1.5em;
 }
@@ -79,19 +79,20 @@ body {
 }
 
 #wallet-container{
-    color: var($navbar-background-color);
+    color: $text-color;
     background-color: $navbar-background-color;
 }
 
 #wallet-button,#qr-button,#qr-button-l{
-    color: $primary-color;
+    color: $text-color;
     font-size: 1.5em;
     background-color: $navbar-background-color;
     text-align: center;
 }
 
 #wallet-button:hover,#qr-button:hover,#qr-button-l:hover{
-    background-color: var(--button-hover-color);
+    background-color: $background-color;
+    color: $primary-color;
     cursor: pointer;
 }
 
@@ -113,7 +114,7 @@ body {
     border-width: 2px;
     border-style: solid;
     border-color: $navbar-background-color;
-    color: rgb(0, 138, 0);
+    color: rgb(0, 141, 42);
 }
 #wallet-trend-neg{
     font-size: 1.5em;
@@ -130,7 +131,7 @@ body {
 
 .navbar-options {
     text-align: center;
-    color: $text-color;
+    color: $primary-color;
     background-color: #00ff7f;
     font-weight: 900;
 }
@@ -154,7 +155,7 @@ ul#horizontal-list {
     word-wrap: break-word;
     word-break: break-all;
     list-style: none;
-    background-color: $navbar-background-color;
+    background-color: $text-color;
 }
 
 ul#horizontal-list li {
@@ -163,5 +164,5 @@ ul#horizontal-list li {
 
 input{
     background-color: $navbar-background-color;
-    color: $primary-color;
+    color: $text-color;
 }
