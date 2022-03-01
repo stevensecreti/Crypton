@@ -13,7 +13,6 @@ const LoggedIn = (props) => {
         const { data } = await props.fetchUser();
         if (data) {
             let reset = await client.resetStore();
-            if (reset) props.setActiveMap({});
         }
     };
 
@@ -55,6 +54,11 @@ const LoggedIn = (props) => {
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShowAccount }
+                wType = "texted" > Settings </WButton> 
+                </WNavItem> 
+                <WNavItem hoverAnimation = "lighten" >
+                <WButton className = "navbar-options"
+                onClick = { props.setShowProfile }
                 wType = "texted" > { name } </WButton> 
                 </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
@@ -128,7 +132,7 @@ const NavbarOptions = (props) => {
             setShowAccount = { props.setShowAccount }
             setShowExchange = { props.setShowExchange }
             setShowEducation = { props.setShowEducation }
-            setShowGFreezzee = { props.setShowGFreezzee }
+            setShowProfile = { props.setShowProfile }
             setShowGamingCenter = { props.setShowGamingCenter }
             setShowHome = { props.setShowHome }
             setShowTrading = { props.setShowTrading }
