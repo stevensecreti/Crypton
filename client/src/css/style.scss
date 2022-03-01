@@ -83,19 +83,19 @@ body {
     background-color: $navbar-background-color;
 }
 
-#wallet-button,#qr-button{
+#wallet-button,#qr-button,#qr-button-l{
     color: $primary-color;
     font-size: 1.5em;
     background-color: $navbar-background-color;
     text-align: center;
 }
 
-#wallet-button:hover,#qr-button:hover{
+#wallet-button:hover,#qr-button:hover,#qr-button-l:hover{
     background-color: var(--button-hover-color);
     cursor: pointer;
 }
 
-#wallet-button:active,#qr-button:active{
+#wallet-button:active,#qr-button:active,#qr-button-l:active{
     border-width: 2px;
     border-style: solid;
     border-color: black;
@@ -159,4 +159,9 @@ ul#horizontal-list {
 
 ul#horizontal-list li {
     display: inline;
+}
+
+input{
+    background-color: $navbar-background-color;
+    color: $primary-color;
 }

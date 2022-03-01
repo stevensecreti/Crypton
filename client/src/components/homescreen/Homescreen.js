@@ -4,7 +4,6 @@ import NavbarOptions from '../navbar/NavbarOptions';
 import Login from '../modals/Login';
 import Update from '../modals/Update';
 import CreateAccount from '../modals/CreateAccount';
-import Account from '../modals/Account';
 import Welcome from '../main/Welcome';
 import QRCodeModal from '../modals/QRCodeModal';
 import MainContents from '../main/MainContents';
@@ -132,7 +131,6 @@ const Homescreen = (props) => {
                     <Welcome />
                 } 
                 </div> 
-                {showAccount && ( <Account fetchUser = { props.fetchUser }setShowAccount = { setShowAccount }/>)} 
                 {showCreate && (<CreateAccount fetchUser = {props.fetchUser} setShowCreate = { setShowCreate }/>)}
                 {showLogin && ( < Login fetchUser = { props.fetchUser } setShowLogin = { setShowLogin }/>)}
                 {showUpdate && ( < Update fetchUser = { props.fetchUser } setShowUpdate = {setShowUpdate} userId = {props.user._id} user = {props.user}/>)}
