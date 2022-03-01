@@ -139,10 +139,17 @@ const NavbarOptions = (props) => {
             setShowWallet = { props.setShowWallet }
             /> :
                 < LoggedIn fetchUser = { props.fetchUser }
-            setActiveMap = { props.setActiveMap }
             logout = { props.logout }
             displayName = { props.displayName }
             setShowUpdate = { props.setShowUpdate }
+            setShowAccount = { props.setShowAccount }
+            setShowExchange = { props.setShowExchange }
+            setShowEducation = { props.setShowEducation }
+            setShowProfile = { props.setShowProfile }
+            setShowGamingCenter = { props.setShowGamingCenter }
+            setShowHome = { props.setShowHome }
+            setShowTrading = { props.setShowTrading }
+            setShowWallet = { props.setShowWallet }
             />
         } </>
 

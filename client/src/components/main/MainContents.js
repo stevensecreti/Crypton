@@ -8,9 +8,13 @@ const MainContents = (props) => {
         <>
         {
             props.showWallet && 
-            (<Wallet>
-
-            </Wallet>)
+            (<Wallet
+                setShowQRCode = {props.setShowQRCode}
+                balance = {props.balance}
+                buyingPower = {props.buyingPower}
+                balanceData = {props.balanceData}
+                walletHex = {props.walletHex}
+            ></Wallet>)
         }
         </>
     );

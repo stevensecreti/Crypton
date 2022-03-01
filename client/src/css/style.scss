@@ -1,5 +1,5 @@
-@use 'node_modules/wt-frontend/build/global/theme' with ( $primary-color: #db0468, $background-color: rgb(97, 125, 253), //#d9d6cc,
-$navbar-background-color: #0757f7, //rgb(64, 69, 78),
+@use 'node_modules/wt-frontend/build/global/theme' with ( $primary-color: #00ccff, $background-color: rgb(97, 125, 253), //#d9d6cc,
+$navbar-background-color: #013292, //rgb(64, 69, 78),
 $sidebar-background-color: #2b2e36, //#353a44,
 $text-color: #90d6ff, $modal-background: rgb(64, 69, 78), $modal-section-padding: 24px, $modal-radius: 4px, $modal-border: 1px solid rgb(87, 93, 105), $modal-button-color: rgba(255, 255, 255, 0.7), $modal-button-hover: #e9edf0, $button-text-color: black, // other variable changes here
 );
@@ -31,8 +31,7 @@ $text-color: #90d6ff, $modal-background: rgb(64, 69, 78), $modal-section-padding
     --blue-gray: #7e8084;
     --darkblue-gray: #2b2e36;
     --warm-black: #322d2d;
-    --window-text-color: #013292;
-    --button-color: #0096d1;
+    --button-color: #990054;
     --button-hover-color:rgb(0, 169, 236);
 }
 
@@ -43,6 +42,24 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: $background-color;
+}
+
+.qr-header{
+    background-color: $navbar-background-color;
+    color: $primary-color;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.qr-main{
+    background-color: $primary-color;
+    border-width: 2px;
+    border-color: $navbar-background-color;
+    border-style: solid;
+}
+
+.wallet-div{
+    background-color: $primary-color;
 }
 
 .wallet-main{
@@ -62,47 +79,47 @@ body {
 }
 
 #wallet-container{
-    color: var(--window-text-color);
+    color: var($navbar-background-color);
     background-color: $navbar-background-color;
 }
 
-#wallet-button{
-    background-color: var(--button-color);
-    font-size: 1em;
-    color: var(--window-text-color);
+#wallet-button,#qr-button{
+    color: $primary-color;
+    font-size: 1.5em;
+    background-color: $navbar-background-color;
     text-align: center;
 }
 
-#wallet-button:hover{
+#wallet-button:hover,#qr-button:hover{
     background-color: var(--button-hover-color);
     cursor: pointer;
 }
 
-#wallet-button:active{
+#wallet-button:active,#qr-button:active{
     border-width: 2px;
     border-style: solid;
     border-color: black;
 }
 
 #wallet-balance{
-    font-size: 1.2em;
+    font-size: 1.5em;
     border-width: 2px;
     border-style: solid;
-    border-color: var(--window-text-color);
+    border-color: $navbar-background-color;
 }
 
 #wallet-trend-pos{
-    font-size: 1.2em;
+    font-size: 1.5em;
     border-width: 2px;
     border-style: solid;
-    border-color: var(--window-text-color);
-    color: rgb(0, 209, 0);
+    border-color: $navbar-background-color;
+    color: rgb(0, 138, 0);
 }
 #wallet-trend-neg{
-    font-size: 1.2em;
+    font-size: 1.5em;
     border-width: 2px;
     border-style: solid;
-    border-color: var(--window-text-color);
+    border-color: $navbar-background-color;
     color: rgb(139, 2, 121);
 }
 

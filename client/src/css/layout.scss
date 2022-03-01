@@ -65,15 +65,16 @@ html {
 }
 
 .qrcode{
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: auto;
+    margin-top: 5%;
+    width:50%;
 }
 
 .wallet-div{
-    width: 100%;
+    width: 90%;
     height: 90%;
-    margin-right: 5%;
+    margin: auto;
 }
 
 .wallet-header{
@@ -100,27 +101,46 @@ html {
 }
 
 #wallet-balance{
-    margin-left: 10%;
-    margin-top: 10%;
-    padding: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    width: 45%;
+    height: 6%;
+    display: inline;
+    float: left;
 }
 #wallet-trend-pos, #wallet-trend-neg{
-    margin-left: 30%;
-    margin-top: 5%;
-    padding: 5%;
-    width: 50%;
+    margin-top: 2%;
+    width: 45%;
+    height: 6%;
+    display: inline;
+    float: left;
 }
 
 .line-graph{
     margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 70%;
 }
 
 #wallet-button{
-    margin-top: 10%;
-    height: 10%;
-    margin-left: 25%;
-    margin-right: 25%;
-    width: 55%;
-    padding-top: 5%;
+    margin-top: 2%;
+    height: 6%;
+    margin-left: 5%;
+    width: 45%;
+    display: inline;
+    float: left;
+}
+
+
+
+#qr-button{
+    width: 60%;
+    padding: 1%;
+    height: 15%;
+    margin: auto;
+    margin-top: 5%;
+    display: block;
 }
 

@@ -6,6 +6,7 @@ import Update from '../modals/Update';
 import CreateAccount from '../modals/CreateAccount';
 import Account from '../modals/Account';
 import Welcome from '../main/Welcome';
+import QRCodeModal from '../modals/QRCodeModal';
 import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
 import { useMutation, useQuery } from '@apollo/client';
@@ -13,6 +14,12 @@ import { isObjectType } from 'graphql';
 
 
 const Homescreen = (props) => {
+        //User variables
+        const userBalance = 12349.21;
+        const userBuyingPower = 200.23;
+        const userBalanceData = [0,4,6,7];
+        const userWalletHex = "#AE473C";
+
         const [showLogin, toggleShowLogin] = useState(false);
         const [showCreate, toggleShowCreate] = useState(false);
         const [showUpdate, toggleShowUpdate] = useState(false);
@@ -24,6 +31,7 @@ const Homescreen = (props) => {
         const [showHome, toggleShowHome] = useState(false);
         const [showTrading, toggleShowTrading] = useState(false);
         const [showWallet, toggleShowWallet] = useState(false);
+        const [showQRCode, toggleShowQRCode] = useState(false);
 
         const auth = props.user === null ? false : true;
         let displayName = "";
@@ -79,6 +87,10 @@ const Homescreen = (props) => {
             toggleShowWallet(!showWallet);
         };
 
+        const setShowQRCode = () => {
+            toggleShowQRCode(!showQRCode);
+        };
+
         return( 
             <div className = "homescreen" >
                 <div className = "header" >
@@ -100,14 +112,21 @@ const Homescreen = (props) => {
                         setShowGaming = { setShowGaming }
                         setShowHome = { setShowHome }
                         setShowTrading = { setShowTrading }
-                        setShowWallet = { setShowWallet }/> 
+                        setShowWallet = { setShowWallet }
+                        displayName = {displayName}
+                        /> 
                     </ul> 
                     </div> 
                 </div> 
                 <div className = "main" >{
                     auth ?
                     <MainContents 
-                    showWallet = {showWallet}
+                        showWallet = {showWallet}
+                        setShowQRCode = {setShowQRCode}
+                        balance = {userBalance}
+                        buyingPower = {userBuyingPower}
+                        balanceData = {userBalanceData}
+                        walletHex = {userWalletHex}
                     />
                     :
                     <Welcome />
@@ -117,6 +136,7 @@ const Homescreen = (props) => {
                 {showCreate && (<CreateAccount fetchUser = {props.fetchUser} setShowCreate = { setShowCreate }/>)}
                 {showLogin && ( < Login fetchUser = { props.fetchUser } setShowLogin = { setShowLogin }/>)}
                 {showUpdate && ( < Update fetchUser = { props.fetchUser } setShowUpdate = {setShowUpdate} userId = {props.user._id} user = {props.user}/>)}
+                {showQRCode && (<QRCodeModal setShowQRCode = {setShowQRCode} ></QRCodeModal>)}
             </div>
         );
 };
