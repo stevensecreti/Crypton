@@ -23,7 +23,7 @@ const Homescreen = (props) => {
         const [showCreate, toggleShowCreate] = useState(false);
         const [showUpdate, toggleShowUpdate] = useState(false);
         const [showAccount, toggleShowAccount] = useState(false);
-        const [showExchange, toggleShowExchange] = useState(false);
+        const [showMarket, toggleShowMarket] = useState(false);
         const [showEducation, toggleShowEducation] = useState(false);
         const [showGaming, toggleShowGaming] = useState(false);
         const [showProfile, toggleShowProfile] = useState(false);
@@ -42,6 +42,21 @@ const Homescreen = (props) => {
             displayName = "";
         }
 
+        function clearScreen(){
+            console.log("Here");
+            toggleShowLogin(false);
+            toggleShowCreate(false);
+            toggleShowUpdate(false);
+            toggleShowAccount(false);
+            toggleShowEducation(false);
+            toggleShowMarket(false);
+            toggleShowGaming(false);
+            toggleShowProfile(false);
+            toggleShowHome(false);
+            toggleShowTrading(false);
+            toggleShowWallet(false);
+            toggleShowQRCode(false);
+        }
         const setShowLogin = () => {
             toggleShowLogin(!showLogin);
         };
@@ -62,8 +77,9 @@ const Homescreen = (props) => {
             toggleShowEducation(!showEducation);
         };
 
-        const setShowExchange = () => {
-            toggleShowExchange(!showExchange);
+        const setShowMarket = () => {
+            clearScreen();
+            toggleShowMarket(!showMarket);
         };
 
         const setShowGaming = () => {
@@ -75,6 +91,8 @@ const Homescreen = (props) => {
         };
 
         const setShowHome = () => {
+            console.log("in Set show Home");
+            clearScreen();
             toggleShowHome(!showHome);
         };
 
@@ -89,6 +107,7 @@ const Homescreen = (props) => {
         const setShowQRCode = () => {
             toggleShowQRCode(!showQRCode);
         };
+
 
         return( 
             <div className = "homescreen" >
@@ -106,7 +125,7 @@ const Homescreen = (props) => {
                         setShowUpdate = { setShowUpdate }
                         setShowAccount = { setShowAccount }
                         setShowEducation = { setShowEducation }
-                        setShowExchange = { setShowExchange }
+                        setShowMarket = { setShowMarket }
                         setShowProfile = { setShowProfile }
                         setShowGaming = { setShowGaming }
                         setShowHome = { setShowHome }

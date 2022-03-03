@@ -23,7 +23,7 @@ const LoggedIn = (props) => {
             <ul id = "horizontal-list" >
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
-                onClick = { props.setShow }
+                onClick = { props.setShowHome }
                 wType = "texted" >
                 Home </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
@@ -130,7 +130,7 @@ const NavbarOptions = (props) => {
             props.auth === false ? < LoggedOut setShowLogin = { props.setShowLogin }
             setShowCreate = { props.setShowCreate }
             setShowAccount = { props.setShowAccount }
-            setShowExchange = { props.setShowExchange }
+            setShowExchange = { props.setShowMarket }
             setShowEducation = { props.setShowEducation }
             setShowProfile = { props.setShowProfile }
             setShowGamingCenter = { props.setShowGamingCenter }
