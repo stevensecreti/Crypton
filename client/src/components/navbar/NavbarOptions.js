@@ -30,7 +30,7 @@ const LoggedIn = (props) => {
                 <WButton className = "navbar-options"
                 onClick = { props.setShowExchange }
                 wType = "texted" >
-                Exchange </WButton> </WNavItem> 
+                Market </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShowWallet }
