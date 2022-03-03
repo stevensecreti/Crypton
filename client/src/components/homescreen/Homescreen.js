@@ -113,11 +113,7 @@ const Homescreen = (props) => {
             <div className = "homescreen" >
                 <div className = "header" >
                     <div className = "navbar" >
-                    <ul>
-                        <div className = "logo" >
-                            <Logo className = 'logo'/>
-                        </div> </ul> 
-                    <ul>
+                    <>
                         <NavbarOptions fetchUser = { props.fetchUser }
                         auth = { auth }
                         setShowCreate = { setShowCreate }
@@ -133,13 +129,14 @@ const Homescreen = (props) => {
                         setShowWallet = { setShowWallet }
                         displayName = {displayName}
                         /> 
-                    </ul> 
+                    </> 
                     </div> 
                 </div> 
                 <div className = "main" >{
                     auth ?
                     <MainContents 
                         showWallet = {showWallet}
+                        showMarket = {showMarket}
                         setShowQRCode = {setShowQRCode}
                         balance = {userBalance}
                         buyingPower = {userBuyingPower}

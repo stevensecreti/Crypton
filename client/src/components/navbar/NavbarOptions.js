@@ -18,9 +18,9 @@ const LoggedIn = (props) => {
 
     let name = props.displayName;
     return ( 
-    <div id = "menu-outer" >
-        <div class = "table" >
-            <ul id = "horizontal-list" >
+    <div className = "menu-outer" >
+        <div className = "table" >
+            <ul className = "horizontal-list" >
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShowHome }
@@ -28,7 +28,7 @@ const LoggedIn = (props) => {
                 Home </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
-                onClick = { props.setShowExchange }
+                onClick = { props.setShowMarket }
                 wType = "texted" >
                 Market </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
@@ -74,9 +74,9 @@ const LoggedIn = (props) => {
 
 const LoggedOut = (props) => {
     return ( 
-        <div id = "menu-outer" >
-        <div class = "table" >
-            <ul id = "horizontal-list" >
+        <div className = "menu-outer" >
+        <div className = "table">
+            <ul className = "horizontal-list" >
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShow }
@@ -143,7 +143,7 @@ const NavbarOptions = (props) => {
             displayName = { props.displayName }
             setShowUpdate = { props.setShowUpdate }
             setShowAccount = { props.setShowAccount }
-            setShowExchange = { props.setShowExchange }
+            setShowMarket = { props.setShowMarket }
             setShowEducation = { props.setShowEducation }
             setShowProfile = { props.setShowProfile }
             setShowGamingCenter = { props.setShowGamingCenter }
