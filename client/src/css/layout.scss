@@ -157,11 +157,10 @@ html {
     display: flex;
     flex-direction: column;
     width: 66%;
-    height: 75vh;
+    height: 80vh;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    text-anchor: center;
 }
 .marketHeader{
     height: 7vh;
@@ -172,31 +171,27 @@ html {
 }
 .marketMainContents{
     display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-    height: 100%;
-}
-.marketCoinList{
-    display: flex;
     flex-direction: column;
     row-gap: 10px;
-    width: 25%;
-    height: 100%;
-}
-.marketCoinListHeader{
-    height: 5vh;
-}
-.marketChart{
-    display: flex;
-    flex-direction: column;
-    column-gap: 10px;
-    width: 75%;
-}
-.marketChartHeader{
-    height: 7vh;
+    height: 73vh;
+    color: #FFFFFF;
     text-align: center;
+    text-anchor: middle;
+    //align-items: center;
 }
-.marketChartWrapper{
+.marketCoinSelect{
+    width: 25vh;
+    text-align: center;
+    font-size: 24px;
+}
+.marketGraph{
+    row-gap: 10px;
+    margin: 0 auto;
+    width: 90%;
+    height: 100vh;
+}
+.marketGraphContainer{
+    height: 60vh;
+}
 
-}
 

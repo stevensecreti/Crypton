@@ -2,10 +2,10 @@ export const MarketDataFormatter = (data) =>{
     let finalData = {
         labels: [],
         datasets: [{
-            label: "Price",
+            label: "Price ($)",
             data: [],
-            backgroundColor: "rgb(255, 99, 132, 0.8)",
-            borderColor: "rgba(255, 99, 132, 0.2)",
+            backgroundColor: "rgb(42, 122, 120, 0.8)",
+            borderColor: "rgba(42, 122, 120, 0.2)",
             fill: false
         }]
     };
