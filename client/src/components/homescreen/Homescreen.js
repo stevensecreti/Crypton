@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Logo from '../navbar/Logo';
 import NavbarOptions from '../navbar/NavbarOptions';
 import Login from '../modals/Login';
@@ -10,6 +10,7 @@ import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
 import { useMutation, useQuery } from '@apollo/client';
 import { isObjectType } from 'graphql';
+import { of } from 'zen-observable';
 
 
 const Homescreen = (props) => {
@@ -19,11 +20,15 @@ const Homescreen = (props) => {
         const userBalanceData = [0,4,6,7];
         const userWalletHex = "#AE473C";
 
+       
+
+
+
         const [showLogin, toggleShowLogin] = useState(false);
         const [showCreate, toggleShowCreate] = useState(false);
         const [showUpdate, toggleShowUpdate] = useState(false);
         const [showAccount, toggleShowAccount] = useState(false);
-        const [showExchange, toggleShowExchange] = useState(false);
+        const [showMarket, toggleShowMarket] = useState(false);
         const [showEducation, toggleShowEducation] = useState(false);
         const [showGaming, toggleShowGaming] = useState(false);
         const [showProfile, toggleShowProfile] = useState(false);
@@ -42,6 +47,21 @@ const Homescreen = (props) => {
             displayName = "";
         }
 
+        function clearScreen(){
+            console.log("Here");
+            toggleShowLogin(false);
+            toggleShowCreate(false);
+            toggleShowUpdate(false);
+            toggleShowAccount(false);
+            toggleShowEducation(false);
+            toggleShowMarket(false);
+            toggleShowGaming(false);
+            toggleShowProfile(false);
+            toggleShowHome(false);
+            toggleShowTrading(false);
+            toggleShowWallet(false);
+            toggleShowQRCode(false);
+        }
         const setShowLogin = () => {
             toggleShowLogin(!showLogin);
         };
@@ -62,8 +82,9 @@ const Homescreen = (props) => {
             toggleShowEducation(!showEducation);
         };
 
-        const setShowExchange = () => {
-            toggleShowExchange(!showExchange);
+        const setShowMarket = () => {
+            clearScreen();
+            toggleShowMarket(!showMarket);
         };
 
         const setShowGaming = () => {
@@ -75,6 +96,8 @@ const Homescreen = (props) => {
         };
 
         const setShowHome = () => {
+            console.log("in Set show Home");
+            clearScreen();
             toggleShowHome(!showHome);
         };
 
@@ -90,15 +113,12 @@ const Homescreen = (props) => {
             toggleShowQRCode(!showQRCode);
         };
 
+
         return( 
             <div className = "homescreen" >
                 <div className = "header" >
                     <div className = "navbar" >
-                    <ul>
-                        <div className = "logo" >
-                            <Logo className = 'logo'/>
-                        </div> </ul> 
-                    <ul>
+                    <>
                         <NavbarOptions fetchUser = { props.fetchUser }
                         auth = { auth }
                         setShowCreate = { setShowCreate }
@@ -106,7 +126,7 @@ const Homescreen = (props) => {
                         setShowUpdate = { setShowUpdate }
                         setShowAccount = { setShowAccount }
                         setShowEducation = { setShowEducation }
-                        setShowExchange = { setShowExchange }
+                        setShowMarket = { setShowMarket }
                         setShowProfile = { setShowProfile }
                         setShowGaming = { setShowGaming }
                         setShowHome = { setShowHome }
@@ -114,13 +134,14 @@ const Homescreen = (props) => {
                         setShowWallet = { setShowWallet }
                         displayName = {displayName}
                         /> 
-                    </ul> 
+                    </> 
                     </div> 
                 </div> 
                 <div className = "main" >{
                     auth ?
                     <MainContents 
                         showWallet = {showWallet}
+                        showMarket = {showMarket}
                         setShowQRCode = {setShowQRCode}
                         balance = {userBalance}
                         buyingPower = {userBuyingPower}

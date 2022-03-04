@@ -2,6 +2,7 @@ import React            from 'react';
 import { PromiseProvider } from 'mongoose';
 import cryptonLogo         from '../images/CryptonLogo@2x.png'
 import Wallet from '../Wallet/Wallet';
+import Market from '../Market/Market'
 
 const MainContents = (props) => {
     return (
@@ -14,7 +15,11 @@ const MainContents = (props) => {
                 buyingPower = {props.buyingPower}
                 balanceData = {props.balanceData}
                 walletHex = {props.walletHex}
-            ></Wallet>)
+            ></Wallet>) ||
+            props.showMarket &&
+            (<Market>
+                
+            </Market>)
         }
         </>
     );

@@ -5,12 +5,11 @@ const Logo = (props) => {
         props.closeActiveMap();
     }
 
-    return ( <
-        div className = 'logo'
+    return ( 
+        <div className = 'logo'
         onClick = { handleSetActive } >
 
-        <
-        /div>
+        </div>
     );
 };
 
