@@ -8,6 +8,8 @@ const typeDefs = gql `
 		initials: String
 		email: String
 		password: String
+		gameCenterBalance: Float
+		highscores: [Score]
 	}
 	extend type Query {
 		getCurrentUser: User
@@ -17,6 +19,10 @@ const typeDefs = gql `
 		register(email: String!, password: String!, firstName: String!, lastName: String!): User
 		update(email: String!, password: String!, firstName: String!, lastName: String!, _id: String!): Boolean!
 		logout: Boolean!
+	}
+	type Score {
+		score: Int
+		game: String!
 	}
 `;
 
