@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Logo from '../navbar/Logo';
 import NavbarOptions from '../navbar/NavbarOptions';
 import Login from '../modals/Login';
@@ -10,6 +10,7 @@ import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
 import { useMutation, useQuery } from '@apollo/client';
 import { isObjectType } from 'graphql';
+import { of } from 'zen-observable';
 
 
 const Homescreen = (props) => {
@@ -18,6 +19,10 @@ const Homescreen = (props) => {
         const userBuyingPower = 200.23;
         const userBalanceData = [0,4,6,7];
         const userWalletHex = "#AE473C";
+
+       
+
+
 
         const [showLogin, toggleShowLogin] = useState(false);
         const [showCreate, toggleShowCreate] = useState(false);
