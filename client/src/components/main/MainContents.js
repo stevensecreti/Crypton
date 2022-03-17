@@ -5,7 +5,25 @@ import Wallet from '../Wallet/Wallet';
 import Market from '../Market/Market'
 import GameCenter from '../GameCenter/GameCenter';
 
+var marketSocket = null;
 const MainContents = (props) => {
+    function storeSock(sock){
+        if(!marketSocket){
+            marketSocket = sock; 
+        }
+    }
+    function closeSock(){
+        if(marketSocket){
+            marketSocket.close();
+            marketSocket = null;
+        }
+    }
+    
+    if(!props.showMarket){
+        closeSock();
+    }
+
+
     return (
         <>
         {
@@ -18,9 +36,9 @@ const MainContents = (props) => {
                 walletHex = {props.walletHex}
             ></Wallet>) ||
             props.showMarket &&
-            (<Market>
-                
-            </Market>) ||
+            (<Market 
+                storeSock={storeSock}
+             ></Market>) ||
             props.showGaming &&
             (<GameCenter>
                 
