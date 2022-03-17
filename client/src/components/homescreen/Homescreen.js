@@ -141,6 +141,7 @@ const Homescreen = (props) => {
                     auth ?
                     <MainContents 
                         showWallet = {showWallet}
+                        showGaming = {showGaming}
                         showMarket = {showMarket}
                         setShowQRCode = {setShowQRCode}
                         balance = {userBalance}

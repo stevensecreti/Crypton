@@ -3,6 +3,7 @@ import { PromiseProvider } from 'mongoose';
 import cryptonLogo         from '../images/CryptonLogo@2x.png'
 import Wallet from '../Wallet/Wallet';
 import Market from '../Market/Market'
+import GameCenter from '../GameCenter/GameCenter';
 
 const MainContents = (props) => {
     return (
@@ -19,7 +20,11 @@ const MainContents = (props) => {
             props.showMarket &&
             (<Market>
                 
-            </Market>)
+            </Market>) ||
+            props.showGaming &&
+            (<GameCenter>
+                
+            </GameCenter>)
         }
         </>
     );
