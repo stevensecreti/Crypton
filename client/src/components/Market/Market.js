@@ -15,6 +15,7 @@ const Market = (props) => {
 
     useEffect(() => {
         ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
+        props.storeSock(ws.current);
         let pairs = [];
         const apiCall = async () =>{
             await fetch(url + "/products")
