@@ -48,7 +48,6 @@ const Homescreen = (props) => {
         }
 
         function clearScreen(){
-            console.log("Here");
             toggleShowLogin(false);
             toggleShowCreate(false);
             toggleShowUpdate(false);
@@ -75,10 +74,12 @@ const Homescreen = (props) => {
         };
 
         const setShowAccount = () => {
+            clearScreen();
             toggleShowAccount(!showAccount);
         };
 
         const setShowEducation = () => {
+            clearScreen();
             toggleShowEducation(!showEducation);
         };
 
@@ -88,15 +89,16 @@ const Homescreen = (props) => {
         };
 
         const setShowGaming = () => {
+            clearScreen();
             toggleShowGaming(!showGaming);
         };
 
         const setShowProfile = () => {
+            clearScreen();
             toggleShowProfile(!showProfile);
         };
 
         const setShowHome = () => {
-            console.log("in Set show Home");
             clearScreen();
             toggleShowHome(!showHome);
         };
@@ -106,6 +108,7 @@ const Homescreen = (props) => {
         };
 
         const setShowWallet = () => {
+            clearScreen();
             toggleShowWallet(!showWallet);
         };
 
