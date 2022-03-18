@@ -31,11 +31,11 @@ const userSchema = new Schema(
 			required: true
 		},
 		friendsList: {
-			type: [String],
+			type: [ObjectId],
 			required: true
 		},
 		friendRequests:{
-			type: [String],
+			type: [ObjectId],
 			required: true
 		}
 	},

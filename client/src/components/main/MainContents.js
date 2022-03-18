@@ -43,7 +43,6 @@ const MainContents = (props) => {
              props.showProfile &&
              (<Profile
                 addFriend={props.addFriend}
-                friendsList={props.friendsList}
               ></Profile>) ||
             props.showGaming &&
             (<GameCenter>

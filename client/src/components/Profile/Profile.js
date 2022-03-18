@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
-import Friend from "../Profile/Friend";
-
 
 const Profile = (props) => {
 
-    let friendsList = props.friendsList;
-    console.log("Friends List", friendsList);
     function addFriend(){
         props.addFriend();
     }
@@ -34,7 +30,6 @@ const Profile = (props) => {
                     Friends List
                     <div className="profileFriendsList">
                         {//Here map each friend in list to a new friend component <Friend/>
-                            friendsList ? friendsList.map((friend) => <Friend name={friend}/>) : <></>
                         }
                     </div>
                     <button className="profileAddFriend" onClick={addFriend}>Add Friend</button>

@@ -103,10 +103,8 @@ module.exports = {
 			return true;
 		},
 		friendRequest: async (_, args) => {
-			console.log("args", args);
-			const {email, user} = args;
-			let toEmail = email;
-			let fromEmail = user;
+			const { toEmail, fromEmail} = args;
+
 			console.log("ToEmail: ", toEmail, "From Email: ", fromEmail);
 			
 			const toUser = await User.findOne({email: toEmail});
@@ -115,15 +113,19 @@ module.exports = {
 			const fromUser = await User.findOne({email: fromEmail});
 			if(!fromUser) return false;
 
-			let userToFriendsList = toUser.friendsList;
-			let list1 = userToFriendsList.slice();
-			list1.push(fromEmail);
-			const added1 = await User.updateOne({email: toEmail}, {friendsList: list1});
+			userToFriendsList = toUser.friendsList;
+			updatedUTFL = userToFriendsList.push(fromEmail);
+			const added1 = await User.updateOne({email: toEmail}, {friendsList: updatedUTFL});
+
+			console.log("Updated UTFL: ", updatedUTFL);
+			console.log("Added1", added1);
 			
-			let userFromFriendsList = fromUser.friendsList;
-			let list2 = userFromFriendsList.slice();
-			list2.push(toEmail);
-			const added2 = await User.updateOne({email: fromEmail}, {friendsList: list2});
+			userFromFriendsList = fromUser.friendsList;
+			updatedUFFL = userFromFriendsList.push(toEmail);
+			const added2 = await User.updateOne({email: fromEmail}, {friendsList: updatedUFFL});
+
+			console.log("Updated UFFL: ", updatedUFFL);
+			console.log("Added2", added2);
 
 			if(!(added1)) return false;
 			if(!(added2)) return false;

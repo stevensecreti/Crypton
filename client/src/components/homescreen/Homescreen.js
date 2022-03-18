@@ -38,22 +38,15 @@ const Homescreen = (props) => {
         const auth = props.user === null ? false : true;
         let displayName = "";
         let email = "";
-        let friends = [];
         if (auth) {
             const firstName = props.user.firstName;
             const lastName = props.user.lastName;
-            const friendsList = props.user.friendsList;
-            console.log("USER", props.user);
-            console.log("FRIENDS LIST", friendsList);
             email = props.user.email;
             displayName = firstName + " " + lastName;
-            friends = props.user.friendsList;
-            console.log("friends", friends);
         } else {
             displayName = "";
         }
 
-        console.log("friends: ", friends);
         function clearScreen(){
             toggleShowLogin(false);
             toggleShowCreate(false);
@@ -164,7 +157,6 @@ const Homescreen = (props) => {
                         balanceData = {userBalanceData}
                         walletHex = {userWalletHex}
                         addFriend={setShowAddFriend}
-                        friendsList={friends}
                     />
                     :
                     <Welcome />
