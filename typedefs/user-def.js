@@ -9,7 +9,8 @@ const typeDefs = gql `
 		email: String
 		password: String
 		gameCenterBalance: Float
-		highscores: [Score]
+		friendsList: [String]!
+		friendRequests: [String]!
 	}
 	extend type Query {
 		getCurrentUser: User
@@ -19,6 +20,7 @@ const typeDefs = gql `
 		register(email: String!, password: String!, firstName: String!, lastName: String!): User
 		update(email: String!, password: String!, firstName: String!, lastName: String!, _id: String!): Boolean!
 		logout: Boolean!
+		friendRequest(email: String!, user: String!): Boolean!
 	}
 	type Score {
 		score: Int

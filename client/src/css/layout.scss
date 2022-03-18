@@ -3,7 +3,7 @@
     $background-color: rgb(64, 69, 78),//#d9d6cc,
     $navbar-background-color: #353a44,//rgb(64, 69, 78),
     $sidebar-background-color: #2b2e36,//#353a44,
-    $text-color: #e9edf0,
+    $text-color: #262626,
     $modal-background: rgb(64, 69, 78),
     $modal-section-padding: 24px,
     $modal-radius: 4px,
@@ -194,4 +194,47 @@ html {
     height: 60vh;
 }
 
+.profileScreen{
+    display: flex;
+    flex-direction: column;
+    width: 66%;
+    height: 80vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.profileHeader{
+    height: 7vh;
+    width: 100%;
+}
+.profileMain{
+    display: flex;
+    flex-direction: row;
+    column-gap: 25vw;
+    height: 73vh;
+    color: #FFFFFF;
+    text-align: center;
+    text-anchor: middle;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.profileInfo{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    text-align: center;
+    text-anchor: middle;
+}
+.profileCryptosHeld{}
+.profileCryptoList{}
 
+.profileFriends{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    text-align: center;
+    text-anchor: middle;
+}
+.profileFriendsList{}
+.profileAddFriend{}

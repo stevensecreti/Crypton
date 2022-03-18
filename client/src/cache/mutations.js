@@ -37,3 +37,9 @@ export const LOGOUT = gql`
 		logout 
 	}
 `;
+
+export const FRIEND_REQUEST = gql`
+	mutation FriendRequest($email: String!, $user: String!){
+		friendRequest(email: $email, user: $user)
+	}
+`;

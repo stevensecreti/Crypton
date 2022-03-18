@@ -6,6 +6,7 @@ import Update from '../modals/Update';
 import CreateAccount from '../modals/CreateAccount';
 import Welcome from '../main/Welcome';
 import QRCodeModal from '../modals/QRCodeModal';
+import AddFriend from '../modals/AddFriend';
 import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
 import { useMutation, useQuery } from '@apollo/client';
@@ -20,13 +21,10 @@ const Homescreen = (props) => {
         const userBalanceData = [0,4,6,7];
         const userWalletHex = "#AE473C";
 
-       
-
-
-
         const [showLogin, toggleShowLogin] = useState(false);
         const [showCreate, toggleShowCreate] = useState(false);
         const [showUpdate, toggleShowUpdate] = useState(false);
+        const [showAddFriend, toggleShowAddFriend] = useState(false);
         const [showAccount, toggleShowAccount] = useState(false);
         const [showMarket, toggleShowMarket] = useState(false);
         const [showEducation, toggleShowEducation] = useState(false);
@@ -39,9 +37,11 @@ const Homescreen = (props) => {
 
         const auth = props.user === null ? false : true;
         let displayName = "";
+        let email = "";
         if (auth) {
             const firstName = props.user.firstName;
             const lastName = props.user.lastName;
+            email = props.user.email;
             displayName = firstName + " " + lastName;
         } else {
             displayName = "";
@@ -116,6 +116,10 @@ const Homescreen = (props) => {
             toggleShowQRCode(!showQRCode);
         };
 
+        const setShowAddFriend = () => {
+            toggleShowAddFriend(!showAddFriend);
+        }
+
 
         return( 
             <div className = "homescreen" >
@@ -145,11 +149,13 @@ const Homescreen = (props) => {
                     <MainContents 
                         showWallet = {showWallet}
                         showMarket = {showMarket}
+                        showProfile = {showProfile}
                         setShowQRCode = {setShowQRCode}
                         balance = {userBalance}
                         buyingPower = {userBuyingPower}
                         balanceData = {userBalanceData}
                         walletHex = {userWalletHex}
+                        addFriend={setShowAddFriend}
                     />
                     :
                     <Welcome />
@@ -159,6 +165,7 @@ const Homescreen = (props) => {
                 {showLogin && ( < Login fetchUser = { props.fetchUser } setShowLogin = { setShowLogin }/>)}
                 {showUpdate && ( < Update fetchUser = { props.fetchUser } setShowUpdate = {setShowUpdate} userId = {props.user._id} user = {props.user}/>)}
                 {showQRCode && (<QRCodeModal setShowQRCode = {setShowQRCode} ></QRCodeModal>)}
+                {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userEmail={email}></AddFriend>)}
             </div>
         );
 };

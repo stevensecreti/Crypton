@@ -64,7 +64,10 @@ module.exports = {
 				lastName: lastName,
 				email: email, 
 				password: hashed,
-				initials: `${firstName[0]}.${lastName[0]}.`
+				initials: `${firstName[0]}.${lastName[0]}.`,
+				gameCenterBalance: 0,
+				friendsList: [],
+				friendRequests: []
 			})
 			console.log("Created new User")
 			const saved = await user.save();
@@ -97,6 +100,35 @@ module.exports = {
 		logout:(_, __, { res }) => {
 			res.clearCookie('refresh-token');
 			res.clearCookie('access-token');
+			return true;
+		},
+		friendRequest: async (_, args) => {
+			const { toEmail, fromEmail} = args;
+
+			console.log("ToEmail: ", toEmail, "From Email: ", fromEmail);
+			
+			const toUser = await User.findOne({email: toEmail});
+			if(!toUser) return false;
+
+			const fromUser = await User.findOne({email: fromEmail});
+			if(!fromUser) return false;
+
+			userToFriendsList = toUser.friendsList;
+			updatedUTFL = userToFriendsList.push(fromEmail);
+			const added1 = await User.updateOne({email: toEmail}, {friendsList: updatedUTFL});
+
+			console.log("Updated UTFL: ", updatedUTFL);
+			console.log("Added1", added1);
+			
+			userFromFriendsList = fromUser.friendsList;
+			updatedUFFL = userFromFriendsList.push(toEmail);
+			const added2 = await User.updateOne({email: fromEmail}, {friendsList: updatedUFFL});
+
+			console.log("Updated UFFL: ", updatedUFFL);
+			console.log("Added2", added2);
+
+			if(!(added1)) return false;
+			if(!(added2)) return false;
 			return true;
 		}
 	}

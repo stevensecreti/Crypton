@@ -25,6 +25,18 @@ const userSchema = new Schema(
 		password: {
 			type: String,
 			required: true
+		},
+		gameCenterBalance: {
+			type: Number,
+			required: true
+		},
+		friendsList: {
+			type: [ObjectId],
+			required: true
+		},
+		friendRequests:{
+			type: [ObjectId],
+			required: true
 		}
 	},
 	{ timestamps: true }
