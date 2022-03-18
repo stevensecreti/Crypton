@@ -48,7 +48,7 @@ const LoggedIn = (props) => {
                 Education Center </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
-                onClick = { props.setShowGaming }
+                onClick = { props.setShowGamingCenter }
                 wType = "texted" >
                 Gaming Center </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
@@ -133,7 +133,7 @@ const NavbarOptions = (props) => {
             setShowExchange = { props.setShowMarket }
             setShowEducation = { props.setShowEducation }
             setShowProfile = { props.setShowProfile }
-            setShowGaming = { props.setShowGaming }
+            setShowGamingCenter = { props.setShowGamingCenter }
             setShowHome = { props.setShowHome }
             setShowTrading = { props.setShowTrading }
             setShowWallet = { props.setShowWallet }
@@ -146,7 +146,7 @@ const NavbarOptions = (props) => {
             setShowMarket = { props.setShowMarket }
             setShowEducation = { props.setShowEducation }
             setShowProfile = { props.setShowProfile }
-            setShowGaming = { props.setShowGaming }
+            setShowGamingCenter = { props.setShowGamingCenter }
             setShowHome = { props.setShowHome }
             setShowTrading = { props.setShowTrading }
             setShowWallet = { props.setShowWallet }

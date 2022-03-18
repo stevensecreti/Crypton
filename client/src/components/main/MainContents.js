@@ -4,7 +4,6 @@ import cryptonLogo         from '../images/CryptonLogo@2x.png'
 import Wallet from '../Wallet/Wallet';
 import Market from '../Market/Market';
 import Profile from "../Profile/Profile";
-import GameCenter from '../GameCenter/GameCenter';
 
 var marketSocket = null;
 const MainContents = (props) => {
@@ -43,11 +42,7 @@ const MainContents = (props) => {
              props.showProfile &&
              (<Profile
                 addFriend={props.addFriend}
-              ></Profile>) ||
-            props.showGaming &&
-            (<GameCenter>
-                
-            </GameCenter>)
+              ></Profile>)
         }
         </>
     );
