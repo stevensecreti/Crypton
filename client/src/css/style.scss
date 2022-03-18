@@ -59,6 +59,116 @@ body {
     color: #262626;
 }
 
+.req-main{
+    background-color: $sidebar-background-color;
+    color: $primary-color;
+    font-size: 1.5em;
+}
+
+.req-main:hover .req-info{
+    background-color: $sidebar-background-color;
+    color: $primary-color;
+    cursor: pointer;
+}
+
+.req-acc{
+    background-color: #03ca67;
+    color: $text-color;
+    border-radius: 10px;
+}
+
+.req-acc:hover{
+    background-color: #00ff80;
+    cursor: pointer;
+}
+
+.req-acc:active{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.req-dec{
+    background-color: #940031;
+    color: $text-color;
+    border-radius: 10px;
+}
+
+.req-dec:hover{
+    background-color: #ce0045;
+    cursor: pointer;
+}
+
+.req-dec:active{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.req-info,.req-acc,.req-dec{
+    text-align: center;
+}
+
+.gc-back{
+    background-color: $sidebar-background-color;
+    color: $primary-color;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.gc-back:hover{
+    background-color: $primary-color;
+    color: $sidebar-background-color;
+    cursor: pointer;
+}
+
+.gc-back:active{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.gc-pannel-l,.gc-pannel-r{
+    background-color: $background-color;
+}
+
+.gc-button{
+    background-color: $primary-color;
+    color: $sidebar-background-color;
+    text-align: center;
+    font-size: 2em;
+}
+
+.gc-button:hover{
+    background-color: $sidebar-background-color;
+    color: $primary-color;
+    cursor: pointer;
+}
+
+.gc-button:active
+{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+#gc-container{
+    color: $text-color;
+    background-color: $navbar-background-color;
+}
+
+.gc-main{
+    background-color: $navbar-background-color;
+}
+
+.gc-header{
+    background-color: $primary-color;
+}
+
+.req-list{
+    background-color: $background-color;
+}
+
 .wallet-div{
     background-color: $primary-color;
 }
