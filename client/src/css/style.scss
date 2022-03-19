@@ -59,16 +59,38 @@ body {
     color: #262626;
 }
 
-.req-main{
+.req-main,.score-main{
     background-color: $sidebar-background-color;
     color: $primary-color;
     font-size: 1.5em;
 }
 
-.req-main:hover .req-info{
-    background-color: $sidebar-background-color;
-    color: $primary-color;
+.score-main:hover{
+    background-color: $primary-color;
+    color: $sidebar-background-color;
+}
+
+.req-main:hover{
+    background-color: $primary-color;
+    color: $sidebar-background-color;
+}
+
+.play-button{
+    background-color: #00a2ff;
+    color: $text-color;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.play-button:hover{
+    background-color: #0065a0;
     cursor: pointer;
+}
+
+.play-button:active{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
 }
 
 .req-acc{
@@ -105,7 +127,7 @@ body {
     border-color: black;
 }
 
-.req-info,.req-acc,.req-dec{
+.req-info,.req-acc,.req-dec,.score-info{
     text-align: center;
 }
 
@@ -323,3 +345,41 @@ input{
 }
 .profileFriendsList{}
 .profileAddFriend{}
+
+//Gaming Styles
+
+//Memory Game
+
+.mem-cell{
+    background-color: $primary-color;
+    color: $sidebar-background-color;
+    width: 100%;
+    height:100%;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.mem-cell:hover{
+    background-color: $sidebar-background-color;
+    color: $primary-color;
+    cursor: pointer;
+}
+
+.mem-main{
+    width: 60%;
+    height: auto;
+    margin: auto;
+}
+.mem-grid{
+    display: grid;
+    background-color: #000;
+    grid-template-rows: repeat(3,1fr);
+    grid-template-columns: repeat(3,1fr);
+}
+
+.mem-score{
+    font-size: 3.5em;
+    text-align: center;
+    display: block;
+    margin: auto;
+}

@@ -145,8 +145,15 @@ html {
     margin-left: 20%;
 }
 
-.req-main{
-    margin-bottom: 7%;
+.req-main,.score-main{
+    padding-top: 7%;
+    padding-bottom: 7%;
+}
+
+.score-info, .play-button{
+    display: inline;
+    width: 50%;
+    float: left;
 }
 
 .req-info{
