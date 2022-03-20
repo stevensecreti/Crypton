@@ -46,8 +46,9 @@ const MainContents = (props) => {
                 friendsList={props.friendsList}
               ></Profile>) ||
             props.showGaming &&
-            (<GameCenter>
-                
+            (<GameCenter
+                updateHighscore = {props.updateHighscore}
+            >
             </GameCenter>)
         }
         </>

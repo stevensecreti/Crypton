@@ -42,6 +42,12 @@ const GameCenter = (props) => {
         setScreenName("Game Center");
     }
 
+    const endGame = (game,score) =>
+    {
+        props.updateHighscore(game,score);
+        goBack();
+    }
+
     return(
             <>
             <div id="gc-container">
@@ -116,7 +122,7 @@ const GameCenter = (props) => {
                         (<></>) ||
                         screen == 5 &&
                         (<>
-                        <Memory endGame = {goBack}></Memory>
+                        <Memory endGame = {endGame}></Memory>
                         </>)
                         }
                 </div>

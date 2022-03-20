@@ -1,6 +1,7 @@
 const ObjectId = require('mongoose').Types.ObjectId;
 const bcrypt = require('bcryptjs');
 const User = require('../models/user-model');
+const Score = require('../models/user-model');
 const tokens = require('../utils/tokens');
 
 module.exports = {
@@ -67,7 +68,8 @@ module.exports = {
 				initials: `${firstName[0]}.${lastName[0]}.`,
 				gameCenterBalance: 0,
 				friendsList: [],
-				friendRequests: []
+				friendRequests: [],
+				highscores: []
 			})
 			console.log("Created new User")
 			const saved = await user.save();
@@ -128,6 +130,45 @@ module.exports = {
 			if(!(added1)) return false;
 			if(!(added2)) return false;
 			return true;
+		},
+		updateHighscore: async (_, args) =>
+		{
+			const{game,score,user} = args;
+			let highscores = User.findOne({email: user}).highscores;
+			if(highscores != undefined)
+			{
+				let newHigh = Array(highscores.length+1);
+				for(let i = 0;i<highscores.length;i++)
+				{
+					let cscore = highscores[i];
+					let curGame = cscore.game;
+					let curScore = cscore.score;
+					newHigh[i] = cscore;
+					if(curGame.localeCompare(game) == 0)
+					{
+						if(curScore < score)
+						{
+							highscores[i] = game+","+score;
+							const updt = await User.updateOne({email: user},{highscores: highscores});
+							return true;
+						}
+						else
+						{
+							return false;
+						}
+					}
+				}
+				newHigh[newHigh.length-1] = game+","+score;
+				const updt = await User.updateOne({email: user},{highscores: newHigh});
+				return true;
+			}
+			else
+			{
+				highscores = Array(1);
+				highscores[0] = game+","+score;
+				const updt = await User.updateOne({email: user},{highscores: highscores});
+				return true;
+			}
 		}
 	}
 }

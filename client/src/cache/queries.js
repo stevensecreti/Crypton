@@ -8,6 +8,7 @@ export const GET_DB_USER = gql`
 			lastName
 			email
 			friendsList
+			highscores
 		}
 	}
 `;

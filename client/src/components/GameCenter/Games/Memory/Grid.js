@@ -14,7 +14,7 @@ const Grid = (props) =>
         }
         else
         {
-            props.endGame();
+            props.endGame("Reaction",props.score);
         }
     }
 
