@@ -42,7 +42,17 @@ const MainContents = (props) => {
              props.showProfile &&
              (<Profile
                 addFriend={props.addFriend}
+<<<<<<< HEAD
               ></Profile>)
+=======
+                friendsList={props.friendsList}
+              ></Profile>) ||
+            props.showGaming &&
+            (<GameCenter
+                updateHighscore = {props.updateHighscore}
+            >
+            </GameCenter>)
+>>>>>>> e4d5e8b7ee85da97712426532b68edd65e3f7e07
         }
         </>
     );

@@ -35,14 +35,28 @@ const Homescreen = (props) => {
         const [showWallet, toggleShowWallet] = useState(false);
         const [showQRCode, toggleShowQRCode] = useState(false);
 
+        const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
+
         const auth = props.user === null ? false : true;
         let displayName = "";
         let email = "";
+<<<<<<< HEAD
+=======
+        let friends = [];
+        let highscores = [];
+>>>>>>> e4d5e8b7ee85da97712426532b68edd65e3f7e07
         if (auth) {
             const firstName = props.user.firstName;
             const lastName = props.user.lastName;
             email = props.user.email;
             displayName = firstName + " " + lastName;
+<<<<<<< HEAD
+=======
+            friends = props.user.friendsList;
+            highscores = props.user.highscores;
+            console.log("highscores",props.user);
+            console.log("friends", friends);
+>>>>>>> e4d5e8b7ee85da97712426532b68edd65e3f7e07
         } else {
             displayName = "";
         }
@@ -120,6 +134,10 @@ const Homescreen = (props) => {
             toggleShowAddFriend(!showAddFriend);
         }
 
+        const updateHighscores = async (game,score) => {
+            UpdateHighscore({variables:{game: game,score: score,user: email}});
+        }
+
 
         return( 
             <div className = "homescreen" >
@@ -156,6 +174,11 @@ const Homescreen = (props) => {
                         balanceData = {userBalanceData}
                         walletHex = {userWalletHex}
                         addFriend={setShowAddFriend}
+<<<<<<< HEAD
+=======
+                        updateHighscore={updateHighscores}
+                        friendsList={friends}
+>>>>>>> e4d5e8b7ee85da97712426532b68edd65e3f7e07
                     />
                     :
                     <Welcome />

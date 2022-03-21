@@ -43,3 +43,9 @@ export const FRIEND_REQUEST = gql`
 		friendRequest(email: $email, user: $user)
 	}
 `;
+
+export const UPDATE_HIGHSCORE = gql`
+	mutation UpdateHighscore($game: String!, $score: Int!, $user: String!){
+		updateHighscore(game: $game, score: $score, user: $user)
+	}
+`;
