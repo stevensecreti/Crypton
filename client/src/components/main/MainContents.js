@@ -4,6 +4,7 @@ import cryptonLogo         from '../images/CryptonLogo@2x.png'
 import Wallet from '../Wallet/Wallet';
 import Market from '../Market/Market';
 import Profile from "../Profile/Profile";
+import GameCenter from '../GameCenter/GameCenter';
 
 var marketSocket = null;
 const MainContents = (props) => {
@@ -42,9 +43,6 @@ const MainContents = (props) => {
              props.showProfile &&
              (<Profile
                 addFriend={props.addFriend}
-<<<<<<< HEAD
-              ></Profile>)
-=======
                 friendsList={props.friendsList}
               ></Profile>) ||
             props.showGaming &&
@@ -52,7 +50,6 @@ const MainContents = (props) => {
                 updateHighscore = {props.updateHighscore}
             >
             </GameCenter>)
->>>>>>> e4d5e8b7ee85da97712426532b68edd65e3f7e07
         }
         </>
     );

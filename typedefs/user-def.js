@@ -8,13 +8,10 @@ const typeDefs = gql `
 		initials: String
 		email: String
 		password: String
+		friendsList: [String]
+		friendRequests: [String]
 		gameCenterBalance: Float
-<<<<<<< HEAD
-		friendsList: [String]!
-		friendRequests: [String]!
-=======
 		highscores: [String]
->>>>>>> e4d5e8b7ee85da97712426532b68edd65e3f7e07
 	}
 	extend type Query {
 		getCurrentUser: User

@@ -5,7 +5,7 @@ import { useMutation }    	from '@apollo/client';
 import { WModal, WMHeader, WMMain, WMFooter, WButton, WInput } from 'wt-frontend';
 
 const AddFriend = (props) => {
-    const [input, setInput] = useState({ email: '', user: props.userEmail });
+    const [input, setInput] = useState({ email: '', user: props.userEmail});
     const [loading, toggleLoading] = useState(false);
 	const [showErr, displayErrorMsg] = useState(false);
 	const errorMsg = "Email not found.";
@@ -18,10 +18,13 @@ const AddFriend = (props) => {
 	}
 
     const handleAddFriend = async (e) => {
-
-        const added = await FriendRequest({variables: {...input}});
+        console.log("Props User Email: ", props.userEmail);
+        const updated = {...input, user: props.userEmail};
+        setInput(updated);
+        console.log("input: ", input);
+        const added = await FriendRequest({variables: { ...input}});
         console.log("Added?", added);
-        if(!added.friendRequest){
+        if(!added.data.friendRequest){
             displayErrorMsg(true);
             return;
         }
@@ -43,7 +46,7 @@ const AddFriend = (props) => {
             loading ? <div />
                 : <WMMain className="qr-main">
 
-                    <WInput className="modal-input" onBlur={updateInput} name='Friends E-Mail' labelAnimation="up" barAnimation="solid" labelText="Friends E-Mail" wType="outlined" inputType='text' />
+                    <WInput className="modal-input" onBlur={updateInput} name='email' labelAnimation="up" barAnimation="solid" labelText="Friends E-Mail" wType="outlined" inputType='text' />
 
                     {
                         showErr ? <div className='modal-error'>

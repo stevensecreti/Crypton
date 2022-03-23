@@ -40,27 +40,25 @@ const Homescreen = (props) => {
         const auth = props.user === null ? false : true;
         let displayName = "";
         let email = "";
-<<<<<<< HEAD
-=======
         let friends = [];
         let highscores = [];
->>>>>>> e4d5e8b7ee85da97712426532b68edd65e3f7e07
         if (auth) {
             const firstName = props.user.firstName;
             const lastName = props.user.lastName;
+            const friendsList = props.user.friendsList;
+            console.log("USER", props.user);
+            console.log("FRIENDS LIST", friendsList);
             email = props.user.email;
             displayName = firstName + " " + lastName;
-<<<<<<< HEAD
-=======
             friends = props.user.friendsList;
             highscores = props.user.highscores;
             console.log("highscores",props.user);
             console.log("friends", friends);
->>>>>>> e4d5e8b7ee85da97712426532b68edd65e3f7e07
         } else {
             displayName = "";
         }
 
+        console.log("friends: ", friends);
         function clearScreen(){
             toggleShowLogin(false);
             toggleShowCreate(false);
@@ -166,6 +164,7 @@ const Homescreen = (props) => {
                     auth ?
                     <MainContents 
                         showWallet = {showWallet}
+                        showGaming = {showGaming}
                         showMarket = {showMarket}
                         showProfile = {showProfile}
                         setShowQRCode = {setShowQRCode}
@@ -174,11 +173,8 @@ const Homescreen = (props) => {
                         balanceData = {userBalanceData}
                         walletHex = {userWalletHex}
                         addFriend={setShowAddFriend}
-<<<<<<< HEAD
-=======
                         updateHighscore={updateHighscores}
                         friendsList={friends}
->>>>>>> e4d5e8b7ee85da97712426532b68edd65e3f7e07
                     />
                     :
                     <Welcome />
