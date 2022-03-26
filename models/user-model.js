@@ -37,6 +37,10 @@ const userSchema = new Schema(
 		friendRequests:{
 			type: [String],
 			required: true
+		},
+		highscores:{
+			type: [String],
+			required: true
 		}
 	},
 	{ timestamps: true }
