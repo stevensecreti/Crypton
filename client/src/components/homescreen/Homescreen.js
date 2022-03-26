@@ -166,6 +166,7 @@ const Homescreen = (props) => {
                         showWallet = {showWallet}
                         showGaming = {showGaming}
                         showMarket = {showMarket}
+                        showAccount = {showAccount}
                         showProfile = {showProfile}
                         setShowQRCode = {setShowQRCode}
                         balance = {userBalance}

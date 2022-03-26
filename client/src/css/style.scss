@@ -320,6 +320,34 @@ input{
     background-color: #262626;
 }
 
+// ************************** ACCOUNT SETTINGS *******************************
+.accountScreen{
+    background-color: #262626;
+}
+.accountHeader{
+    background-color: #8DC5D1;
+    color:#262626;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    text-anchor: middle;
+}
+.accountMain{
+    background-color: #262626;
+    font-size: 24px;
+}
+.accountInfo{
+    color: #8DC5D1;
+}
+.accountCryptosHeld{}
+.accountCryptoList{}
+.accountFriends{
+    color: #8DC5D1;
+}
+.accountFriendsList{}
+.accountAddFriend{}
+// ************************** ACCOUNT SETTINGS ********************************
+
 .profileScreen{
     background-color: #262626;
 }

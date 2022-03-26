@@ -3,6 +3,7 @@ import { PromiseProvider } from 'mongoose';
 import cryptonLogo         from '../images/CryptonLogo@2x.png'
 import Wallet from '../Wallet/Wallet';
 import Market from '../Market/Market';
+import Account from "../Account/Account";
 import Profile from "../Profile/Profile";
 import GameCenter from '../GameCenter/GameCenter';
 
@@ -39,7 +40,12 @@ const MainContents = (props) => {
             props.showMarket &&
             (<Market 
                 storeSock={storeSock}
-             ></Market>) ||
+             ></Market>) || 
+             props.showAccount &&
+             (<Account
+                addFriend={props.addFriend}
+                friendsList={props.friendsList}
+              ></Account>) ||
              props.showProfile &&
              (<Profile
                 addFriend={props.addFriend}

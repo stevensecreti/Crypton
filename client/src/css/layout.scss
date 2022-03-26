@@ -278,6 +278,53 @@ html {
     height: 60vh;
 }
 
+// ************** ACCOUNT SETTINGS **********************
+.accountScreen{
+    display: flex;
+    flex-direction: column;
+    width: 66%;
+    height: 80vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.accountHeader{
+    height: 7vh;
+    width: 100%;
+}
+.accountMain{
+    display: flex;
+    flex-direction: row;
+    column-gap: 25vw;
+    height: 73vh;
+    color: #FFFFFF;
+    text-align: center;
+    text-anchor: middle;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.accountInfo{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    text-align: center;
+    text-anchor: middle;
+}
+.accountCryptosHeld{}
+.accountCryptoList{}
+
+.accountFriends{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    text-align: center;
+    text-anchor: middle;
+}
+.accountFriendsList{}
+.accountAddFriend{}
+// ************** ACCOUNT SETTINGS **********************
+
 .profileScreen{
     display: flex;
     flex-direction: column;
