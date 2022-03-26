@@ -321,31 +321,71 @@ input{
 }
 
 // ************************** ACCOUNT SETTINGS *******************************
-.accountScreen{
-    background-color: #262626;
+.account-div{
+    background-color: $primary-color;
 }
-.accountHeader{
-    background-color: #8DC5D1;
-    color:#262626;
-    font-size: 30px;
-    font-weight: bold;
+
+.account-main{
+    background-color: $navbar-background-color;
+}
+
+.account-header{
+    background-color: $primary-color;
+}
+
+.account-pannel-left{
+    background-color: $primary-color;
+}
+
+.account-pannel-right{
+    background-color: $primary-color;
+}
+
+#account-container{
+    color: $text-color;
+    background-color: $navbar-background-color;
+}
+
+#account-button,#qr-button,#qr-button-l{
+    color: $text-color;
+    font-size: 1.5em;
+    background-color: $navbar-background-color;
     text-align: center;
-    text-anchor: middle;
 }
-.accountMain{
-    background-color: #262626;
-    font-size: 24px;
+
+#account-button:hover,#qr-button:hover,#qr-button-l:hover{
+    background-color: $background-color;
+    color: $primary-color;
+    cursor: pointer;
 }
-.accountInfo{
-    color: #8DC5D1;
+
+#account-button:active,#qr-button:active,#qr-button-l:active{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
 }
-.accountCryptosHeld{}
-.accountCryptoList{}
-.accountFriends{
-    color: #8DC5D1;
+
+#account-balance{
+    font-size: 1.5em;
+    border-width: 2px;
+    border-style: solid;
+    border-color: $navbar-background-color;
 }
-.accountFriendsList{}
-.accountAddFriend{}
+
+#account-trend-pos{
+    font-size: 1.5em;
+    border-width: 2px;
+    border-style: solid;
+    border-color: $navbar-background-color;
+    color: rgb(0, 141, 42);
+}
+#account-trend-neg{
+    font-size: 1.5em;
+    border-width: 2px;
+    border-style: solid;
+    border-color: $navbar-background-color;
+    color: rgb(139, 2, 121);
+}
 // ************************** ACCOUNT SETTINGS ********************************
 
 .profileScreen{

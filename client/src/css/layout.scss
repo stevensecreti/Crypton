@@ -279,50 +279,73 @@ html {
 }
 
 // ************** ACCOUNT SETTINGS **********************
-.accountScreen{
-    display: flex;
-    flex-direction: column;
-    width: 66%;
-    height: 80vh;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+.account-pannel-left{
+    width: 40%;
+    float: left;
+    display: inline;
+    height: 100%;
 }
-.accountHeader{
-    height: 7vh;
-    width: 100%;
-}
-.accountMain{
-    display: flex;
-    flex-direction: row;
-    column-gap: 25vw;
-    height: 73vh;
-    color: #FFFFFF;
-    text-align: center;
-    text-anchor: middle;
-    margin-left: auto;
-    margin-right: auto;
-    
-}
-.accountInfo{
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-    text-align: center;
-    text-anchor: middle;
-}
-.accountCryptosHeld{}
-.accountCryptoList{}
 
-.accountFriends{
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-    text-align: center;
-    text-anchor: middle;
+.account-pannel-right{
+    width: 60%;
+    float: left;
+    display: inline;
+    height: 100%;
 }
-.accountFriendsList{}
-.accountAddFriend{}
+
+.account-div{
+    width: 90%;
+    height: 90%;
+    margin: auto;
+}
+
+.account-header{
+    text-align: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+    width: 50%;
+    height: 20%;
+    margin: auto;
+    display: block;
+}
+
+.account-main{
+    display: flex;
+    height: 600px;
+}
+
+#account-container{
+    padding: 20px;
+    width: 50%;
+    height: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#account-balance{
+    margin-right: 5%;
+    margin-top: 5%;
+    width: 45%;
+    height: 6%;
+    display: inline;
+    float: left;
+}
+#account-trend-pos, #account-trend-neg{
+    margin-top: 2%;
+    width: 45%;
+    height: 6%;
+    display: inline;
+    float: left;
+}
+
+#account-button{
+    margin-top: 2%;
+    height: 6%;
+    margin-left: 5%;
+    width: 45%;
+    display: inline;
+    float: left;
+}
 // ************** ACCOUNT SETTINGS **********************
 
 .profileScreen{
