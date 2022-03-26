@@ -10,6 +10,7 @@ import AddFriend from '../modals/AddFriend';
 import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
 import { useMutation, useQuery } from '@apollo/client';
+import {GET_DB_USER} from '../../cache/queries';
 import { isObjectType } from 'graphql';
 import { of } from 'zen-observable';
 
@@ -42,6 +43,7 @@ const Homescreen = (props) => {
         let email = "";
         let friends = [];
         let highscores = [];
+        let challenges = [];
         if (auth) {
             const firstName = props.user.firstName;
             const lastName = props.user.lastName;
@@ -52,7 +54,8 @@ const Homescreen = (props) => {
             displayName = firstName + " " + lastName;
             friends = props.user.friendsList;
             highscores = props.user.highscores;
-            console.log("highscores",props.user);
+            challenges = props.user.challenges;
+            console.log("challenges",challenges);
             console.log("friends", friends);
         } else {
             displayName = "";
@@ -133,7 +136,7 @@ const Homescreen = (props) => {
         }
 
         const updateHighscores = async (game,score) => {
-            UpdateHighscore({variables:{game: game,score: score,user: email}});
+            UpdateHighscore({variables:{game: game,score: score,user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
 
 
@@ -176,6 +179,8 @@ const Homescreen = (props) => {
                         addFriend={setShowAddFriend}
                         updateHighscore={updateHighscores}
                         friendsList={friends}
+                        highscores={highscores}
+                        challenges={challenges}
                     />
                     :
                     <Welcome />

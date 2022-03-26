@@ -9,6 +9,7 @@ export const GET_DB_USER = gql`
 			email
 			friendsList
 			highscores
+			challenges
 		}
 	}
 `;

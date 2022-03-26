@@ -5,8 +5,8 @@ import GameChoice from './GameChoice';
 import Memory from './Games/Memory/Memory';
 
 const GameCenter = (props) => {
-    const chalReqs = ["GFreezzee,BloonsTD,500","Mastermind,Soccer,200","Pridey,COS,300"];
-    const highscores = ["BloonsTD,11000","Soccer,4500","Call of Shooty,6000"];
+    const chalReqs = props.challenges;
+    const highscores = props.highscores;
     const games = ["Reaction"];
     const [screen, setScreen] = useState(0);
     const [screenName, setScreenName] = useState("Game Center");

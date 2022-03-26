@@ -41,6 +41,10 @@ const userSchema = new Schema(
 		highscores:{
 			type: [String],
 			required: true
+		},
+		challenges:{
+			type: [String],
+			required: true
 		}
 	},
 	{ timestamps: true }

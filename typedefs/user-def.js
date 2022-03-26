@@ -12,6 +12,7 @@ const typeDefs = gql `
 		friendRequests: [String]
 		gameCenterBalance: Float
 		highscores: [String]
+		challenges: [String]
 	}
 	extend type Query {
 		getCurrentUser: User
