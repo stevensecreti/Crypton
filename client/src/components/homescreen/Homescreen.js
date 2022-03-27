@@ -43,14 +43,14 @@ const Homescreen = (props) => {
         let displayName = "";
         let email = "";
         let friends = [];
+        let friendRequests = [];
         let highscores = [];
         let challenges = [];
         if (auth) {
             const firstName = props.user.firstName;
             const lastName = props.user.lastName;
             const friendsList = props.user.friendsList;
-            console.log("USER", props.user);
-            console.log("FRIENDS LIST", friendsList);
+            const friendRequests = props.user.friendRequests;
             email = props.user.email;
             displayName = firstName + " " + lastName;
             friends = props.user.friendsList;
@@ -77,6 +77,12 @@ const Homescreen = (props) => {
             }
         }
 
+        const handleAcceptFriendRequest = async (friend) =>{
+            return;
+        }
+        const handleDeclineFriendRequest = async (friend) =>{
+            return;
+        }
 
 
         function clearScreen(){
@@ -195,8 +201,11 @@ const Homescreen = (props) => {
                         walletHex = {userWalletHex}
                         addFriend={setShowAddFriend}
                         deleteFriend={handleDeleteFriend}
+                        acceptFriendRequest={handleAcceptFriendRequest}
+                        declineFriendRequest={handleDeclineFriendRequest}
                         updateHighscore={updateHighscores}
                         friendsList={friends}
+                        friendRequests={friendRequests}
                         highscores={highscores}
                         challenges={challenges}
                     />

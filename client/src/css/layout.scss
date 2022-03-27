@@ -391,4 +391,10 @@ html {
     text-anchor: middle;
 }
 .profileFriendsList{}
+
+.friendsListHeader{
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+}
 .profileAddFriend{}

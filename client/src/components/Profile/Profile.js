@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import Friend from "../Profile/Friend";
+import FriendRequest from "../Profile/FriendRequest";
+import Button from '@mui/material/Button';
 
 
 const Profile = (props) => {
-
     let friendsList = props.friendsList;
-    console.log("Friends List", friendsList);
+    let friendRequests = props.friendRequests;
+
     function addFriend(){
         props.addFriend();
     }
@@ -31,13 +33,29 @@ const Profile = (props) => {
                     </div>
                 </div>
                 <div className="profileFriends">
-                    Friends List
+                    <div className="friendsListHeader">
+                        Friends List
+                        <Button onClick={addFriend}><i className="material-icons">add</i></Button>
+                    </div>                    
                     <div className="profileFriendsList">
                         {//Here map each friend in list to a new friend component <Friend/>
                             friendsList ? friendsList.map((friend) => <Friend name={friend} deleteFriend={props.deleteFriend}/>) : <></>
                         }
                     </div>
-                    <button className="profileAddFriend" onClick={addFriend}>Add Friend</button>
+                    <div className="friendRequestsHeader">
+                        Friend Requests
+                    </div>
+                    <div className="friendRequestsList">
+                        {
+                            friendRequests ? friendRequests.map((friendRequest) => <FriendRequest
+                            name={friendRequest}
+                            acceptFriendRequest={props.acceptFriendRequest}
+                            declineFriendRequest={props.declineFriendRequest}
+                            />)
+                            :
+                            <></>
+                        }
+                    </div>
                 </div>
             </div>
         </div>    
