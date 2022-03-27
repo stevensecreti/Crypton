@@ -50,6 +50,7 @@ const MainContents = (props) => {
              (<Profile
                 addFriend={props.addFriend}
                 friendsList={props.friendsList}
+                deleteFriend={props.deleteFriend}
               ></Profile>) ||
             props.showGaming &&
             (<GameCenter

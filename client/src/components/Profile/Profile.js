@@ -34,7 +34,7 @@ const Profile = (props) => {
                     Friends List
                     <div className="profileFriendsList">
                         {//Here map each friend in list to a new friend component <Friend/>
-                            friendsList ? friendsList.map((friend) => <Friend name={friend}/>) : <></>
+                            friendsList ? friendsList.map((friend) => <Friend name={friend} deleteFriend={props.deleteFriend}/>) : <></>
                         }
                     </div>
                     <button className="profileAddFriend" onClick={addFriend}>Add Friend</button>

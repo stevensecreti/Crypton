@@ -105,7 +105,6 @@ module.exports = {
 			return true;
 		},
 		friendRequest: async (_, args) => {
-			console.log("args", args);
 			const {email, user} = args;
 			let toEmail = email;
 			let fromEmail = user;
@@ -129,6 +128,33 @@ module.exports = {
 
 			if(!(added1)) return false;
 			if(!(added2)) return false;
+			return true;
+		},
+		removeFriend: async(_, args) => {
+			const {user, friend} = args;
+			
+			const currentUser = await User.findOne({email: user});
+			if(!currentUser) return false;
+
+			let currentUserFriendsList = currentUser.friendsList;
+			let list1 = currentUserFriendsList.slice();
+			const index1 = list1.indexOf(friend);
+			if(index1 !== -1){
+				list1.splice(index1, 1);
+			}
+			let removed1 = await User.updateOne({email: user}, {friendsList: list1});
+
+			const friendUser = await User.findOne({email: friend});
+			if(!friendUser) return false;
+			let friendsFriendList = friendUser.friendsList;
+			let list2 = friendsFriendList.slice();
+			const index2 = list2.indexOf(user);
+			if(index2 !== -1){
+				list2.splice(index2, 1);
+			}
+			let removed2 = await User.updateOne({email: friend}, {friendsList: list2});
+			
+			if(!removed2) return false;
 			return true;
 		},
 		updateHighscore: async (_, args) =>

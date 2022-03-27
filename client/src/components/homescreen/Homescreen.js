@@ -37,6 +37,7 @@ const Homescreen = (props) => {
         const [showQRCode, toggleShowQRCode] = useState(false);
 
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
+        const [RemoveFriend] = useMutation(mutations.REMOVE_FRIEND);
 
         const auth = props.user === null ? false : true;
         let displayName = "";
@@ -61,7 +62,23 @@ const Homescreen = (props) => {
             displayName = "";
         }
 
-        console.log("friends: ", friends);
+
+
+        const handleDeleteFriend = async (friend) => {
+            if(email == null || friend == null) return;
+            const input = {user: email, friend: friend};
+
+            const deleted = await RemoveFriend({variables: {...input}});
+            if(!deleted){
+                console.log("Err Returned False");
+            }
+            else{
+                props.fetchUser();
+            }
+        }
+
+
+
         function clearScreen(){
             toggleShowLogin(false);
             toggleShowCreate(false);
@@ -177,6 +194,7 @@ const Homescreen = (props) => {
                         balanceData = {userBalanceData}
                         walletHex = {userWalletHex}
                         addFriend={setShowAddFriend}
+                        deleteFriend={handleDeleteFriend}
                         updateHighscore={updateHighscores}
                         friendsList={friends}
                         highscores={highscores}

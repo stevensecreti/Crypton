@@ -44,6 +44,12 @@ export const FRIEND_REQUEST = gql`
 	}
 `;
 
+export const REMOVE_FRIEND = gql`
+	mutation RemoveFriend($user: String!, $friend: String!){
+		removeFriend(user: $user, friend: $friend)
+	}
+`;
+
 export const UPDATE_HIGHSCORE = gql`
 	mutation UpdateHighscore($game: String!, $score: Int!, $user: String!){
 		updateHighscore(game: $game, score: $score, user: $user)
