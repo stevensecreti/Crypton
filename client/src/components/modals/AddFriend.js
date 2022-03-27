@@ -39,7 +39,7 @@ const AddFriend = (props) => {
 
         <WModal className="login-modal" cover={true} visible={true}>
         <WMHeader className="qr-header" onClose={() => props.setShowAddFriend(false)}>
-            Login
+            Send Friend Request
         </WMHeader>
 
         {
