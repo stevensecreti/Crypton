@@ -394,6 +394,40 @@ input{
     border-color: $navbar-background-color;
     color: rgb(139, 2, 121);
 }
+
+#banner-button,#banner-button,#banner-button-l{
+    color: $text-color;
+    font-size: 1.5em;
+    background-color: $navbar-background-color;
+    text-align: center;
+}
+
+#banner-button:hover,#banner-button:hover,#banner-button-l:hover{
+    background-color: $background-color;
+    color: $primary-color;
+    cursor: pointer;
+}
+
+#banner-button:active,#banner-button:active,#banner-button-l:active{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.banner-header{
+    background-color: $navbar-background-color;
+    color: $text-color;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.banner-main{
+    background-color: $primary-color;
+    border-width: 2px;
+    border-color: $navbar-background-color;
+    border-style: solid;
+    color: #262626;
+}
 // ************************** ACCOUNT SETTINGS ********************************
 
 .profileScreen{

@@ -7,7 +7,9 @@ export const GET_DB_USER = gql`
 			firstName
 			lastName
 			email
+			displayName
 			friendsList
+			friendRequests
 			highscores
 			challenges
 		}

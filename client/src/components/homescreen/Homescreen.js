@@ -7,6 +7,7 @@ import CreateAccount from '../modals/CreateAccount';
 import Welcome from '../main/Welcome';
 import QRCodeModal from '../modals/QRCodeModal';
 import StartChallenge from '../modals/StartChallenge';
+import BannerModal from '../modals/BannerModal';
 import AddFriend from '../modals/AddFriend';
 import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
@@ -37,21 +38,23 @@ const Homescreen = (props) => {
         const [showWallet, toggleShowWallet] = useState(false);
         const [showQRCode, toggleShowQRCode] = useState(false);
         const [showStartChallenge, toggleShowStartChallenge] = useState(false);
+        const [showBanner, toggleShowBanner] = useState(false);
 
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
+        const [RemoveFriend] = useMutation(mutations.REMOVE_FRIEND);
 
         const auth = props.user === null ? false : true;
         let displayName = "";
         let email = "";
         let friends = [];
+        let friendRequests = [];
         let highscores = [];
         let challenges = [];
         if (auth) {
             const firstName = props.user.firstName;
             const lastName = props.user.lastName;
             const friendsList = props.user.friendsList;
-            console.log("USER", props.user);
-            console.log("FRIENDS LIST", friendsList);
+            const friendRequests = props.user.friendRequests;
             email = props.user.email;
             displayName = firstName + " " + lastName;
             friends = props.user.friendsList;
@@ -63,7 +66,29 @@ const Homescreen = (props) => {
             displayName = "";
         }
 
-        console.log("friends: ", friends);
+
+
+        const handleDeleteFriend = async (friend) => {
+            if(email == null || friend == null) return;
+            const input = {user: email, friend: friend};
+
+            const deleted = await RemoveFriend({variables: {...input}});
+            if(!deleted){
+                console.log("Err Returned False");
+            }
+            else{
+                props.fetchUser();
+            }
+        }
+
+        const handleAcceptFriendRequest = async (friend) =>{
+            return;
+        }
+        const handleDeclineFriendRequest = async (friend) =>{
+            return;
+        }
+
+
         function clearScreen(){
             toggleShowLogin(false);
             toggleShowCreate(false);
@@ -77,6 +102,7 @@ const Homescreen = (props) => {
             toggleShowTrading(false);
             toggleShowWallet(false);
             toggleShowQRCode(false);
+            toggleShowBanner(false);
         }
         const setShowLogin = () => {
             toggleShowLogin(!showLogin);
@@ -133,6 +159,10 @@ const Homescreen = (props) => {
             toggleShowQRCode(!showQRCode);
         };
 
+        const setShowBanner = () => {
+            toggleShowBanner(!showBanner);
+        };
+
         const setShowAddFriend = () => {
             toggleShowAddFriend(!showAddFriend);
         }
@@ -178,13 +208,18 @@ const Homescreen = (props) => {
                         showAccount = {showAccount}
                         showProfile = {showProfile}
                         setShowQRCode = {setShowQRCode}
+                        setShowBanner = {setShowBanner}
                         balance = {userBalance}
                         buyingPower = {userBuyingPower}
                         balanceData = {userBalanceData}
                         walletHex = {userWalletHex}
                         addFriend={setShowAddFriend}
+                        deleteFriend={handleDeleteFriend}
+                        acceptFriendRequest={handleAcceptFriendRequest}
+                        declineFriendRequest={handleDeclineFriendRequest}
                         updateHighscore={updateHighscores}
                         friendsList={friends}
+                        friendRequests={friendRequests}
                         highscores={highscores}
                         challenges={challenges}
                         setShowStartChallenge = {setShowStartChallenge}
@@ -197,6 +232,7 @@ const Homescreen = (props) => {
                 {showLogin && ( < Login fetchUser = { props.fetchUser } setShowLogin = { setShowLogin }/>)}
                 {showUpdate && ( < Update fetchUser = { props.fetchUser } setShowUpdate = {setShowUpdate} userId = {props.user._id} user = {props.user}/>)}
                 {showQRCode && (<QRCodeModal setShowQRCode = {setShowQRCode} ></QRCodeModal>)}
+                {showBanner && (<BannerModal setShowBanner = {setShowBanner} ></BannerModal>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userEmail={email}></AddFriend>)}
                 {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends}></StartChallenge>)}
             </div>

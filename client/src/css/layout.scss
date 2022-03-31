@@ -346,6 +346,33 @@ html {
     display: inline;
     float: left;
 }
+
+#banner-button{
+    margin-top: 2%;
+    height: 6%;
+    margin-left: 5%;
+    width: 45%;
+    display: inline;
+    float: left;
+}
+
+#banner-button-l{
+    width: 60%;
+    padding: 1%;
+    height: 25%;
+    margin: auto;
+    margin-top: 5%;
+    display: block;
+}
+
+#banner-button{
+    width: 60%;
+    padding: 1%;
+    height: 15%;
+    margin: auto;
+    margin-top: 5%;
+    display: block;
+}
 // ************** ACCOUNT SETTINGS **********************
 
 .profileScreen{
@@ -391,4 +418,10 @@ html {
     text-anchor: middle;
 }
 .profileFriendsList{}
+
+.friendsListHeader{
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+}
 .profileAddFriend{}

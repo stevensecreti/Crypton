@@ -43,6 +43,7 @@ const MainContents = (props) => {
              ></Market>) || 
              props.showAccount &&
              (<Account
+                setShowBanner = {props.setShowBanner}
                 addFriend={props.addFriend}
                 friendsList={props.friendsList}
               ></Account>) ||
@@ -50,6 +51,10 @@ const MainContents = (props) => {
              (<Profile
                 addFriend={props.addFriend}
                 friendsList={props.friendsList}
+                friendRequests={props.friendRequests}
+                acceptFriendRequest={props.acceptFriendRequest}
+                declineFriendRequest={props.declineFriendRequest}
+                deleteFriend={props.deleteFriend}
               ></Profile>) ||
             props.showGaming &&
             (<GameCenter

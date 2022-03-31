@@ -7,6 +7,7 @@ import WLayout from 'wt-frontend/build/components/wlayout/WLayout';
 import WCol from 'wt-frontend/build/components/wgrid/WCol';
 import WRow from 'wt-frontend/build/components/wgrid/WRow';
 import QRCode from '../modals/QRCodeModal';
+import Banner from '../modals/BannerModal';
 
 const Account = (props) => {
     const balance = props.balance;
@@ -33,8 +34,8 @@ const Account = (props) => {
         ]
       }
 
-      const toggleQRCode = () => {
-        props.setShowQRCode();
+      const toggleBanner = () => {
+        props.setShowBanner();
       }
 
     return(
@@ -45,19 +46,27 @@ const Account = (props) => {
                 </div>
                 <div className="account-main">
                         <ul className='account-div'>
+
+                            <div id="banner-button" onClick={toggleBanner}>
+                                Banner
+                            </div>
+
                             <div id="account-balance">
                                 Display Name: test{balance}
                             </div>
+
                             <div id="account-balance">
                                 Current Email: test{buyingPower}
                             </div>
+
                             <div id="account-balance">
                                 Current Password: test{buyingPower}
                             </div>
-                            
-                            <div id="account-button" onClick={toggleQRCode}>
-                                Banner
+
+                            <div id="account-balance">
+                                Current Password: test{buyingPower}
                             </div>
+
                         </ul>
                 </div>
             </div>
