@@ -6,6 +6,7 @@ import Update from '../modals/Update';
 import CreateAccount from '../modals/CreateAccount';
 import Welcome from '../main/Welcome';
 import QRCodeModal from '../modals/QRCodeModal';
+import BannerModal from '../modals/BannerModal';
 import AddFriend from '../modals/AddFriend';
 import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
@@ -35,6 +36,7 @@ const Homescreen = (props) => {
         const [showTrading, toggleShowTrading] = useState(false);
         const [showWallet, toggleShowWallet] = useState(false);
         const [showQRCode, toggleShowQRCode] = useState(false);
+        const [showBanner, toggleShowBanner] = useState(false);
 
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
         const [RemoveFriend] = useMutation(mutations.REMOVE_FRIEND);
@@ -98,6 +100,7 @@ const Homescreen = (props) => {
             toggleShowTrading(false);
             toggleShowWallet(false);
             toggleShowQRCode(false);
+            toggleShowBanner(false);
         }
         const setShowLogin = () => {
             toggleShowLogin(!showLogin);
@@ -154,6 +157,10 @@ const Homescreen = (props) => {
             toggleShowQRCode(!showQRCode);
         };
 
+        const setShowBanner = () => {
+            toggleShowBanner(!showBanner);
+        };
+
         const setShowAddFriend = () => {
             toggleShowAddFriend(!showAddFriend);
         }
@@ -195,6 +202,7 @@ const Homescreen = (props) => {
                         showAccount = {showAccount}
                         showProfile = {showProfile}
                         setShowQRCode = {setShowQRCode}
+                        setShowBanner = {setShowBanner}
                         balance = {userBalance}
                         buyingPower = {userBuyingPower}
                         balanceData = {userBalanceData}
@@ -217,6 +225,7 @@ const Homescreen = (props) => {
                 {showLogin && ( < Login fetchUser = { props.fetchUser } setShowLogin = { setShowLogin }/>)}
                 {showUpdate && ( < Update fetchUser = { props.fetchUser } setShowUpdate = {setShowUpdate} userId = {props.user._id} user = {props.user}/>)}
                 {showQRCode && (<QRCodeModal setShowQRCode = {setShowQRCode} ></QRCodeModal>)}
+                {showBanner && (<BannerModal setShowBanner = {setShowBanner} ></BannerModal>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userEmail={email}></AddFriend>)}
             </div>
         );

@@ -43,6 +43,7 @@ const MainContents = (props) => {
              ></Market>) || 
              props.showAccount &&
              (<Account
+                setShowBanner = {props.setShowBanner}
                 addFriend={props.addFriend}
                 friendsList={props.friendsList}
               ></Account>) ||
