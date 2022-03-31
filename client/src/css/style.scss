@@ -405,6 +405,21 @@ input{
     border-style: solid;
     border-color: black;
 }
+
+.banner-header{
+    background-color: $navbar-background-color;
+    color: $text-color;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.banner-main{
+    background-color: $primary-color;
+    border-width: 2px;
+    border-color: $navbar-background-color;
+    border-style: solid;
+    color: #262626;
+}
 // ************************** ACCOUNT SETTINGS ********************************
 
 .profileScreen{

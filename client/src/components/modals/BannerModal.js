@@ -1,5 +1,6 @@
 import React, { useState } 	from 'react';
-import Banner                           from 'qrcode.react';
+import banner    from '../../assets/images/Banner1.png'
+//import banner from '../images/151.png';
 import { WModal, WMHeader, WMMain, WMFooter, WButton, WInput } from 'wt-frontend';
 
 const BannerModal = (props) => {
@@ -11,9 +12,11 @@ const BannerModal = (props) => {
 				Banner
 			</WMHeader>
             <WMMain className="banner-main">
-            <Banner className='banner' value="http://facebook.github.io/react/" size={180}/>
+
+            <img src={banner} alt="Banner" className='banner-image'></img>
+
             <div id="banner-button">
-            Send To Friend...
+            Change Banner
             </div>
             </WMMain>
         </WModal>
@@ -21,3 +24,6 @@ const BannerModal = (props) => {
     );
 }
 export default BannerModal;
+
+//<Banner className='qrcode' value="http://facebook.github.io/react/" size={180}/>
+//<a href="www.google.com" id="x"><img src="images/test.png" /></a>
