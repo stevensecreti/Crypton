@@ -11,11 +11,22 @@ const GameCenter = (props) => {
     const [screen, setScreen] = useState(0);
     const [screenName, setScreenName] = useState("Game Center");
 
+    const chalGame = (gameName) =>
+    {
+        props.setShowStartChallenge();
+    }
+
     const playGame = (gameName) =>
     {
         const gameInd = games.indexOf(gameName)+5;
         setScreen(gameInd);
         setScreenName(gameName);
+    }
+
+    const startChallenge = () =>
+    {
+        setScreen(4);
+        setScreenName("Start Challenge");
     }
 
     const acceptChallenge = () =>
@@ -60,7 +71,7 @@ const GameCenter = (props) => {
                         (
                             <>
                             <div className='gc-pannel-l'>
-                                <div className='gc-button'>
+                                <div className='gc-button' onClick={startChallenge}>
                                     Start Challenge
                                 </div>
                                 <div className='gc-button' onClick={acceptChallenge}>
@@ -109,8 +120,11 @@ const GameCenter = (props) => {
                             <div className='req-list'>
                                     {
                                         games.map(thisGame =>(
-                                            <GameChoice req ={thisGame}
+                                            <GameChoice 
+                                            req ={thisGame}
                                             playGame = {playGame}
+                                            isChal = {false}
+                                            chalGame = {chalGame}
                                             >
                                             </GameChoice>
                                         ))
@@ -119,7 +133,21 @@ const GameCenter = (props) => {
                             </>
                         ) ||
                         screen == 4 &&
-                        (<></>) ||
+                        (<>
+                            <div className='req-list'>
+                                {
+                                    games.map(thisGame =>(
+                                        <GameChoice 
+                                        req ={thisGame}
+                                        playGame = {playGame}
+                                        isChal = {true}
+                                        chalGame = {chalGame}
+                                        >
+                                        </GameChoice>
+                                    ))
+                                }
+                            </div>
+                        </>) ||
                         screen == 5 &&
                         (<>
                         <Memory endGame = {endGame}></Memory>

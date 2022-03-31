@@ -187,6 +187,14 @@ body {
     background-color: $primary-color;
 }
 
+.chal-main{
+    background-color: $primary-color;
+    border-width: 2px;
+    border-color: $navbar-background-color;
+    border-style: solid;
+    color: #262626;
+}
+
 .req-list{
     background-color: $background-color;
 }

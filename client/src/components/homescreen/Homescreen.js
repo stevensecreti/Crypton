@@ -6,6 +6,7 @@ import Update from '../modals/Update';
 import CreateAccount from '../modals/CreateAccount';
 import Welcome from '../main/Welcome';
 import QRCodeModal from '../modals/QRCodeModal';
+import StartChallenge from '../modals/StartChallenge';
 import AddFriend from '../modals/AddFriend';
 import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
@@ -35,6 +36,7 @@ const Homescreen = (props) => {
         const [showTrading, toggleShowTrading] = useState(false);
         const [showWallet, toggleShowWallet] = useState(false);
         const [showQRCode, toggleShowQRCode] = useState(false);
+        const [showStartChallenge, toggleShowStartChallenge] = useState(false);
 
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
 
@@ -135,6 +137,10 @@ const Homescreen = (props) => {
             toggleShowAddFriend(!showAddFriend);
         }
 
+        const setShowStartChallenge = () => {
+            toggleShowStartChallenge(!showStartChallenge);
+        }
+
         const updateHighscores = async (game,score) => {
             UpdateHighscore({variables:{game: game,score: score,user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
@@ -181,6 +187,7 @@ const Homescreen = (props) => {
                         friendsList={friends}
                         highscores={highscores}
                         challenges={challenges}
+                        setShowStartChallenge = {setShowStartChallenge}
                     />
                     :
                     <Welcome />
@@ -191,6 +198,7 @@ const Homescreen = (props) => {
                 {showUpdate && ( < Update fetchUser = { props.fetchUser } setShowUpdate = {setShowUpdate} userId = {props.user._id} user = {props.user}/>)}
                 {showQRCode && (<QRCodeModal setShowQRCode = {setShowQRCode} ></QRCodeModal>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userEmail={email}></AddFriend>)}
+                {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends}></StartChallenge>)}
             </div>
         );
 };
