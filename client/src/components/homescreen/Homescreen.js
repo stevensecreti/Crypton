@@ -8,6 +8,7 @@ import Welcome from '../main/Welcome';
 import QRCodeModal from '../modals/QRCodeModal';
 import StartChallenge from '../modals/StartChallenge';
 import BannerModal from '../modals/BannerModal';
+import PictureModal from '../modals/PictureModal';
 import AddFriend from '../modals/AddFriend';
 import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
@@ -39,6 +40,7 @@ const Homescreen = (props) => {
         const [showQRCode, toggleShowQRCode] = useState(false);
         const [showStartChallenge, toggleShowStartChallenge] = useState(false);
         const [showBanner, toggleShowBanner] = useState(false);
+        const [showPicture, toggleShowPicture] = useState(false);
 
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
         const [RemoveFriend] = useMutation(mutations.REMOVE_FRIEND);
@@ -103,6 +105,7 @@ const Homescreen = (props) => {
             toggleShowWallet(false);
             toggleShowQRCode(false);
             toggleShowBanner(false);
+            toggleShowPicture(false);
         }
         const setShowLogin = () => {
             toggleShowLogin(!showLogin);
@@ -163,6 +166,11 @@ const Homescreen = (props) => {
             toggleShowBanner(!showBanner);
         };
 
+        const setShowPicture = () => {
+            toggleShowPicture(!showPicture);
+        };
+
+
         const setShowAddFriend = () => {
             toggleShowAddFriend(!showAddFriend);
         }
@@ -209,6 +217,7 @@ const Homescreen = (props) => {
                         showProfile = {showProfile}
                         setShowQRCode = {setShowQRCode}
                         setShowBanner = {setShowBanner}
+                        setShowPicture = {setShowPicture}
                         balance = {userBalance}
                         buyingPower = {userBuyingPower}
                         balanceData = {userBalanceData}
@@ -223,6 +232,8 @@ const Homescreen = (props) => {
                         highscores={highscores}
                         challenges={challenges}
                         setShowStartChallenge = {setShowStartChallenge}
+                        displayName = {displayName}
+                        userEmail={email}
                     />
                     :
                     <Welcome />
@@ -233,6 +244,7 @@ const Homescreen = (props) => {
                 {showUpdate && ( < Update fetchUser = { props.fetchUser } setShowUpdate = {setShowUpdate} userId = {props.user._id} user = {props.user}/>)}
                 {showQRCode && (<QRCodeModal setShowQRCode = {setShowQRCode} ></QRCodeModal>)}
                 {showBanner && (<BannerModal setShowBanner = {setShowBanner} ></BannerModal>)}
+                {showPicture && (<PictureModal setShowPicture = {setShowPicture} ></PictureModal>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userEmail={email}></AddFriend>)}
                 {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends}></StartChallenge>)}
             </div>

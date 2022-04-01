@@ -44,8 +44,11 @@ const MainContents = (props) => {
              props.showAccount &&
              (<Account
                 setShowBanner = {props.setShowBanner}
+                setShowPicture = {props.setShowPicture}
                 addFriend={props.addFriend}
                 friendsList={props.friendsList}
+                displayName = {props.displayName}
+                userEmail={props.userEmail}
               ></Account>) ||
              props.showProfile &&
              (<Profile

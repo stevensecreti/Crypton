@@ -38,6 +38,10 @@ const Account = (props) => {
         props.setShowBanner();
       }
 
+      const togglePicture = () => {
+        props.setShowPicture();
+      }
+
     return(
         <>
             <div id="account-container">
@@ -51,20 +55,20 @@ const Account = (props) => {
                                 Banner
                             </div>
 
-                            <div id="account-balance">
-                                Display Name: test{balance}
+                            <div id="account-info">
+                                Display Name: {props.displayName}
                             </div>
 
-                            <div id="account-balance">
-                                Current Email: test{buyingPower}
+                            <div id="account-info">
+                                Current Email: {props.userEmail}
                             </div>
 
-                            <div id="account-balance">
-                                Current Password: test{buyingPower}
+                            <div id="account-info">
+                                Current Password: ****
                             </div>
 
-                            <div id="account-balance">
-                                Current Password: test{buyingPower}
+                            <div id="banner-button" onClick={togglePicture}>
+                                Profile Picture
                             </div>
 
                         </ul>

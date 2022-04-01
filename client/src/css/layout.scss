@@ -322,7 +322,7 @@ html {
     margin-right: auto;
 }
 
-#account-balance{
+#account-info{
     margin-right: 5%;
     margin-top: 5%;
     width: 45%;
@@ -366,6 +366,33 @@ html {
 }
 
 #banner-button{
+    width: 60%;
+    padding: 1%;
+    height: 15%;
+    margin: auto;
+    margin-top: 5%;
+    display: block;
+}
+
+#picture-button{
+    margin-top: 2%;
+    height: 6%;
+    margin-left: 5%;
+    width: 45%;
+    display: inline;
+    float: left;
+}
+
+#picture-button-l{
+    width: 60%;
+    padding: 1%;
+    height: 25%;
+    margin: auto;
+    margin-top: 5%;
+    display: block;
+}
+
+#picture-button{
     width: 60%;
     padding: 1%;
     height: 15%;
@@ -425,3 +452,4 @@ html {
     column-gap: 5px;
 }
 .profileAddFriend{}
+
