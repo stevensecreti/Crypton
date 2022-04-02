@@ -45,6 +45,7 @@ const MainContents = (props) => {
              (<Account
                 setShowBanner = {props.setShowBanner}
                 setShowPicture = {props.setShowPicture}
+                setShowChangeName = {props.setShowChangeName}
                 addFriend={props.addFriend}
                 friendsList={props.friendsList}
                 displayName = {props.displayName}
