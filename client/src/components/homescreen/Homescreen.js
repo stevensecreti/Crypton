@@ -9,6 +9,7 @@ import QRCodeModal from '../modals/QRCodeModal';
 import StartChallenge from '../modals/StartChallenge';
 import BannerModal from '../modals/BannerModal';
 import PictureModal from '../modals/PictureModal';
+import ChangeName from '../modals/ChangeName';
 import AddFriend from '../modals/AddFriend';
 import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
@@ -41,6 +42,7 @@ const Homescreen = (props) => {
         const [showStartChallenge, toggleShowStartChallenge] = useState(false);
         const [showBanner, toggleShowBanner] = useState(false);
         const [showPicture, toggleShowPicture] = useState(false);
+        const [showChangeName, toggleShowChangeName] = useState(false);
 
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
         const [RemoveFriend] = useMutation(mutations.REMOVE_FRIEND);
@@ -106,6 +108,7 @@ const Homescreen = (props) => {
             toggleShowQRCode(false);
             toggleShowBanner(false);
             toggleShowPicture(false);
+            toggleShowChangeName(false);
         }
         const setShowLogin = () => {
             toggleShowLogin(!showLogin);
@@ -170,6 +173,9 @@ const Homescreen = (props) => {
             toggleShowPicture(!showPicture);
         };
 
+        const setShowChangeName = () => {
+            toggleShowChangeName(!showChangeName);
+        };
 
         const setShowAddFriend = () => {
             toggleShowAddFriend(!showAddFriend);
@@ -218,6 +224,7 @@ const Homescreen = (props) => {
                         setShowQRCode = {setShowQRCode}
                         setShowBanner = {setShowBanner}
                         setShowPicture = {setShowPicture}
+                        setShowChangeName = {setShowChangeName}
                         balance = {userBalance}
                         buyingPower = {userBuyingPower}
                         balanceData = {userBalanceData}
@@ -245,6 +252,7 @@ const Homescreen = (props) => {
                 {showQRCode && (<QRCodeModal setShowQRCode = {setShowQRCode} ></QRCodeModal>)}
                 {showBanner && (<BannerModal setShowBanner = {setShowBanner} ></BannerModal>)}
                 {showPicture && (<PictureModal setShowPicture = {setShowPicture} ></PictureModal>)}
+                {showChangeName && (<ChangeName setShowChangeName = {setShowChangeName} ></ChangeName>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userEmail={email}></AddFriend>)}
                 {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends}></StartChallenge>)}
             </div>

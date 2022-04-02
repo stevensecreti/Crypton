@@ -42,6 +42,10 @@ const Account = (props) => {
         props.setShowPicture();
       }
 
+      const toggleChangeName = () => {
+        props.setShowChangeName();
+      }
+
     return(
         <>
             <div id="account-container">
@@ -55,15 +59,15 @@ const Account = (props) => {
                                 Banner
                             </div>
 
-                            <div id="account-info">
+                            <div id="account-info" onClick={toggleChangeName}>
                                 Display Name: {props.displayName}
                             </div>
 
-                            <div id="account-info">
+                            <div id="account-info" onClick={toggleChangeName}>
                                 Current Email: {props.userEmail}
                             </div>
 
-                            <div id="account-info">
+                            <div id="account-info" onClick={toggleChangeName}>
                                 Current Password: ****
                             </div>
 
