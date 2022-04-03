@@ -3,7 +3,6 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 const FriendRequest = (props) => {
-
     function handleAccept(){
         props.acceptFriend(props.name);
     }
