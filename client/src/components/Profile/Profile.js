@@ -39,7 +39,15 @@ const Profile = (props) => {
                     </div>                    
                     <div className="profileFriendsList">
                         {//Here map each friend in list to a new friend component <Friend/>
-                            friendsList ? friendsList.map((friend) => <Friend name={friend} deleteFriend={props.deleteFriend}/>) : <></>
+                            friendsList ? 
+                            friendsList.map((friend) => 
+                                <Friend 
+                                    name={friend} 
+                                    deleteFriend={props.deleteFriend}
+                                />
+                            ) 
+                            : 
+                            <></>
                         }
                     </div>
                     <div className="friendRequestsHeader">
@@ -47,11 +55,14 @@ const Profile = (props) => {
                     </div>
                     <div className="friendRequestsList">
                         {
-                            friendRequests ? friendRequests.map((friendRequest) => <FriendRequest
-                            name={friendRequest}
-                            acceptFriendRequest={props.acceptFriendRequest}
-                            declineFriendRequest={props.declineFriendRequest}
-                            />)
+                            friendRequests ? 
+                            friendRequests.map((friendRequest) => 
+                                <FriendRequest
+                                    name={friendRequest}
+                                    acceptFriendRequest={props.acceptFriendRequest}
+                                    declineFriendRequest={props.declineFriendRequest}
+                                />
+                            )
                             :
                             <></>
                         }
