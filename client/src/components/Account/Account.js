@@ -46,6 +46,14 @@ const Account = (props) => {
         props.setShowChangeName();
       }
 
+      const toggleChangeEmail = () => {
+        props.setShowChangeEmail();
+      }
+
+      const toggleChangePassword = () => {
+        props.setShowChangePassword();
+      }
+
     return(
         <>
             <div id="account-container">
@@ -63,11 +71,11 @@ const Account = (props) => {
                                 Display Name: {props.displayName}
                             </div>
 
-                            <div id="account-info" onClick={toggleChangeName}>
+                            <div id="account-info" onClick={toggleChangeEmail}>
                                 Current Email: {props.userEmail}
                             </div>
 
-                            <div id="account-info" onClick={toggleChangeName}>
+                            <div id="account-info" onClick={toggleChangePassword}>
                                 Current Password: ****
                             </div>
 

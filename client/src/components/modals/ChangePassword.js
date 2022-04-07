@@ -4,7 +4,7 @@ import { useMutation }    	from '@apollo/client';
 
 import { WModal, WMHeader, WMMain, WMFooter, WButton, WInput, WRow, WCol } from 'wt-frontend';
 
-const ChangeName = (props) => {
+const ChangePassword = (props) => {
 	const [input, setInput] = useState({ email: '', password: '', firstName: '', lastName: '' });
 	const [loading, toggleLoading] = useState(false);
 	const [Register] = useMutation(REGISTER);
@@ -16,7 +16,7 @@ const ChangeName = (props) => {
 		setInput(updated);
 	};
 
-	const handleChangeName = async (e) => {
+	const handleChangePassword = async (e) => {
 		for (let field in input) {
 			if (!input[field]) {
 				alert('All fields must be filled out to register');
@@ -48,8 +48,8 @@ const ChangeName = (props) => {
         // Replace div with WModal
 
 		<WModal className="login-modal" cover={true} visible={true}>
-			<WMHeader className="qr-header" onClose={() => props.setShowChangeName(false)}>
-				Change Name
+			<WMHeader className="qr-header" onClose={() => props.setShowChangePassword(false)}>
+				Change Password
 			</WMHeader>
 
 			{
@@ -57,24 +57,19 @@ const ChangeName = (props) => {
 					: <WMMain className = "qr-main">
 						<WRow className="modal-col-gap signup-modal">
 							<WCol size="6">
-								<WInput 
-									className="" onBlur={updateInput} name="firstName" labelAnimation="up" 
-									barAnimation="solid" labelText="First Name" wType="outlined" inputType="text" 
-								/>
+								
 							</WCol>
-							<WCol size="6">
-								<WInput 
-									className="" onBlur={updateInput} name="lastName" labelAnimation="up" 
-									barAnimation="solid" labelText="Last Name" wType="outlined" inputType="text" 
-								/>
-							</WCol>
+							
 						</WRow>
 
 						<div className="modal-spacer">&nbsp;</div>
 
 						<div className="modal-spacer">&nbsp;</div>
-						
-						<div id="qr-button" onClick={handleChangeName}>
+						<WInput 
+							className="modal-input" onBlur={updateInput} name="password" labelAnimation="up" 
+							barAnimation="solid" labelText="Password" wType="outlined" inputType="password" 
+						/>
+						<div id="qr-button" onClick={handleChangePassword}>
 							Submit
 						</div>
 					</WMMain>
@@ -83,4 +78,4 @@ const ChangeName = (props) => {
 	);
 }
 
-export default ChangeName;
+export default ChangePassword;

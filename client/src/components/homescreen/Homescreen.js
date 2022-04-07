@@ -10,6 +10,8 @@ import StartChallenge from '../modals/StartChallenge';
 import BannerModal from '../modals/BannerModal';
 import PictureModal from '../modals/PictureModal';
 import ChangeName from '../modals/ChangeName';
+import ChangeEmail from '../modals/ChangeEmail';
+import ChangePassword from '../modals/ChangePassword';
 import AddFriend from '../modals/AddFriend';
 import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
@@ -43,6 +45,8 @@ const Homescreen = (props) => {
         const [showBanner, toggleShowBanner] = useState(false);
         const [showPicture, toggleShowPicture] = useState(false);
         const [showChangeName, toggleShowChangeName] = useState(false);
+        const [showChangeEmail, toggleShowChangeEmail] = useState(false);
+        const [showChangePassword, toggleShowChangePassword] = useState(false);
 
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
         const [RemoveFriend] = useMutation(mutations.REMOVE_FRIEND);
@@ -109,6 +113,8 @@ const Homescreen = (props) => {
             toggleShowBanner(false);
             toggleShowPicture(false);
             toggleShowChangeName(false);
+            toggleShowChangeEmail(false);
+            toggleShowChangePassword(false);
         }
         const setShowLogin = () => {
             toggleShowLogin(!showLogin);
@@ -177,6 +183,14 @@ const Homescreen = (props) => {
             toggleShowChangeName(!showChangeName);
         };
 
+        const setShowChangeEmail = () => {
+            toggleShowChangeEmail(!showChangeEmail);
+        };
+
+        const setShowChangePassword = () => {
+            toggleShowChangePassword(!showChangePassword);
+        };
+
         const setShowAddFriend = () => {
             toggleShowAddFriend(!showAddFriend);
         }
@@ -225,6 +239,8 @@ const Homescreen = (props) => {
                         setShowBanner = {setShowBanner}
                         setShowPicture = {setShowPicture}
                         setShowChangeName = {setShowChangeName}
+                        setShowChangeEmail = {setShowChangeEmail}
+                        setShowChangePassword = {setShowChangePassword}
                         balance = {userBalance}
                         buyingPower = {userBuyingPower}
                         balanceData = {userBalanceData}
@@ -253,6 +269,8 @@ const Homescreen = (props) => {
                 {showBanner && (<BannerModal setShowBanner = {setShowBanner} ></BannerModal>)}
                 {showPicture && (<PictureModal setShowPicture = {setShowPicture} ></PictureModal>)}
                 {showChangeName && (<ChangeName setShowChangeName = {setShowChangeName} ></ChangeName>)}
+                {showChangeEmail && (<ChangeEmail setShowChangeEmail = {setShowChangeEmail} ></ChangeEmail>)}
+                {showChangePassword && (<ChangePassword setShowChangePassword = {setShowChangePassword} ></ChangePassword>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userEmail={email}></AddFriend>)}
                 {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends}></StartChallenge>)}
             </div>

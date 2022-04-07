@@ -4,11 +4,10 @@ import { useMutation }    	from '@apollo/client';
 
 import { WModal, WMHeader, WMMain, WMFooter, WButton, WInput, WRow, WCol } from 'wt-frontend';
 
-const ChangeName = (props) => {
+const ChangeEmail = (props) => {
 	const [input, setInput] = useState({ email: '', password: '', firstName: '', lastName: '' });
 	const [loading, toggleLoading] = useState(false);
 	const [Register] = useMutation(REGISTER);
-
 	
 	const updateInput = (e) => {
 		const { name, value } = e.target;
@@ -16,7 +15,7 @@ const ChangeName = (props) => {
 		setInput(updated);
 	};
 
-	const handleChangeName = async (e) => {
+	const handleChangeEmail = async (e) => {
 		for (let field in input) {
 			if (!input[field]) {
 				alert('All fields must be filled out to register');
@@ -48,8 +47,8 @@ const ChangeName = (props) => {
         // Replace div with WModal
 
 		<WModal className="login-modal" cover={true} visible={true}>
-			<WMHeader className="qr-header" onClose={() => props.setShowChangeName(false)}>
-				Change Name
+			<WMHeader className="qr-header" onClose={() => props.setShowChangeEmail(false)}>
+				Change Email
 			</WMHeader>
 
 			{
@@ -57,24 +56,19 @@ const ChangeName = (props) => {
 					: <WMMain className = "qr-main">
 						<WRow className="modal-col-gap signup-modal">
 							<WCol size="6">
-								<WInput 
-									className="" onBlur={updateInput} name="firstName" labelAnimation="up" 
-									barAnimation="solid" labelText="First Name" wType="outlined" inputType="text" 
-								/>
+								
 							</WCol>
-							<WCol size="6">
-								<WInput 
-									className="" onBlur={updateInput} name="lastName" labelAnimation="up" 
-									barAnimation="solid" labelText="Last Name" wType="outlined" inputType="text" 
-								/>
-							</WCol>
+							
 						</WRow>
 
 						<div className="modal-spacer">&nbsp;</div>
-
+						<WInput 
+							className="modal-input" onBlur={updateInput} name="email" labelAnimation="up" 
+							barAnimation="solid" labelText="Email Address" wType="outlined" inputType="text" 
+						/>
 						<div className="modal-spacer">&nbsp;</div>
 						
-						<div id="qr-button" onClick={handleChangeName}>
+						<div id="qr-button" onClick={handleChangeEmail}>
 							Submit
 						</div>
 					</WMMain>
@@ -83,4 +77,4 @@ const ChangeName = (props) => {
 	);
 }
 
-export default ChangeName;
+export default ChangeEmail;
