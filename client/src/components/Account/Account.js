@@ -53,14 +53,16 @@ const Account = (props) => {
       const toggleChangePassword = () => {
         props.setShowChangePassword();
       }
+      
+      var loadBanner = function (event) {
+        var image = document.getElementById("banner-output");
+        image.src = URL.createObjectURL(event.target.files[0]);
+      };
 
       var loadFile = function (event) {
-        //var image = document.getElementById("output");
-        //image.src = URL.createObjectURL(event.target.files[0]);
+        //console.log(event.target.files[0])
         var image = document.getElementById("output");
-        //console.log(image);
-        image.src = "https://media.istockphoto.com/photos/new-york-city-nyc-usa-picture-id615398376?k=20&m=615398376&s=612x612&w=0&h=5PVCORPJEjAxSy_Hei_hSK3OtNJMz8SHDicMN2R4X60=";
-        //console.log(image);
+        image.src = URL.createObjectURL(event.target.files[0]);
       };
 
     return(
@@ -72,9 +74,16 @@ const Account = (props) => {
                 <div className="account-main">
                         <ul className='account-div'>
 
-                            <div id="banner-button" onClick={toggleBanner}>
-                                Banner
+                            <div className="banner-pic">
+                              <label className="banner-label" htmlFor="banner-file">
+                                <span className="glyphicon glyphicon-camera"></span>
+                                <span>Change Banner</span>
+                              </label>
+                                <input id="banner-file" type="file" onChange={loadBanner.bind(this)}/>
+                                <img src="https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg" id="banner-output" width="500" />
                             </div>
+
+                            <div className="modal-spacer">&nbsp;</div>
 
                             <div id="account-info" onClick={toggleChangeName}>
                                 Display Name: {props.displayName}
@@ -88,17 +97,19 @@ const Account = (props) => {
                                 Current Password: ****
                             </div>
 
-                            <div id="banner-button" onClick={togglePicture}>
-                                Profile Picture
-                            </div>
+                            <div className="modal-spacer">&nbsp;</div>
+                            <div className="modal-spacer">&nbsp;</div>
+                            <div className="modal-spacer">&nbsp;</div>
+                            <div className="modal-spacer">&nbsp;</div>
+                            <div className="modal-spacer">&nbsp;</div>
 
                             <div className="profile-pic">
                               <label className="-label" htmlFor="file">
                                 <span className="glyphicon glyphicon-camera"></span>
-                                <span>Change Image</span>
+                                <span>Change Profile Picture</span>
                               </label>
-                              <input id="file" type="file" onChange={loadFile}/>
-                              <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg" id="output" width="200" />
+                                <input id="file" type="file" onChange={loadFile.bind(this)}/>
+                                <img src="https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png" id="output" width="200" />
                             </div>
 
                         </ul>
