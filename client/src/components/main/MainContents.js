@@ -61,6 +61,7 @@ const MainContents = (props) => {
                 acceptFriendRequest={props.acceptFriendRequest}
                 declineFriendRequest={props.declineFriendRequest}
                 deleteFriend={props.deleteFriend}
+                displayName={props.displayName}
               ></Profile>) ||
             props.showGaming &&
             (<GameCenter

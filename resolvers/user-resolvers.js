@@ -160,15 +160,16 @@ module.exports = {
 		updateHighscore: async (_, args) =>
 		{
 			const{game,score,user} = args;
-			let highscores = User.findOne({email: user}).highscores;
+			let currentUser = await User.findOne({email: user})
+			let highscores = currentUser.highscores;
 			if(highscores != undefined)
 			{
 				let newHigh = Array(highscores.length+1);
 				for(let i = 0;i<highscores.length;i++)
 				{
-					let cscore = highscores[i];
-					let curGame = cscore.game;
-					let curScore = cscore.score;
+					let cscore = highscores[i].split(",");
+					let curGame = cscore[0];
+					let curScore = parseInt(cscore[1]);
 					newHigh[i] = cscore;
 					if(curGame.localeCompare(game) == 0)
 					{

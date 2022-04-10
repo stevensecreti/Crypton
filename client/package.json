@@ -16,6 +16,7 @@
     "chart.js": "^3.7.1",
     "d3": "^7.3.0",
     "graphql": "^15.5.0",
+    "local-storage": "^2.0.0",
     "qrcode.react": "^1.0.1",
     "react": "^16.14.0",
     "react-chartjs-2": "^4.0.1",
