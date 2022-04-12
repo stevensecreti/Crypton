@@ -13,7 +13,7 @@ const GameCenter = (props) => {
 
     const chalGame = (gameName) =>
     {
-        props.setShowStartChallenge();
+        props.setShowStartChallenge(gameName);
     }
 
     const playGame = (gameName) =>
@@ -93,8 +93,10 @@ const GameCenter = (props) => {
                             <>
                                 <div className='req-list'>
                                     {
-                                        chalReqs.map(thisReq =>(
-                                            <Request req ={thisReq}>
+                                        chalReqs.map((thisReq,rind) =>(
+                                            <Request req ={thisReq}
+                                            declineReq = {props.declineChallenge}
+                                            rind = {rind}>
                                             </Request>
                                         ))
                                     }

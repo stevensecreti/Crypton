@@ -61,3 +61,14 @@ export const UPDATE_BANNER = gql`
 		updateBanner(banner: $banner, user: $user)
 	}
 `;
+export const SEND_CHALLENGE = gql`
+	mutation SendChallenge($game: String!, $user: String!, $friend: String!, $coin: String!, $bet: String!){
+		sendChallenge(game: $game, user: $user, friend: $friend, coin: $coin, bet: $bet)
+	}
+`;
+
+export const DECLINE_CHALLENGE = gql`
+	mutation DeclineChallenge($user: String!, $index: Int!){
+		declineChallenge(user: $user, index: $index)
+	}
+`;

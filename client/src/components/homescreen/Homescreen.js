@@ -27,7 +27,9 @@ const Homescreen = (props) => {
         const userBuyingPower = 200.23;
         const userBalanceData = [0,4,6,7];
         const userWalletHex = "#AE473C";
+        const userAssets = ["ALG","BTC"];
 
+        const [chalGameName, setChalGameName] = useState("");
         const [showLogin, toggleShowLogin] = useState(false);
         const [showCreate, toggleShowCreate] = useState(false);
         const [showUpdate, toggleShowUpdate] = useState(false);
@@ -51,6 +53,8 @@ const Homescreen = (props) => {
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
         const [RemoveFriend] = useMutation(mutations.REMOVE_FRIEND);
         const [UpdateBanner] = useMutation(mutations.UPDATE_BANNER);
+        const [SendChallenge] = useMutation(mutations.SEND_CHALLENGE);
+        const [DeclineChallenge] = useMutation(mutations.DECLINE_CHALLENGE);
 
         const auth = props.user === null ? false : true;
         let displayName = "";
@@ -198,12 +202,21 @@ const Homescreen = (props) => {
             toggleShowAddFriend(!showAddFriend);
         }
 
-        const setShowStartChallenge = () => {
+        const setShowStartChallenge = (gname) => {
             toggleShowStartChallenge(!showStartChallenge);
+            setChalGameName(gname);
         }
 
         const updateHighscores = async (game,score) => {
-            UpdateHighscore({variables:{game: game,score: score,user: email}, refetchQueries: [{ query: GET_DB_USER }]});
+            const updt = await UpdateHighscore({variables:{game: game,score: score,user: email}, refetchQueries: [{ query: GET_DB_USER }]});
+        }
+
+        const sendChallenge = async (amount,game,friend,coin) => {
+            const updt = await SendChallenge({variables:{game: game,user: email,friend: friend,coin: coin,bet: amount}});
+        }
+
+        const declineChallenge = async (index) => {
+            const updt = await DeclineChallenge({variables:{user: email,index: index}, refetchQueries: [{query: GET_DB_USER}]});
         }
 
         //console.log("BEFORE BANNER: " + banner);
@@ -276,6 +289,7 @@ const Homescreen = (props) => {
                         highscores={highscores}
                         challenges={challenges}
                         setShowStartChallenge = {setShowStartChallenge}
+                        declineChallenge = {declineChallenge}
                         displayName = {displayName}
                         //banner = {banner}
                         userEmail={email}
@@ -295,7 +309,7 @@ const Homescreen = (props) => {
                 {showChangeEmail && (<ChangeEmail setShowChangeEmail = {setShowChangeEmail} ></ChangeEmail>)}
                 {showChangePassword && (<ChangePassword setShowChangePassword = {setShowChangePassword} ></ChangePassword>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userEmail={email}></AddFriend>)}
-                {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends}></StartChallenge>)}
+                {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends} assets = {userAssets} gname = {chalGameName} sendChal = {sendChallenge}></StartChallenge>)}
             </div>
         );
 };

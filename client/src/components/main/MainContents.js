@@ -72,6 +72,7 @@ const MainContents = (props) => {
                 highscores = {props.highscores}
                 challenges = {props.challenges}
                 setShowStartChallenge = {props.setShowStartChallenge}
+                declineChallenge = {props.declineChallenge}
             >
             </GameCenter>)
         }

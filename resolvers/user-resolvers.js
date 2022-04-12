@@ -221,6 +221,55 @@ module.exports = {
 			//}
 
 			return true;
+		},
+		sendChallenge: async (_, args) =>
+		{
+			const {game,user,friend,coin,bet} = args;
+			const toFriend = await User.findOne({email: friend});
+			const chals = toFriend.challenges;
+			const newChal = user+","+game+","+bet+" "+coin;
+			const newChalList = Array(chals.length+1);
+			for(let i = 0;i<chals.length;i++)
+			{
+				newChalList[i] = chals[i];
+			}
+			newChalList[chals.length] = newChal;
+			const updt = await User.updateOne({email: friend},{challenges: newChalList});
+			if(updt)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		},
+		declineChallenge: async (_,args) =>
+		{
+			const {user,index} = args;
+			const thisUser = await User.findOne({email: user});
+			const chals = thisUser.challenges;
+			const newChals = Array(chals.length-1);
+			for(let i = 0;i<chals.length;i++)
+			{
+				if(i < index)
+				{
+					newChals[i] = chals[i];
+				}
+				else if(i > index)
+				{
+					newChals[i-1] = chals[i];
+				}
+			}
+			const updt = await User.updateOne({email: user},{challenges: newChals});
+			if(updt)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 }

@@ -5,6 +5,12 @@ const Request = (props) =>
     const name = props.req.split(",")[0];
     const game = props.req.split(",")[1];
     const bet = props.req.split(",")[2];
+    const index = props.rind;
+
+    const declineChal = () => {
+        props.declineReq(index);
+    }
+
     return(
     <>
         <div className='req-main'>
@@ -18,9 +24,9 @@ const Request = (props) =>
                 {bet}
             </div>
             <div className='req-acc'>
-                Join
+                O
             </div>
-            <div className='req-dec'>
+            <div className='req-dec' onClick = {declineChal}>
                 X
             </div>
         </div>

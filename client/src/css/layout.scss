@@ -102,8 +102,8 @@ html {
 
 #gc-container{
     padding: 20px;
-    width: 50%;
-    height: 20%;
+    width: 70%;
+    height: 40%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -120,7 +120,8 @@ html {
 
 .gc-main{
     display: flex;
-    height: 600px;
+    height: 100%;
+    height: 500px;
 }
 .gc-pannel-l{
     display: inline;
@@ -169,7 +170,7 @@ html {
 }
 
 .req-list{
-    width: 50%;
+    width: 80%;
     margin: auto;
     margin-top: 2%;
     height: 90%;
@@ -182,6 +183,32 @@ html {
     margin: auto;
     margin-top: 0%;
     display: block;
+}
+
+.friend-drop{
+    width: 90%;
+    font-size: 1.1em;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.chal-label{
+    width: 90%;
+    font-size: 1.1em;
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+}
+
+.chal-button{
+    width: 80%;
+    height: 40%;
+    margin: auto;
+    padding-top: 5%;
+    text-align: center;
 }
 
 #wallet-balance{
