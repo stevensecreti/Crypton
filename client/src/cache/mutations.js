@@ -61,3 +61,9 @@ export const UPDATE_BANNER = gql`
 		updateBanner(banner: $banner, user: $user)
 	}
 `;
+
+export const UPDATE_PFP = gql`
+	mutation UpdatePfp($pfp: String!, $user: String!){
+		updatePfp(pfp: $pfp, user: $user)
+	}
+`;

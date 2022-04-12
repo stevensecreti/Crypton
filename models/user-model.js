@@ -38,6 +38,10 @@ const userSchema = new Schema(
 			type: String,
 			required: true
 		},
+		pfp:{
+			type: String,
+			required: true
+		},
 		friendsList: {
 			type: [String],
 			required: true

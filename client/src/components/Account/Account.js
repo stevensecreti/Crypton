@@ -18,8 +18,24 @@ const Account = (props) => {
     //const currentTrend = trendData[trendData.length-1]-trendData[0];
     //const trend = "Current Trend: " + (currentTrend >= 0 ? "+"+currentTrend+"%" : "-"+(-currentTrend)+"%");
     //const trendStyle = currentTrend >= 0 ? "account-trend-pos" : "account-trend-neg";
-    console.log(props.user)
+    //console.log(props.user)
+    //var updateBannerCounter = 0;
+    //const banner = props.user.banner;
     const banner = props.user.banner;
+    const pfp = props.user.pfp;
+
+    /*
+    if(updateBannerCounter == 0)
+    {
+      console.log(updateBannerCounter)
+      banner = props.banner;
+    }
+    else
+    {
+      console.log(updateBannerCounter)
+      banner = props.user.banner;
+    }
+    */
 
     ChartJS.register(...registerables);
 
@@ -59,22 +75,31 @@ const Account = (props) => {
       
       var loadBanner = function (event) {
         //console.log("LOAD BANNER FUNCTION CALLED");
+        //console.log(event.target.files);
         var image = document.getElementById("banner-output");
         image.src = URL.createObjectURL(event.target.files[0]);
         //console.log("STRING: " + image.src);
         //banner = URL.createObjectURL(event.target.files[0]);
         //props.banner = image.src;
 
+        //updateBannerCounter += 1;
+        //console.log(updateBannerCounter)
+
         props.updateBanner(image.src);
         //goBack();
+
+        //banner = "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg";
       };
 
-      var loadFile = function (event) {
+      //console.log(banner);
+
+      var loadPfp = function (event) {
         //console.log("LOAD PROFILE FILE FUNCTION CALLED");
         //console.log(event.target.files[0])
         var image = document.getElementById("output");
         image.src = URL.createObjectURL(event.target.files[0]);
-        //console.log(props.banner);
+        
+        props.updatePfp(image.src);
       };
 
     return(
@@ -92,7 +117,7 @@ const Account = (props) => {
                                 <span>Change Banner</span>
                               </label>
                                 <input id="banner-file" type="file" onChange={loadBanner.bind(this)}/>
-                                <img src={props.user.banner} id="banner-output" width="500" />
+                                <img src={banner} id="banner-output" width="500" />
                             </div>
 
                             <div className="modal-spacer">&nbsp;</div>
@@ -120,8 +145,8 @@ const Account = (props) => {
                                 <span className="glyphicon glyphicon-camera"></span>
                                 <span>Change Profile Picture</span>
                               </label>
-                                <input id="file" type="file" onChange={loadFile.bind(this)}/>
-                                <img src="https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png" id="output" width="200" />
+                                <input id="file" type="file" onChange={loadPfp.bind(this)}/>
+                                <img src={pfp} id="output" width="200" />
                             </div>
 
                         </ul>
