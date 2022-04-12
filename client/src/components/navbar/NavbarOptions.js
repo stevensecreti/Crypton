@@ -17,6 +17,7 @@ const LoggedIn = (props) => {
     };
 
     let name = props.displayName;
+    let banner = props.banner;
     return ( 
     <div className = "menu-outer" >
         <div className = "table" >
@@ -54,18 +55,21 @@ const LoggedIn = (props) => {
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShowAccount }
-                wType = "texted" > Settings </WButton> 
-                </WNavItem> 
+                wType = "texted" > 
+                Settings 
+                </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShowProfile }
-                wType = "texted" > { name } </WButton> 
-                </WNavItem> 
+                wType = "texted" > 
+                { name } 
+                </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { handleLogout }
                 wType = "texted" >
-                Logout </WButton> </WNavItem> 
+                Logout 
+                </WButton> </WNavItem> 
             </ul> 
         </div> 
         </div>
@@ -110,8 +114,9 @@ const LoggedOut = (props) => {
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShowLogin }
-                wType = "texted" >  Login </WButton> 
-                </WNavItem> 
+                wType = "texted" >  
+                Login 
+                </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShowCreate }
@@ -141,6 +146,7 @@ const NavbarOptions = (props) => {
                 < LoggedIn fetchUser = { props.fetchUser }
             logout = { props.logout }
             displayName = { props.displayName }
+            banner = { props.banner }
             setShowUpdate = { props.setShowUpdate }
             setShowAccount = { props.setShowAccount }
             setShowMarket = { props.setShowMarket }

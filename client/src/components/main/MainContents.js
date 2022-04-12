@@ -52,6 +52,9 @@ const MainContents = (props) => {
                 friendsList={props.friendsList}
                 displayName = {props.displayName}
                 userEmail={props.userEmail}
+                //banner = {props.banner}
+                updateBanner = {props.updateBanner}
+                user = {props.user}
               ></Account>) ||
              props.showProfile &&
              (<Profile

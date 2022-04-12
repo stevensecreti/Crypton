@@ -50,9 +50,12 @@ const Homescreen = (props) => {
 
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
         const [RemoveFriend] = useMutation(mutations.REMOVE_FRIEND);
+        const [UpdateBanner] = useMutation(mutations.UPDATE_BANNER);
 
         const auth = props.user === null ? false : true;
         let displayName = "";
+        //let banner = "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg"; //Default Banner
+        //let banner = "https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png";
         let email = "";
         let friends = [];
         let friendRequests = [];
@@ -65,16 +68,16 @@ const Homescreen = (props) => {
             const friendRequests = props.user.friendRequests;
             email = props.user.email;
             displayName = firstName + " " + lastName;
+            console.log(props.user)
             friends = props.user.friendsList;
             highscores = props.user.highscores;
+            //banner = props.user.banner;
             challenges = props.user.challenges;
             console.log("challenges",challenges);
             console.log("friends", friends);
         } else {
             displayName = "";
         }
-
-
 
         const handleDeleteFriend = async (friend) => {
             if(email == null || friend == null) return;
@@ -203,6 +206,22 @@ const Homescreen = (props) => {
             UpdateHighscore({variables:{game: game,score: score,user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
 
+        //console.log("BEFORE BANNER: " + banner);
+        const updateBanner = async (string) => {
+            //console.log(string)
+            //banner = string;
+
+            //console.log(props.user);
+
+            UpdateBanner({variables:{banner: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
+
+            //console.log(props.user);
+            //console.log(banner);
+        }
+        //console.log("BANNER: " + banner);
+
+        //console.log(banner)
+        //banner = banner;
 
         return( 
             <div className = "homescreen" >
@@ -223,6 +242,7 @@ const Homescreen = (props) => {
                         setShowTrading = { setShowTrading }
                         setShowWallet = { setShowWallet }
                         displayName = {displayName}
+                        //banner = {banner}
                         /> 
                     </> 
                     </div> 
@@ -250,13 +270,16 @@ const Homescreen = (props) => {
                         acceptFriendRequest={handleAcceptFriendRequest}
                         declineFriendRequest={handleDeclineFriendRequest}
                         updateHighscore={updateHighscores}
+                        updateBanner={updateBanner}
                         friendsList={friends}
                         friendRequests={friendRequests}
                         highscores={highscores}
                         challenges={challenges}
                         setShowStartChallenge = {setShowStartChallenge}
                         displayName = {displayName}
+                        //banner = {banner}
                         userEmail={email}
+                        user = {props.user}
                     />
                     :
                     <Welcome />

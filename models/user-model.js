@@ -34,6 +34,10 @@ const userSchema = new Schema(
 			type: String,
 			required: true
 		},
+		banner:{
+			type: String,
+			required: true
+		},
 		friendsList: {
 			type: [String],
 			required: true

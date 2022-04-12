@@ -8,7 +8,8 @@ const typeDefs = gql `
 		initials: String
 		email: String
 		password: String
-		displayName: String 
+		displayName: String
+		banner: String
 		friendsList: [String]
 		friendRequests: [String]
 		gameCenterBalance: Float
@@ -26,7 +27,7 @@ const typeDefs = gql `
 		friendRequest(email: String!, user: String!): Boolean!
 		removeFriend(user: String!, friend: String!): Boolean!
 		updateHighscore(game: String!, score: Int!, user: String!): Boolean!
-
+		updateBanner(banner: String!, user: String!): Boolean!
 	}
 `;
 

@@ -55,3 +55,9 @@ export const UPDATE_HIGHSCORE = gql`
 		updateHighscore(game: $game, score: $score, user: $user)
 	}
 `;
+
+export const UPDATE_BANNER = gql`
+	mutation UpdateBanner($banner: String!, $user: String!){
+		updateBanner(banner: $banner, user: $user)
+	}
+`;

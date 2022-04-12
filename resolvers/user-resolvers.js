@@ -69,7 +69,8 @@ module.exports = {
 				gameCenterBalance: 0,
 				friendsList: [],
 				friendRequests: [],
-				highscores: []
+				highscores: [],
+				banner: "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg"
 			})
 			console.log("Created new User")
 			const saved = await user.save();
@@ -196,6 +197,30 @@ module.exports = {
 				const updt = await User.updateOne({email: user},{highscores: highscores});
 				return true;
 			}
+		},
+		updateBanner: async (_, args) =>
+		{
+			//console.log("UPDATE BANNER RESOLVER");
+			//console.log(args);
+
+			const{banner, user} = args;
+			//console.log(banner);
+			//console.log(user);
+
+			//let currentUser = await User.findOne({email: user})
+			//let banner = currentUser.banner;
+			//if(banner != undefined)
+			//{
+				//let newBanner = string;
+			const updt = await User.updateOne({email: user},{banner: banner});
+			//}
+			//const updated1 = await User.updateOne({_id: _id}, { firstName: firstName });
+
+			//if(updated1){
+			//	return true
+			//}
+
+			return true;
 		}
 	}
 }
