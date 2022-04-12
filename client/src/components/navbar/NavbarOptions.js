@@ -17,7 +17,7 @@ const LoggedIn = (props) => {
     };
 
     let name = props.displayName;
-    let banner = props.banner;
+    //let banner = props.banner;
     return ( 
     <div className = "menu-outer" >
         <div className = "table" >
@@ -147,6 +147,7 @@ const NavbarOptions = (props) => {
             logout = { props.logout }
             displayName = { props.displayName }
             banner = { props.banner }
+            pfp = { props.pfp }
             setShowUpdate = { props.setShowUpdate }
             setShowAccount = { props.setShowAccount }
             setShowMarket = { props.setShowMarket }

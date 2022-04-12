@@ -70,7 +70,8 @@ module.exports = {
 				friendsList: [],
 				friendRequests: [],
 				highscores: [],
-				banner: "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg"
+				banner: "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg",
+				pfp: "https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png"
 			})
 			console.log("Created new User")
 			const saved = await user.save();
@@ -270,6 +271,13 @@ module.exports = {
 			{
 				return false;
 			}
+		},
+		updatePfp: async (_, args) =>
+		{
+			//console.log("UPDATE Pfp RESOLVER");
+			const{pfp, user} = args;
+			const updt = await User.updateOne({email: user},{pfp: pfp});
+			return true;
 		}
 	}
 }

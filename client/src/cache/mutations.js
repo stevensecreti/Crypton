@@ -72,3 +72,9 @@ export const DECLINE_CHALLENGE = gql`
 		declineChallenge(user: $user, index: $index)
 	}
 `;
+
+export const UPDATE_PFP = gql`
+	mutation UpdatePfp($pfp: String!, $user: String!){
+		updatePfp(pfp: $pfp, user: $user)
+	}
+`;

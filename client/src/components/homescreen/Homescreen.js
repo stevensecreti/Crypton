@@ -55,11 +55,13 @@ const Homescreen = (props) => {
         const [UpdateBanner] = useMutation(mutations.UPDATE_BANNER);
         const [SendChallenge] = useMutation(mutations.SEND_CHALLENGE);
         const [DeclineChallenge] = useMutation(mutations.DECLINE_CHALLENGE);
+        const [UpdatePfp] = useMutation(mutations.UPDATE_PFP);
 
         const auth = props.user === null ? false : true;
         let displayName = "";
-        //let banner = "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg"; //Default Banner
-        //let banner = "https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png";
+        //const banner = "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg"; //Default Banner
+        let banner = "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg";
+        let pfp = "https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png";
         let email = "";
         let friends = [];
         let friendRequests = [];
@@ -72,7 +74,7 @@ const Homescreen = (props) => {
             const friendRequests = props.user.friendRequests;
             email = props.user.email;
             displayName = firstName + " " + lastName;
-            console.log(props.user)
+            console.log(props.user) //PRINT USER
             friends = props.user.friendsList;
             highscores = props.user.highscores;
             //banner = props.user.banner;
@@ -236,6 +238,11 @@ const Homescreen = (props) => {
         //console.log(banner)
         //banner = banner;
 
+        const updatePfp = async (string) => {
+            //console.log("UPDATE PFP FUNCTION")
+            UpdatePfp({variables:{pfp: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
+        }
+
         return( 
             <div className = "homescreen" >
                 <div className = "header" >
@@ -255,7 +262,8 @@ const Homescreen = (props) => {
                         setShowTrading = { setShowTrading }
                         setShowWallet = { setShowWallet }
                         displayName = {displayName}
-                        //banner = {banner}
+                        banner = {banner}
+                        pfp = {pfp}
                         /> 
                     </> 
                     </div> 
@@ -283,7 +291,10 @@ const Homescreen = (props) => {
                         acceptFriendRequest={handleAcceptFriendRequest}
                         declineFriendRequest={handleDeclineFriendRequest}
                         updateHighscore={updateHighscores}
+                        banner = {banner}
                         updateBanner={updateBanner}
+                        pfp = {pfp}
+                        updatePfp={updatePfp}
                         friendsList={friends}
                         friendRequests={friendRequests}
                         highscores={highscores}
@@ -291,7 +302,6 @@ const Homescreen = (props) => {
                         setShowStartChallenge = {setShowStartChallenge}
                         declineChallenge = {declineChallenge}
                         displayName = {displayName}
-                        //banner = {banner}
                         userEmail={email}
                         user = {props.user}
                     />

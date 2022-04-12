@@ -9,11 +9,12 @@ const typeDefs = gql `
 		email: String
 		password: String
 		displayName: String
-		banner: String
 		friendsList: [String]
 		friendRequests: [String]
 		gameCenterBalance: Float
 		highscores: [String]
+		banner: String
+		pfp: String
 		challenges: [String]
 	}
 	extend type Query {
@@ -30,6 +31,7 @@ const typeDefs = gql `
 		updateBanner(banner: String!, user: String!): Boolean!
 		sendChallenge(game: String!, user: String!, friend: String!, coin: String!, bet: String!): Boolean!
 		declineChallenge(user: String!, index: Int!): Boolean!
+		updatePfp(pfp: String!, user: String!): Boolean!
 	}
 `;
 
