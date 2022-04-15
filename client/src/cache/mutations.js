@@ -73,6 +73,12 @@ export const DECLINE_CHALLENGE = gql`
 	}
 `;
 
+export const GET_CHALLENGE_SCORE = gql`
+	mutation GetChallengeScore($user: String!, $game: String!){
+		getChallengeScore(user: $user, game: $game)
+	}
+`;
+
 export const UPDATE_PFP = gql`
 	mutation UpdatePfp($pfp: String!, $user: String!){
 		updatePfp(pfp: $pfp, user: $user)

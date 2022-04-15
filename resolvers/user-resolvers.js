@@ -272,6 +272,22 @@ module.exports = {
 				return false;
 			}
 		},
+		getChallengeScore: async (_, args) =>
+		{
+			const {user,game} = args;
+			const thisUser = await User.findOne({email: user});
+			const highscores = thisUser.highscores;
+			for(let i = 0;i<highscores.length;i++)
+			{
+				const thisGame = highscores[i].split(",")[0];
+				const thisScore = parseInt(highscores[i].split(",")[1]);
+				if(thisGame.localeCompare(game) == 0)
+				{
+					return (thisScore);
+				}
+			}
+			return (0);
+		},
 		updatePfp: async (_, args) =>
 		{
 			//console.log("UPDATE Pfp RESOLVER");

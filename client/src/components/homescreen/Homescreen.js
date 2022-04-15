@@ -55,6 +55,7 @@ const Homescreen = (props) => {
         const [UpdateBanner] = useMutation(mutations.UPDATE_BANNER);
         const [SendChallenge] = useMutation(mutations.SEND_CHALLENGE);
         const [DeclineChallenge] = useMutation(mutations.DECLINE_CHALLENGE);
+        const [GetChallengeScore] = useMutation(mutations.GET_CHALLENGE_SCORE);
         const [UpdatePfp] = useMutation(mutations.UPDATE_PFP);
 
         const auth = props.user === null ? false : true;
@@ -221,6 +222,12 @@ const Homescreen = (props) => {
             const updt = await DeclineChallenge({variables:{user: email,index: index}, refetchQueries: [{query: GET_DB_USER}]});
         }
 
+        const getChallengeScore = async (user,game) => {
+            const { data, loading, error } = await GetChallengeScore({variables:{user: user,game: game}});
+            const score = data.getChallengeScore;
+            return score;
+        }
+
         //console.log("BEFORE BANNER: " + banner);
         const updateBanner = async (string) => {
             //console.log(string)
@@ -304,6 +311,7 @@ const Homescreen = (props) => {
                         displayName = {displayName}
                         userEmail={email}
                         user = {props.user}
+                        getChalScore = {getChallengeScore}
                     />
                     :
                     <Welcome />

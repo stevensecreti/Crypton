@@ -7,6 +7,12 @@ const Request = (props) =>
     const bet = props.req.split(",")[2];
     const index = props.rind;
 
+    const acceptChal = () =>
+    {
+        props.accChal(game,props.req);
+        props.declineReq(index);
+    }
+
     const declineChal = () => {
         props.declineReq(index);
     }
@@ -23,7 +29,7 @@ const Request = (props) =>
             <div className='req-info'>
                 {bet}
             </div>
-            <div className='req-acc'>
+            <div className='req-acc' onClick = {acceptChal}>
                 O
             </div>
             <div className='req-dec' onClick = {declineChal}>

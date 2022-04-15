@@ -3,6 +3,7 @@ import Request from './Request';
 import Score from './Score';
 import GameChoice from './GameChoice';
 import Memory from './Games/Memory/Memory';
+import { use } from 'passport';
 
 const GameCenter = (props) => {
     const chalReqs = props.challenges;
@@ -10,10 +11,29 @@ const GameCenter = (props) => {
     const games = ["Reaction"];
     const [screen, setScreen] = useState(0);
     const [screenName, setScreenName] = useState("Game Center");
+    const [isChal, setIsChal] = useState(false);
+    const [chalInfo, setChalInfo] = useState("");
 
     const chalGame = (gameName) =>
     {
         props.setShowStartChallenge(gameName);
+    }
+
+    const accChal = (gameName,chal) =>
+    {
+        setChalInfo(chal);
+        setIsChal(true);
+        playGame(gameName);
+    }
+
+    const endChal = async (game,score) =>
+    {
+        let challenger = chalInfo.split(",")[0];
+        const chalScore = await props.getChalScore(challenger,game);
+        let win = score >= chalScore;
+        setChalInfo("");
+        setIsChal(false);
+        return win;
     }
 
     const playGame = (gameName) =>
@@ -53,8 +73,20 @@ const GameCenter = (props) => {
         setScreenName("Game Center");
     }
 
-    const endGame = (game,score) =>
+    const endGame = async (game,score) =>
     {
+        if(isChal)
+        {
+            const chalWin = await endChal(game,score);
+            if(chalWin)
+            {
+                alert("You Won The Challenge!");
+            }
+            else
+            {
+                alert("You Lost The Challenge.");
+            }
+        }
         props.updateHighscore(game,score);
         goBack();
     }
@@ -95,6 +127,7 @@ const GameCenter = (props) => {
                                     {
                                         chalReqs.map((thisReq,rind) =>(
                                             <Request req ={thisReq}
+                                            accChal = {accChal}
                                             declineReq = {props.declineChallenge}
                                             rind = {rind}>
                                             </Request>
@@ -157,7 +190,7 @@ const GameCenter = (props) => {
                         }
                 </div>
                 {
-                    screen != 0 &&
+                    (screen != 0 && screen < 5) &&
                     <div className='gc-back' onClick={goBack}>
                         Back To Game Center...
                     </div>

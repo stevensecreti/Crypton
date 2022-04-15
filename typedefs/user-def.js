@@ -31,6 +31,7 @@ const typeDefs = gql `
 		updateBanner(banner: String!, user: String!): Boolean!
 		sendChallenge(game: String!, user: String!, friend: String!, coin: String!, bet: String!): Boolean!
 		declineChallenge(user: String!, index: Int!): Boolean!
+		getChallengeScore(user: String!, game: String!): Int!
 		updatePfp(pfp: String!, user: String!): Boolean!
 	}
 `;
