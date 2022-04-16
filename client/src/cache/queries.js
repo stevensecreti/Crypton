@@ -17,3 +17,21 @@ export const GET_DB_USER = gql`
 		}
 	}
 `;
+
+export const GET_DB_USERS = gql`
+	query GetDBUsers{
+		getAllUsers{
+			_id
+			firstName
+			lastName
+			email
+			displayName
+			friendsList
+			friendRequests
+			highscores
+			banner
+			pfp
+			challenges
+		}
+	}
+`;

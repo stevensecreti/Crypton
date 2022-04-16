@@ -1,16 +1,24 @@
 import React, {useState} from 'react';
-import Friend from "../Profile/Friend";
-import FriendRequest from "../Profile/FriendRequest";
 import Button from '@mui/material/Button';
+import FriendProfileFriend from './FriendProfileFriend';
 
+const FriendProfile = (props) => {
+    console.log("VIEWING FREIND PROFILE");
+    const friendUser = props.friendProfile;
+    console.log("FriendUser: ", friendUser);
+    const banner = friendUser.banner;
+    const pfp = friendUser.pfp;
+    const firstName = friendUser.firstName;
+    const lastName = friendUser.lastName;
+    const displayName = firstName + " " + lastName;
+    const highscores = friendUser.highscores;
+    const challenges = friendUser.challenges;
+    const friendsList = friendUser.friendsList;
 
-const Profile = (props) => {
-    let friendsList = props.friendsList;
-    let friendRequests = props.friendRequests;
-
-    function addFriend(){
-        props.addFriend();
+    function closeFriend(){
+        props.closeFriend();
     }
+
     return(<>
         <div className="profileScreen">
             <div className="profileHeaderWrapper">
@@ -18,19 +26,20 @@ const Profile = (props) => {
                     <label className="-label" htmlFor="file">
                         <span className="glyphicon glyphicon-camera"></span>
                     </label>
-                    <img src={props.pfp} id="output" className="pfp"/>
+                    <img src={pfp} id="output" className="pfp"/>
                     <div className="listHeader">
-                        {props.displayName}
+                        {displayName}
                     </div>
                 </div>
                 <div className="profileHeaderBackground">
-                    <img className="profileBanner" src={props.banner}/>
+                    <img className="profileBanner" src={banner}/>
                 </div>
             </div>
             <div className="profileMain">
                 <div className="profileInfo">
                     <div className="listHeader">
                         User Info
+                        <Button className="friendProfileButton" onClick={closeFriend}><i className="material-icons">delete</i></Button>
                     </div>
                     <div className="profileGames">
                         <div className="listHeader">
@@ -48,17 +57,13 @@ const Profile = (props) => {
                 <div className="profileFriends">
                     <div className="friendsListHeader">
                         Friends List
-                        <div className="addFriendButton">
-                            <Button onClick={addFriend}><i className="material-icons" id="addFriendIcon">add</i></Button>
-                        </div>
                     </div>                    
                     <div className="profileFriendsList">
                         {//Here map each friend in list to a new friend component <Friend/>
                             friendsList ? 
                             friendsList.map((friend) => 
-                                <Friend 
+                                <FriendProfileFriend 
                                     name={friend} 
-                                    deleteFriend={props.deleteFriend}
                                     viewFriend={props.viewFriend}
                                 />
                             ) 
@@ -66,28 +71,9 @@ const Profile = (props) => {
                             <></>
                         }
                     </div>
-                    <div className="listHeader">
-                        Friend Requests
-                    </div>
-                    <div className="friendRequestsList">
-                        {
-                            friendRequests ? 
-                            friendRequests.map((friendRequest) => 
-                                <FriendRequest
-                                    name={friendRequest}
-                                    acceptFriendRequest={props.acceptFriendRequest}
-                                    declineFriendRequest={props.declineFriendRequest}
-                                    
-                                />
-                            )
-                            :
-                            <></>
-                        }
-                    </div>
                 </div>
             </div>
         </div>    
     </>);
-
 }
-export default Profile;
+export default FriendProfile;

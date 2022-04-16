@@ -17,11 +17,13 @@ import MainContents from '../main/MainContents';
 import * as mutations from '../../cache/mutations';
 import { useMutation, useQuery } from '@apollo/client';
 import {GET_DB_USER} from '../../cache/queries';
+import {GET_DB_USERS} from '../../cache/queries';
 import { isObjectType } from 'graphql';
 import { of } from 'zen-observable';
-
+import {produce} from 'immer';
 
 const Homescreen = (props) => {
+        let users = [];
         //User variables
         const userBalance = 12349.21;
         const userBuyingPower = 200.23;
@@ -39,6 +41,8 @@ const Homescreen = (props) => {
         const [showEducation, toggleShowEducation] = useState(false);
         const [showGaming, toggleShowGaming] = useState(false);
         const [showProfile, toggleShowProfile] = useState(false);
+        const [showFriendProfile, toggleShowFriendProfile] = useState(false);
+        const [friendProfile, setFriendProfile] = useState(null);
         const [showHome, toggleShowHome] = useState(false);
         const [showTrading, toggleShowTrading] = useState(false);
         const [showWallet, toggleShowWallet] = useState(false);
@@ -74,19 +78,19 @@ const Homescreen = (props) => {
         let highscores = [];
         let challenges = [];
         if (auth) {
+            console.log(props.user) //PRINT USER
+
             const firstName = props.user.firstName;
             const lastName = props.user.lastName;
             const friendsList = props.user.friendsList;
             const friendRequests = props.user.friendRequests;
             email = props.user.email;
             displayName = firstName + " " + lastName;
-            console.log(props.user) //PRINT USER
             friends = props.user.friendsList;
             highscores = props.user.highscores;
-            //banner = props.user.banner;
+            pfp = props.user.pfp;
+            banner = props.user.banner;
             challenges = props.user.challenges;
-            console.log("challenges",challenges);
-            console.log("friends", friends);
         } else {
             displayName = "";
         }
@@ -111,6 +115,39 @@ const Homescreen = (props) => {
             return;
         }
 
+        const friendQuery = useQuery(GET_DB_USERS);
+        if(friendQuery.loading){console.log(friendQuery.loading, "Loading...");}
+        if(friendQuery.error){console.log(friendQuery.error, "Error");}
+        if(friendQuery.data){users = friendQuery.data.getAllUsers;}
+
+        const refetchUsers = async () => {
+            const { loading, error, data } = await friendQuery.refetch();
+            if(data){
+                users = data.getAllUsers;
+            }
+        }
+
+
+        const viewFriend = async(friend) => {
+            if(friend === null){
+                viewProfileError();
+                return;
+            }
+            await refetchUsers();
+            const user = users.find(user => user.email === friend);
+            if(user === undefined){
+                viewProfileError();
+                return;
+            }
+            setFriendProfile(user);
+            console.log("Viewing Friend Profile", user);
+            clearScreen();
+            toggleShowFriendProfile(true);
+        }
+
+        const viewProfileError = () => {
+            alert("Error: User does not exist");
+        }
 
         function clearScreen(){
             toggleShowLogin(false);
@@ -130,6 +167,7 @@ const Homescreen = (props) => {
             toggleShowChangeName(false);
             toggleShowChangeEmail(false);
             toggleShowChangePassword(false);
+            toggleShowFriendProfile(false);
         }
         const setShowLogin = () => {
             toggleShowLogin(!showLogin);
@@ -167,6 +205,11 @@ const Homescreen = (props) => {
             clearScreen();
             toggleShowProfile(!showProfile);
         };
+
+        const setShowFriendProfile = () => {
+            clearScreen();
+            toggleShowFriendProfile(!showFriendProfile);
+        }
 
         const setShowHome = () => {
             clearScreen();
@@ -322,6 +365,10 @@ const Homescreen = (props) => {
                         userEmail={email}
                         user = {props.user}
                         getChalScore = {getChallengeScore}
+                        viewFriend={viewFriend}
+                        showFriendProfile={showFriendProfile}
+                        setShowProfile={setShowProfile}
+                        friendProfile={friendProfile}
                     />
                     :
                     <Welcome />

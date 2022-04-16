@@ -16,6 +16,12 @@ module.exports = {
 			const found = await User.findOne(_id);
 			if(found) return found;
 		},
+		getAllUsers: async(_, __, { req }) => {
+			const _id = new ObjectId(req.userId);
+			if(!_id) { return([]) };
+			const users = await User.find({});
+			if(users) return (users);
+		},
 	},
 	Mutation: {
 		/** 
