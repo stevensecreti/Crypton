@@ -50,6 +50,11 @@ const Homescreen = (props) => {
         const [showChangeEmail, toggleShowChangeEmail] = useState(false);
         const [showChangePassword, toggleShowChangePassword] = useState(false);
 
+        const [QRCode, setQRCode] = useState([{
+            show: false,
+            account: ""
+        }]);
+        const [temp, setTemp] = useState([])
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
         const [RemoveFriend] = useMutation(mutations.REMOVE_FRIEND);
         const [UpdateBanner] = useMutation(mutations.UPDATE_BANNER);
@@ -177,8 +182,12 @@ const Homescreen = (props) => {
             toggleShowWallet(!showWallet);
         };
 
-        const setShowQRCode = () => {
+        const setShowQRCode = (defaultAccount) => {
             toggleShowQRCode(!showQRCode);
+            const QRCode = produce(temp, draft => {
+                draft.push({show: function(){toggleShowQRCode(false)}, account: defaultAccount})
+            })
+          setQRCode(QRCode);
         };
 
         const setShowBanner = () => {
@@ -284,6 +293,7 @@ const Homescreen = (props) => {
                         showAccount = {showAccount}
                         showProfile = {showProfile}
                         setShowQRCode = {setShowQRCode}
+                        QRCode = {QRCode}
                         setShowBanner = {setShowBanner}
                         setShowPicture = {setShowPicture}
                         setShowChangeName = {setShowChangeName}
@@ -320,7 +330,7 @@ const Homescreen = (props) => {
                 {showCreate && (<CreateAccount fetchUser = {props.fetchUser} setShowCreate = { setShowCreate }/>)}
                 {showLogin && ( < Login fetchUser = { props.fetchUser } setShowLogin = { setShowLogin }/>)}
                 {showUpdate && ( < Update fetchUser = { props.fetchUser } setShowUpdate = {setShowUpdate} userId = {props.user._id} user = {props.user}/>)}
-                {showQRCode && (<QRCodeModal setShowQRCode = {setShowQRCode} ></QRCodeModal>)}
+                {showQRCode && (<QRCodeModal QRCode = {QRCode} ></QRCodeModal>)}
                 {showBanner && (<BannerModal setShowBanner = {setShowBanner} ></BannerModal>)}
                 {showPicture && (<PictureModal setShowPicture = {setShowPicture} ></PictureModal>)}
                 {showChangeName && (<ChangeName setShowChangeName = {setShowChangeName} ></ChangeName>)}
