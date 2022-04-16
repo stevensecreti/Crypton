@@ -10,7 +10,7 @@ const FriendProfileFriend = (props) => {
 
     return(
         <div className="friend">
-            <Button className="friendProfileButton" onClick={handleViewFriend}>{props.name}</Button>
+            <Button className="friendProfileButton" onClick={handleViewFriend} style={{color: "white"}}>{props.name}</Button>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Friend from "../Profile/Friend";
 import FriendRequest from "../Profile/FriendRequest";
+import Highscore from "../Profile/Highscore";
 import Button from '@mui/material/Button';
 
 
@@ -20,7 +21,7 @@ const Profile = (props) => {
                     </label>
                     <img src={props.pfp} id="output" className="pfp"/>
                     <div className="listHeader">
-                        {props.displayName}
+                        {props.userName}
                     </div>
                 </div>
                 <div className="profileHeaderBackground">
@@ -38,10 +39,12 @@ const Profile = (props) => {
                         </div>
                         <div className="profileCryptoList">
                             {//Here map each crypto held into list w bullet points
+                                props.highscores.map((highscore) => 
+                                    <Highscore
+                                        highscore={highscore}
+                                    />
+                                )
                             }
-                            -Memory <br/>
-                            -Uno <br/>
-                            -Simon Says
                         </div>
                     </div>
                 </div>

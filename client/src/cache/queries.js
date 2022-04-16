@@ -10,6 +10,7 @@ export const GET_DB_USER = gql`
 			displayName
 			friendsList
 			friendRequests
+			userName
 			highscores
 			banner
 			pfp
@@ -28,6 +29,7 @@ export const GET_DB_USERS = gql`
 			displayName
 			friendsList
 			friendRequests
+			userName
 			highscores
 			banner
 			pfp

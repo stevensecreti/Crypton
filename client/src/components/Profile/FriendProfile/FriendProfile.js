@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Button from '@mui/material/Button';
 import FriendProfileFriend from './FriendProfileFriend';
+import Highscore from '../Highscore';
 
 const FriendProfile = (props) => {
     console.log("VIEWING FREIND PROFILE");
@@ -11,6 +12,7 @@ const FriendProfile = (props) => {
     const firstName = friendUser.firstName;
     const lastName = friendUser.lastName;
     const displayName = firstName + " " + lastName;
+    const userName = friendUser.userName;
     const highscores = friendUser.highscores;
     const challenges = friendUser.challenges;
     const friendsList = friendUser.friendsList;
@@ -28,7 +30,7 @@ const FriendProfile = (props) => {
                     </label>
                     <img src={pfp} id="output" className="pfp"/>
                     <div className="listHeader">
-                        {displayName}
+                        {userName}
                     </div>
                 </div>
                 <div className="profileHeaderBackground">
@@ -39,7 +41,7 @@ const FriendProfile = (props) => {
                 <div className="profileInfo">
                     <div className="listHeader">
                         User Info
-                        <Button className="friendProfileButton" onClick={closeFriend}><i className="material-icons">close</i></Button>
+                        <Button className="friendProfileButton" onClick={closeFriend} style={{color: "white"}}><i className="material-icons">close</i></Button>
                     </div>
                     <div className="profileGames">
                         <div className="listHeader">
@@ -47,10 +49,12 @@ const FriendProfile = (props) => {
                         </div>
                         <div className="profileCryptoList">
                             {//Here map each crypto held into list w bullet points
-                            }
-                            -Memory <br/>
-                            -Uno <br/>
-                            -Simon Says
+                                highscores.map((highscore) => 
+                                <Highscore
+                                    highscore={highscore}
+                                />
+                            )
+                        }
                         </div>
                     </div>
                 </div>

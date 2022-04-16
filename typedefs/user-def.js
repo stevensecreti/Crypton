@@ -12,6 +12,7 @@ const typeDefs = gql `
 		friendsList: [String]
 		friendRequests: [String]
 		gameCenterBalance: Float
+		userName: String
 		highscores: [String]
 		banner: String
 		pfp: String
@@ -26,7 +27,8 @@ const typeDefs = gql `
 		register(email: String!, password: String!, firstName: String!, lastName: String!): User
 		update(email: String!, password: String!, firstName: String!, lastName: String!, _id: String!): Boolean!
 		logout: Boolean!
-		friendRequest(email: String!, user: String!): Boolean!
+		friendRequest(userName: String!, user: String!): Boolean!
+		acceptFriendRequest(userName: String!, user: String!, accept: Boolean!): Boolean!
 		removeFriend(user: String!, friend: String!): Boolean!
 		updateHighscore(game: String!, score: Int!, user: String!): Boolean!
 		updateBanner(banner: String!, user: String!): Boolean!

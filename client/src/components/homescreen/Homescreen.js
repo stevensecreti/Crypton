@@ -66,10 +66,10 @@ const Homescreen = (props) => {
         const [DeclineChallenge] = useMutation(mutations.DECLINE_CHALLENGE);
         const [GetChallengeScore] = useMutation(mutations.GET_CHALLENGE_SCORE);
         const [UpdatePfp] = useMutation(mutations.UPDATE_PFP);
+        const [AcceptFriendRequest] = useMutation(mutations.ACCEPT_FRIEND_REQUEST);
 
         const auth = props.user === null ? false : true;
         let displayName = "";
-        //const banner = "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg"; //Default Banner
         let banner = "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg";
         let pfp = "https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png";
         let email = "";
@@ -77,13 +77,14 @@ const Homescreen = (props) => {
         let friendRequests = [];
         let highscores = [];
         let challenges = [];
+        let userName = "";
         if (auth) {
-            console.log(props.user) //PRINT USER
-
+            console.log("USER: ", props.user);
             const firstName = props.user.firstName;
             const lastName = props.user.lastName;
             const friendsList = props.user.friendsList;
-            const friendRequests = props.user.friendRequests;
+            friendRequests = props.user.friendRequests;
+            userName = props.user.userName;
             email = props.user.email;
             displayName = firstName + " " + lastName;
             friends = props.user.friendsList;
@@ -91,13 +92,15 @@ const Homescreen = (props) => {
             pfp = props.user.pfp;
             banner = props.user.banner;
             challenges = props.user.challenges;
+            console.log("HIGHSCORES: " + highscores);
+            console.log("Challenges: " + challenges);
         } else {
             displayName = "";
         }
 
         const handleDeleteFriend = async (friend) => {
             if(email == null || friend == null) return;
-            const input = {user: email, friend: friend};
+            const input = {user: userName, friend: friend};
 
             const deleted = await RemoveFriend({variables: {...input}});
             if(!deleted){
@@ -109,10 +112,26 @@ const Homescreen = (props) => {
         }
 
         const handleAcceptFriendRequest = async (friend) =>{
-            return;
+            if(friend == null) return;
+            const input = {userName: userName, user: friend, accept: true};
+            const accepted = await AcceptFriendRequest({variables: {...input}});
+            if(!accepted){
+                console.log("Err Returned False");
+            }
+            else{
+                props.fetchUser();
+            }
         }
         const handleDeclineFriendRequest = async (friend) =>{
-            return;
+            if(friend == null) return;
+            const input = {userName: userName, user: friend, accept: false};
+            const accepted = await AcceptFriendRequest({variables: {...input}});
+            if(!accepted){
+                console.log("Err Returned False");
+            }
+            else{
+                props.fetchUser();
+            }
         }
 
         const friendQuery = useQuery(GET_DB_USERS);
@@ -134,7 +153,7 @@ const Homescreen = (props) => {
                 return;
             }
             await refetchUsers();
-            const user = users.find(user => user.email === friend);
+            const user = users.find(user => user.userName === friend);
             if(user === undefined){
                 viewProfileError();
                 return;
@@ -280,25 +299,11 @@ const Homescreen = (props) => {
             return score;
         }
 
-        //console.log("BEFORE BANNER: " + banner);
         const updateBanner = async (string) => {
-            //console.log(string)
-            //banner = string;
-
-            //console.log(props.user);
-
             UpdateBanner({variables:{banner: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
-
-            //console.log(props.user);
-            //console.log(banner);
         }
-        //console.log("BANNER: " + banner);
-
-        //console.log(banner)
-        //banner = banner;
 
         const updatePfp = async (string) => {
-            //console.log("UPDATE PFP FUNCTION")
             UpdatePfp({variables:{pfp: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
 
@@ -369,6 +374,7 @@ const Homescreen = (props) => {
                         showFriendProfile={showFriendProfile}
                         setShowProfile={setShowProfile}
                         friendProfile={friendProfile}
+                        userName={userName}
                     />
                     :
                     <Welcome />
@@ -383,7 +389,7 @@ const Homescreen = (props) => {
                 {showChangeName && (<ChangeName setShowChangeName = {setShowChangeName} ></ChangeName>)}
                 {showChangeEmail && (<ChangeEmail setShowChangeEmail = {setShowChangeEmail} ></ChangeEmail>)}
                 {showChangePassword && (<ChangePassword setShowChangePassword = {setShowChangePassword} ></ChangePassword>)}
-                {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userEmail={email}></AddFriend>)}
+                {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userName={userName}></AddFriend>)}
                 {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends} assets = {userAssets} gname = {chalGameName} sendChal = {sendChallenge}></StartChallenge>)}
             </div>
         );
