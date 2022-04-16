@@ -1,6 +1,8 @@
 import React, { useState, useEffect }                            from 'react';
 import { Chart as ChartJS, registerables } from "chart.js";
 import {Line} from 'react-chartjs-2';
+import Chart from "./Chart";
+import produce from "immer";
 import WMHeader from 'wt-frontend/build/components/wmodal/WMHeader';
 import WMMain from 'wt-frontend/build/components/wmodal/WMMain';
 import WLayout from 'wt-frontend/build/components/wlayout/WLayout';
@@ -15,21 +17,23 @@ import ls from 'local-storage'
 
 const Wallet = (props) => {
     // const balance = props.balance;
-    const buyingPower = props.buyingPower;
-    const balancesum = [];
-    const walletHex = props.walletHex;
+    // const buyingPower = props.buyingPower;
+    // const balancesum = [];
+    // const walletHex = props.walletHex;
     //const currentTrend = trendData[trendData.length-1]-trendData[0];
     //const trend = "Current Trend: " + (currentTrend >= 0 ? "+"+currentTrend+"%" : "-"+(-currentTrend)+"%");
     //const trendStyle = currentTrend >= 0 ? "wallet-trend-pos" : "wallet-trend-neg";
     ChartJS.register(...registerables);
       const toggleQRCode = () => {
-        props.setShowQRCode();
+        props.setShowQRCode(defaultAccount);
       }
     let contractAddress = '0xEFBdA78Efd27da42dB314820514fCA7b79348B27';
 
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [defaultAccount, setDefaultAccount] = useState(null);
+    const [newAccount, setNewAccount] = useState(null);
 	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
+  const [refreshButton, setRefreshButton] = useState('Refresh');
 
 	const [provider, setProvider] = useState(null);
 	const [signer, setSigner] = useState(null);
@@ -37,28 +41,17 @@ const Wallet = (props) => {
 
 	const [tokenName, setTokenName] = useState("Token");
 	const [balance, setBalance] = useState(null);
-    const [trendData, settrendData] = useState(() => {
-        const saved = localStorage.getItem("trendData");
-        const initialValue = JSON.parse(saved);
-        return initialValue || ""; 
-    });
-
-    const state = {
-        labels: ['January', 'February', 'March',
-                 'April', 'May', 'June', 'July', 'August', 'Septmeber', 'October', 'November', 'December'],
-        datasets: [
-          {
-            label: 'Balance',
-            fill: false,
-            lineTension: 100,
-            backgroundColor: '#013292',
-            borderColor: '#013292',
-            borderWidth: 1,
-            data: trendData
-          }
-        ]
-      }
-
+  const [latestBalance, setLatestBalance] = useState(0);
+  //const [date, setDate] = useState(new Date().toLocaleDateString()+new Date().toLocaleTimeString());
+  const [finalTrend, setFinalTrend] = useState([
+    {
+      account: "",
+      balance: 0,
+      time: ""
+    },
+  ]);
+  const [trendSum, setTrendSum] = useState([]);
+  const [index, setIndex] = useState(1);
     const connectWalletHandler = () => {
 		if (window.ethereum && window.ethereum.isMetaMask) {
 
@@ -69,7 +62,7 @@ const Wallet = (props) => {
 			})
 			.catch(error => {
 				setErrorMessage(error.message);
-			
+
 			});
 
 		} else {
@@ -81,8 +74,36 @@ const Wallet = (props) => {
 
     const accountChangedHandler = (newAccount) => {
 		setDefaultAccount(newAccount);
+        setNewAccount("Account:"+newAccount);
 		updateEthers();
 	}
+
+    const LongText = ({content,limit}) => {
+        const [showAll, setShowAll] = useState(false);
+      
+        const showMore = () => setShowAll(true);
+        const showLess = () => setShowAll(false);
+        if(!content) return false;
+        if (content.length <= limit) {
+          // there is nothing more to show
+          return <div>{content}</div>
+        }
+        if (showAll) {
+          // We show the extended text and a link to reduce it
+          return <div> 
+            {content} 
+            <button onClick={showLess}>Read less</button> 
+          </div>
+        }
+        // In the final case, we show a text with ellipsis and a `Read more` button
+        const toShow = content.substring(0, limit) + "...";
+        return <div> 
+          {toShow} 
+          <button onClick={showMore}>Read more</button>
+        </div>
+      }
+
+
 
     const updateBalance = async () => {
 		let balanceBigN = await contract.balanceOf(defaultAccount);
@@ -93,10 +114,23 @@ const Wallet = (props) => {
 		let tokenBalance = balanceNumber / Math.pow(10, tokenDecimals);
 
 		setBalance(toFixed(tokenBalance));	
-        settrendData([...trendData, toFixed(tokenBalance)]);
-        localStorage.setItem("trendData", JSON.stringify(trendData));
-}
+    }
 
+    const updateLatestBalance = async () => {
+      if(balance !== latestBalance){
+        var date='';
+        date = date.concat(new Date().toLocaleDateString()+new Date().toLocaleTimeString())
+        const finalTrend = produce(trendSum, draft => {
+              draft.push({account: defaultAccount, balance: toFixed(balance), time: date})
+          })
+        setFinalTrend(finalTrend);
+      }
+      setLatestBalance(latestBalance);
+    }
+
+  //     const updateChart = () => {
+  //   return <Chart data={balance}/>
+  // }
     function toFixed(x) {
         if (Math.abs(x) < 1.0) {
            var e = parseInt(x.toString().split('e-')[1]);
@@ -117,9 +151,13 @@ const Wallet = (props) => {
 
      const chainChangedHandler = () => {
 		// reload the page to avoid any errors with chain change mid use of application
-		window.location.reload();
         updateBalance();
 	}
+
+  const refreshHandler =() => {
+    updateBalance();
+    updateLatestBalance();
+  }
 
     window.ethereum.on('accountsChanged', accountChangedHandler);
 
@@ -140,9 +178,8 @@ const Wallet = (props) => {
 		if (contract != null) {
 			updateBalance();
 			updateTokenName();
-            
 		}
-	}, [contract], [balance], [trendData]);
+	}, [contract, latestBalance, balance]);
 
     const updateTokenName = async () => {
 		setTokenName(await contract.name());
@@ -154,45 +191,24 @@ const Wallet = (props) => {
                 <div className={styles.walletCard}>
                 </div>
                 <div className="wallet-main">
-                <button className={styles.button6} onClick={connectWalletHandler}>{connButtonText}</button>
-                        <ul className='wallet-div'>
+                        <div className='wallet-div'>
+                            <div id="wallet-balance">
+                                <LongText content = {newAccount} limit = {20} /> 
+                            </div>
                             <div id="wallet-balance">
                                 Balance: {balance}ST
                             </div>
-                            <div id="wallet-balance">
-                                Account Address: {defaultAccount}
-                            </div>
-                            {/* <div id="wallet-balance">
-                                Buying Power: ${buyingPower}
-                            </div>
-                            <div id={trendStyle}>
-                                {trend}
-                            </div> */}
-                            <div id="wallet-button" onClick={toggleQRCode}>
+                            <div id="wallet-button" onClick={() => {toggleQRCode()}}>
                                 QRCode...
                             </div>
+                            <button id="wallet-button" onClick={() => {connectWalletHandler()}}>{connButtonText}</button>
+                            <button id="wallet-button" onClick={() => {refreshHandler()}}>{refreshButton}</button>
                             {errorMessage}
-                            <div className='line-graph'>
-                                <Line
-                                data={state}
-                                options={{
-                                    title:{
-                                    display:true,
-                                    text:'Average Rainfall per month',
-                                    fontSize:20
-                                    },
-                                    legend:{
-                                    display:true,
-                                    position:'right'
-                                    }
-                                }}
-                                />
-                            </div>
+                            <Chart finalTrend={finalTrend}/>
                             <Interactions contract={contract}/>
-                        </ul>
                         {errorMessage}
                 </div>
-                
+                </div>
             </div>
 </>
     );
