@@ -15,27 +15,8 @@ const Account = (props) => {
     const buyingPower = props.buyingPower;
     const trendData = props.balanceData;
     const accountHex = props.accountHex;
-    //const currentTrend = trendData[trendData.length-1]-trendData[0];
-    //const trend = "Current Trend: " + (currentTrend >= 0 ? "+"+currentTrend+"%" : "-"+(-currentTrend)+"%");
-    //const trendStyle = currentTrend >= 0 ? "account-trend-pos" : "account-trend-neg";
-    //console.log(props.user)
-    //var updateBannerCounter = 0;
-    //const banner = props.user.banner;
     const banner = props.user.banner;
     const pfp = props.user.pfp;
-
-    /*
-    if(updateBannerCounter == 0)
-    {
-      console.log(updateBannerCounter)
-      banner = props.banner;
-    }
-    else
-    {
-      console.log(updateBannerCounter)
-      banner = props.user.banner;
-    }
-    */
 
     ChartJS.register(...registerables);
 
@@ -73,34 +54,38 @@ const Account = (props) => {
         props.setShowChangePassword();
       }
       
-      var loadBanner = function (event) {
-        //console.log("LOAD BANNER FUNCTION CALLED");
-        //console.log(event.target.files);
-        var image = document.getElementById("banner-output");
-        image.src = URL.createObjectURL(event.target.files[0]);
-        //console.log("STRING: " + image.src);
-        //banner = URL.createObjectURL(event.target.files[0]);
-        //props.banner = image.src;
+      const uploadBanner = async event => {
+        const file = event.target.files[0];
+        if(!file) return; 
+        const data = new FormData();
+        data.append('file', file);
+        data.append('upload_preset', "s41zgvdq");
 
-        //updateBannerCounter += 1;
-        //console.log(updateBannerCounter)
+        const res = await fetch('https://api.cloudinary.com/v1_1/dmhtustnr/image/upload', 
+        {
+          method: 'POST',
+          body: data
+        });
+        const img = await res.json();
+        props.updateBanner(img.secure_url);
+      }
 
-        props.updateBanner(image.src);
-        //goBack();
+      const uploadPFP = async event =>{
+        const file = event.target.files[0];
+        if(!file){ return;}
+        const data = new FormData();
+        data.append('file', file);
+        data.append('upload_preset', "s41zgvdq");
 
-        //banner = "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg";
-      };
+        const res = await fetch('https://api.cloudinary.com/v1_1/dmhtustnr/image/upload', 
+        {
+          method: "POST",
+          body: data,
+        });
+        const img = await res.json();
+        props.updatePfp(img.secure_url);
+      }
 
-      //console.log(banner);
-
-      var loadPfp = function (event) {
-        //console.log("LOAD PROFILE FILE FUNCTION CALLED");
-        //console.log(event.target.files[0])
-        var image = document.getElementById("output");
-        image.src = URL.createObjectURL(event.target.files[0]);
-        
-        props.updatePfp(image.src);
-      };
 
     return(
         <>
@@ -116,7 +101,7 @@ const Account = (props) => {
                                 <span className="glyphicon glyphicon-camera"></span>
                                 <span>Change Banner</span>
                               </label>
-                                <input id="banner-file" type="file" onChange={loadBanner.bind(this)}/>
+                                <input id="banner-file" type="file" onChange={uploadBanner}/>
                                 <img src={banner} id="banner-output" width="500" />
                             </div>
 
@@ -145,7 +130,7 @@ const Account = (props) => {
                                 <span className="glyphicon glyphicon-camera"></span>
                                 <span>Change Profile Picture</span>
                               </label>
-                                <input id="file" type="file" onChange={loadPfp.bind(this)}/>
+                                <input id="file" type="file" accept="image/*" onChange={uploadPFP}/>
                                 <img src={pfp} id="output" width="200" />
                             </div>
 
@@ -156,10 +141,3 @@ const Account = (props) => {
     );
 }
 export default Account;
-
-//https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg
-//https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg
-//https://media.istockphoto.com/photos/new-york-city-nyc-usa-picture-id615398376?k=20&m=615398376&s=612x612&w=0&h=5PVCORPJEjAxSy_Hei_hSK3OtNJMz8SHDicMN2R4X60=
-
-//"https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg"
-//"https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png"

@@ -39,7 +39,7 @@ const FriendProfile = (props) => {
                 <div className="profileInfo">
                     <div className="listHeader">
                         User Info
-                        <Button className="friendProfileButton" onClick={closeFriend}><i className="material-icons">delete</i></Button>
+                        <Button className="friendProfileButton" onClick={closeFriend}><i className="material-icons">close</i></Button>
                     </div>
                     <div className="profileGames">
                         <div className="listHeader">
