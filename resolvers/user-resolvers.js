@@ -69,7 +69,9 @@ module.exports = {
 				gameCenterBalance: 0,
 				friendsList: [],
 				friendRequests: [],
-				highscores: []
+				highscores: [],
+				banner: "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg",
+				pfp: "https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png"
 			})
 			console.log("Created new User")
 			const saved = await user.save();
@@ -160,15 +162,16 @@ module.exports = {
 		updateHighscore: async (_, args) =>
 		{
 			const{game,score,user} = args;
-			let highscores = User.findOne({email: user}).highscores;
+			let currentUser = await User.findOne({email: user})
+			let highscores = currentUser.highscores;
 			if(highscores != undefined)
 			{
 				let newHigh = Array(highscores.length+1);
 				for(let i = 0;i<highscores.length;i++)
 				{
-					let cscore = highscores[i];
-					let curGame = cscore.game;
-					let curScore = cscore.score;
+					let cscore = highscores[i].split(",");
+					let curGame = cscore[0];
+					let curScore = parseInt(cscore[1]);
 					newHigh[i] = cscore;
 					if(curGame.localeCompare(game) == 0)
 					{
@@ -195,6 +198,102 @@ module.exports = {
 				const updt = await User.updateOne({email: user},{highscores: highscores});
 				return true;
 			}
+		},
+		updateBanner: async (_, args) =>
+		{
+			//console.log("UPDATE BANNER RESOLVER");
+			//console.log(args);
+
+			const{banner, user} = args;
+			//console.log(banner);
+			//console.log(user);
+
+			//let currentUser = await User.findOne({email: user})
+			//let banner = currentUser.banner;
+			//if(banner != undefined)
+			//{
+				//let newBanner = string;
+			const updt = await User.updateOne({email: user},{banner: banner});
+			//}
+			//const updated1 = await User.updateOne({_id: _id}, { firstName: firstName });
+
+			//if(updated1){
+			//	return true
+			//}
+
+			return true;
+		},
+		sendChallenge: async (_, args) =>
+		{
+			const {game,user,friend,coin,bet} = args;
+			const toFriend = await User.findOne({email: friend});
+			const chals = toFriend.challenges;
+			const newChal = user+","+game+","+bet+" "+coin;
+			const newChalList = Array(chals.length+1);
+			for(let i = 0;i<chals.length;i++)
+			{
+				newChalList[i] = chals[i];
+			}
+			newChalList[chals.length] = newChal;
+			const updt = await User.updateOne({email: friend},{challenges: newChalList});
+			if(updt)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		},
+		declineChallenge: async (_,args) =>
+		{
+			const {user,index} = args;
+			const thisUser = await User.findOne({email: user});
+			const chals = thisUser.challenges;
+			const newChals = Array(chals.length-1);
+			for(let i = 0;i<chals.length;i++)
+			{
+				if(i < index)
+				{
+					newChals[i] = chals[i];
+				}
+				else if(i > index)
+				{
+					newChals[i-1] = chals[i];
+				}
+			}
+			const updt = await User.updateOne({email: user},{challenges: newChals});
+			if(updt)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		},
+		getChallengeScore: async (_, args) =>
+		{
+			const {user,game} = args;
+			const thisUser = await User.findOne({email: user});
+			const highscores = thisUser.highscores;
+			for(let i = 0;i<highscores.length;i++)
+			{
+				const thisGame = highscores[i].split(",")[0];
+				const thisScore = parseInt(highscores[i].split(",")[1]);
+				if(thisGame.localeCompare(game) == 0)
+				{
+					return (thisScore);
+				}
+			}
+			return (0);
+		},
+		updatePfp: async (_, args) =>
+		{
+			//console.log("UPDATE Pfp RESOLVER");
+			const{pfp, user} = args;
+			const updt = await User.updateOne({email: user},{pfp: pfp});
+			return true;
 		}
 	}
 }

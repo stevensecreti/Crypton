@@ -5,6 +5,18 @@ const Request = (props) =>
     const name = props.req.split(",")[0];
     const game = props.req.split(",")[1];
     const bet = props.req.split(",")[2];
+    const index = props.rind;
+
+    const acceptChal = () =>
+    {
+        props.accChal(game,props.req);
+        props.declineReq(index);
+    }
+
+    const declineChal = () => {
+        props.declineReq(index);
+    }
+
     return(
     <>
         <div className='req-main'>
@@ -17,10 +29,10 @@ const Request = (props) =>
             <div className='req-info'>
                 {bet}
             </div>
-            <div className='req-acc'>
-                Join
+            <div className='req-acc' onClick = {acceptChal}>
+                O
             </div>
-            <div className='req-dec'>
+            <div className='req-dec' onClick = {declineChal}>
                 X
             </div>
         </div>

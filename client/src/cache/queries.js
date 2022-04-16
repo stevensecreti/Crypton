@@ -11,6 +11,8 @@ export const GET_DB_USER = gql`
 			friendsList
 			friendRequests
 			highscores
+			banner
+			pfp
 			challenges
 		}
 	}

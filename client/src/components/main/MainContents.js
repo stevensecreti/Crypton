@@ -52,6 +52,11 @@ const MainContents = (props) => {
                 friendsList={props.friendsList}
                 displayName = {props.displayName}
                 userEmail={props.userEmail}
+                banner = {props.banner}
+                updateBanner = {props.updateBanner}
+                pfp = {props.pfp}
+                updatePfp = {props.updatePfp}
+                user = {props.user}
               ></Account>) ||
              props.showProfile &&
              (<Profile
@@ -61,6 +66,7 @@ const MainContents = (props) => {
                 acceptFriendRequest={props.acceptFriendRequest}
                 declineFriendRequest={props.declineFriendRequest}
                 deleteFriend={props.deleteFriend}
+                displayName={props.displayName}
               ></Profile>) ||
             props.showGaming &&
             (<GameCenter
@@ -68,6 +74,8 @@ const MainContents = (props) => {
                 highscores = {props.highscores}
                 challenges = {props.challenges}
                 setShowStartChallenge = {props.setShowStartChallenge}
+                declineChallenge = {props.declineChallenge}
+                getChalScore = {props.getChalScore}
             >
             </GameCenter>)
         }

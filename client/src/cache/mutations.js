@@ -55,3 +55,32 @@ export const UPDATE_HIGHSCORE = gql`
 		updateHighscore(game: $game, score: $score, user: $user)
 	}
 `;
+
+export const UPDATE_BANNER = gql`
+	mutation UpdateBanner($banner: String!, $user: String!){
+		updateBanner(banner: $banner, user: $user)
+	}
+`;
+export const SEND_CHALLENGE = gql`
+	mutation SendChallenge($game: String!, $user: String!, $friend: String!, $coin: String!, $bet: String!){
+		sendChallenge(game: $game, user: $user, friend: $friend, coin: $coin, bet: $bet)
+	}
+`;
+
+export const DECLINE_CHALLENGE = gql`
+	mutation DeclineChallenge($user: String!, $index: Int!){
+		declineChallenge(user: $user, index: $index)
+	}
+`;
+
+export const GET_CHALLENGE_SCORE = gql`
+	mutation GetChallengeScore($user: String!, $game: String!){
+		getChallengeScore(user: $user, game: $game)
+	}
+`;
+
+export const UPDATE_PFP = gql`
+	mutation UpdatePfp($pfp: String!, $user: String!){
+		updatePfp(pfp: $pfp, user: $user)
+	}
+`;

@@ -195,6 +195,24 @@ body {
     color: #262626;
 }
 
+.chal-button{
+    background-color: $navbar-background-color;
+    color: $text-color;
+    font-size: 1.1em;
+}
+
+.chal-button:hover{
+    background-color: $text-color;
+    color: $primary-color;
+    cursor: pointer;
+}
+
+.chal-button:active{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
 .req-list{
     background-color: $background-color;
 }
@@ -312,7 +330,7 @@ input{
 
 
 .marketScreen{
-    background-color: $sidebar-background-color;
+    background-color: $navbar-background-color;
 }
 .marketHeader{
     color: $text-color;
@@ -324,8 +342,12 @@ input{
 .marketChart{
     font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;
-    color: $background-color;
+    color: $primary-color;
     background-color: #262626;
+}
+
+.marketGraphContainer{
+    background-color: $primary-color;
 }
 
 // ************************** ACCOUNT SETTINGS *******************************
@@ -536,6 +558,54 @@ input{
   }
 // ************************** PROFILE PICTURE ********************************
 
+
+.banner-pic {
+    color: transparent;
+    transition: all .3s ease;
+    @include object-center;
+    position: relative;
+    transition: all .3s ease;
+
+    input {
+        display: none;
+    }
+    
+    img {
+        position: absolute;
+        object-fit: cover;
+        //width: $circleSize;
+        //height: $circleSize;
+        box-shadow: $shadow;
+        border-radius: $radius;
+        z-index: 0;
+    }
+    
+    .banner-label {
+      cursor: pointer;
+      height: $circleSize;
+      width: $circleSize;
+    }
+
+    &:hover {
+        .banner-label {
+          @include object-center;
+          //background-color: rgba(0,0,0,.8);
+          z-index: 10000;
+          color: $fontColor;
+          transition: background-color .2s ease-in-out;
+          border-radius: $radius;
+          margin-bottom: 0;
+        }
+      }
+
+    span {
+        display: inline-flex;
+        padding: .2em;
+        height: 2em;
+      }
+  }
+// ************************** BANNER PICTURE ********************************
+
 //Gaming Styles
 
 //Memory Game
@@ -573,3 +643,54 @@ input{
     display: block;
     margin: auto;
 }
+
+/*PROFILE SCREEN*/
+.profileScreen{
+    background-color: $navbar-background-color;
+}
+/*
+.profileHeader{
+    background-color: $primary-color;
+}
+*/
+.profileMain{
+}
+.profileInfo{
+    background-color: $background-color;
+}
+.profileCryptosHeld{}
+.profileCryptoList{}
+
+.profileFriends{
+    background-color: $background-color;
+}
+.profileFriendsList{}
+
+.friendsListHeader{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.listHeader{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+.profileListHeader{
+    background-color: $primary-color;
+    color: black;
+}
+
+.addFriendButton{
+    background-color: $text-color;
+}
+.addFriendButton:hover{
+    background-color: $background-color;
+}
+
+#addFriendIcon{
+    color: $primary-color;
+}
+
+.profileAddFriend{}

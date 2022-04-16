@@ -11,31 +11,46 @@ const Profile = (props) => {
     function addFriend(){
         props.addFriend();
     }
-
     return(<>
         <div className="profileScreen">
-            <div className="profileHeader">
-                Here is Profile Header!
+            <div className="profileHeaderWrapper">
+                <div className="profileHeader">
+                    <label className="-label" htmlFor="file">
+                        <span className="glyphicon glyphicon-camera"></span>
+                    </label>
+                    <img src="https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png" id="output" className="pfp"/>
+                    <div className="listHeader">
+                        {props.displayName}
+                    </div>
+                </div>
+                <div className="profileHeaderBackground">
+                    <img className="profileBanner" src="https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg"/>
+                </div>
             </div>
             <div className="profileMain">
                 <div className="profileInfo">
-                    User Info
-                    <div className="profileCryptosHeld">
-                        Cryptocurriencies Held:
+                    <div className="listHeader">
+                        User Info
+                    </div>
+                    <div className="profileGames">
+                        <div className="listHeader">
+                            Top Games
+                        </div>
                         <div className="profileCryptoList">
                             {//Here map each crypto held into list w bullet points
                             }
-                            -BTC <br/>
-                            -ETH <br/>
-                            -ALGO
+                            -Memory <br/>
+                            -Uno <br/>
+                            -Simon Says
                         </div>
-                        Tendencies: Bullish
                     </div>
                 </div>
                 <div className="profileFriends">
                     <div className="friendsListHeader">
                         Friends List
-                        <Button onClick={addFriend}><i className="material-icons">add</i></Button>
+                        <div className="addFriendButton">
+                            <Button onClick={addFriend}><i className="material-icons" id="addFriendIcon">add</i></Button>
+                        </div>
                     </div>                    
                     <div className="profileFriendsList">
                         {//Here map each friend in list to a new friend component <Friend/>
@@ -50,7 +65,7 @@ const Profile = (props) => {
                             <></>
                         }
                     </div>
-                    <div className="friendRequestsHeader">
+                    <div className="listHeader">
                         Friend Requests
                     </div>
                     <div className="friendRequestsList">
