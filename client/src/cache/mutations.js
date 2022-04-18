@@ -39,8 +39,14 @@ export const LOGOUT = gql`
 `;
 
 export const FRIEND_REQUEST = gql`
-	mutation FriendRequest($email: String!, $user: String!){
-		friendRequest(email: $email, user: $user)
+	mutation FriendRequest($userName: String!, $user: String!){
+		friendRequest(userName: $userName, user: $user)
+	}
+`;
+
+export const ACCEPT_FRIEND_REQUEST = gql`
+	mutation AcceptFriendRequest($userName: String!, $user: String!, $accept: Boolean!){
+		acceptFriendRequest(userName: $userName, user: $user, accept: $accept)
 	}
 `;
 
