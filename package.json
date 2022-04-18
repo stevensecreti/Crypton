@@ -43,6 +43,7 @@
     "passport-jwt": "^4.0.0",
     "react-native": "^0.67.4",
     "react-native-game-engine": "^1.2.0",
+    "react-scroll-horizontal": "^1.6.6",
     "react-useinterval": "^1.0.2",
     "serve-static": "^1.14.2",
     "validator": "^13.1.1",
