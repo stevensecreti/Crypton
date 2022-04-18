@@ -16,6 +16,12 @@ module.exports = {
 			const found = await User.findOne(_id);
 			if(found) return found;
 		},
+		getAllUsers: async(_, __, { req }) => {
+			const _id = new ObjectId(req.userId);
+			if(!_id) { return([]) };
+			const users = await User.find({});
+			if(users) return (users);
+		},
 	},
 	Mutation: {
 		/** 
@@ -35,7 +41,10 @@ module.exports = {
 			const accessToken = tokens.generateAccessToken(user);
 			const refreshToken = tokens.generateRefreshToken(user);
 			res.cookie('refresh-token', refreshToken, { httpOnly: true , sameSite: 'None', secure: true}); 
-			res.cookie('access-token', accessToken, { httpOnly: true , sameSite: 'None', secure: true}); 
+			res.cookie('access-token', accessToken, { httpOnly: true , sameSite: 'None', secure: true});
+			username = user.userName;
+			if(username === undefined) { username = user.email.split('@')[0]; }
+			const updatedUsername = await User.updateOne({email: email}, {userName: username});
 			return user;
 		},
 		/** 
@@ -59,6 +68,7 @@ module.exports = {
 			}
 			const hashed = await bcrypt.hash(password, 10);
 			const _id = new ObjectId();
+			const userName = email.split('@')[0];
 			const user = new User({
 				_id: _id,
 				firstName: firstName,
@@ -69,6 +79,7 @@ module.exports = {
 				gameCenterBalance: 0,
 				friendsList: [],
 				friendRequests: [],
+				userName: userName,
 				highscores: [],
 				banner: "https://static.vecteezy.com/system/resources/thumbnails/000/701/690/small/abstract-polygonal-banner-background.jpg",
 				pfp: "https://images.squarespace-cdn.com/content/v1/5d8bded71a675f210c969aa5/1570063393205-X7CWFW08UJGTR4QZNVGC/squish+112.png"
@@ -107,35 +118,61 @@ module.exports = {
 			return true;
 		},
 		friendRequest: async (_, args) => {
-			const {email, user} = args;
-			let toEmail = email;
-			let fromEmail = user;
-			console.log("ToEmail: ", toEmail, "From Email: ", fromEmail);
+			const {userName, user} = args;
+			let toUserName = userName;
+			let fromUserName = user;
 			
-			const toUser = await User.findOne({email: toEmail});
+			const toUser = await User.findOne({userName: toUserName});
 			if(!toUser) return false;
 
-			const fromUser = await User.findOne({email: fromEmail});
+			let userToFriendRequests = toUser.friendRequests;
+			let list1 = userToFriendRequests.slice();
+			list1.push(fromUserName);
+			const added1 = await User.updateOne({userName: toUserName}, {friendRequests: list1});
+			if(!(added1)) return false;
+			return true;
+		},
+		acceptFriendRequest: async (_, args) => {
+			const {userName, user, accept} = args;
+			let toUserName = userName;
+			let fromUserName = user;
+			
+			const toUser = await User.findOne({userName: toUserName});
+			if(!toUser) return false;
+
+			const fromUser = await User.findOne({userName: fromUserName});
 			if(!fromUser) return false;
 
-			let userToFriendsList = toUser.friendsList;
-			let list1 = userToFriendsList.slice();
-			list1.push(fromEmail);
-			const added1 = await User.updateOne({email: toEmail}, {friendsList: list1});
-			
-			let userFromFriendsList = fromUser.friendsList;
-			let list2 = userFromFriendsList.slice();
-			list2.push(toEmail);
-			const added2 = await User.updateOne({email: fromEmail}, {friendsList: list2});
+			//Remove friendRequest from toUserName's friendRequests
+			let userToFriendRequests = toUser.friendRequests;
+			let list1 = userToFriendRequests.slice();
+			list1.splice(list1.indexOf(fromUserName), 1);
+			const updated1 = await User.updateOne({userName: toUserName}, {friendRequests: list1});
+			if(!(updated1)) return false;
 
-			if(!(added1)) return false;
-			if(!(added2)) return false;
-			return true;
+			if(accept){	
+				let userToFriendsList = toUser.friendsList;
+				list1 = userToFriendsList.slice();
+				list1.push(fromUserName);
+				const added1 = await User.updateOne({userName: toUserName}, {friendsList: list1});
+			
+				let userFromFriendsList = fromUser.friendsList;
+				let list2 = userFromFriendsList.slice();
+				list2.push(toUserName);
+				const added2 = await User.updateOne({userName: fromUserName}, {friendsList: list2});
+
+				if(!(added1)) return false;
+				if(!(added2)) return false;
+				return true;
+			}
+			else{
+				return true;
+			}
 		},
 		removeFriend: async(_, args) => {
 			const {user, friend} = args;
 			
-			const currentUser = await User.findOne({email: user});
+			const currentUser = await User.findOne({userName: user});
 			if(!currentUser) return false;
 
 			let currentUserFriendsList = currentUser.friendsList;
@@ -144,9 +181,9 @@ module.exports = {
 			if(index1 !== -1){
 				list1.splice(index1, 1);
 			}
-			let removed1 = await User.updateOne({email: user}, {friendsList: list1});
+			let removed1 = await User.updateOne({userName: user}, {friendsList: list1});
 
-			const friendUser = await User.findOne({email: friend});
+			const friendUser = await User.findOne({userName: friend});
 			if(!friendUser) return false;
 			let friendsFriendList = friendUser.friendsList;
 			let list2 = friendsFriendList.slice();
@@ -154,7 +191,7 @@ module.exports = {
 			if(index2 !== -1){
 				list2.splice(index2, 1);
 			}
-			let removed2 = await User.updateOne({email: friend}, {friendsList: list2});
+			let removed2 = await User.updateOne({userName: friend}, {friendsList: list2});
 			
 			if(!removed2) return false;
 			return true;

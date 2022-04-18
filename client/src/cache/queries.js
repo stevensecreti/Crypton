@@ -10,6 +10,26 @@ export const GET_DB_USER = gql`
 			displayName
 			friendsList
 			friendRequests
+			userName
+			highscores
+			banner
+			pfp
+			challenges
+		}
+	}
+`;
+
+export const GET_DB_USERS = gql`
+	query GetDBUsers{
+		getAllUsers{
+			_id
+			firstName
+			lastName
+			email
+			displayName
+			friendsList
+			friendRequests
+			userName
 			highscores
 			banner
 			pfp

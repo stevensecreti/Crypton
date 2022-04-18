@@ -5,6 +5,7 @@ import Wallet from '../Wallet/Wallet';
 import Market from '../Market/Market';
 import Account from "../Account/Account";
 import Profile from "../Profile/Profile";
+import FriendProfile from "../Profile/FriendProfile/FriendProfile";
 import GameCenter from '../GameCenter/GameCenter';
 
 var marketSocket = null;
@@ -67,7 +68,17 @@ const MainContents = (props) => {
                 declineFriendRequest={props.declineFriendRequest}
                 deleteFriend={props.deleteFriend}
                 displayName={props.displayName}
+                pfp={props.pfp}
+                banner={props.banner}
+                viewFriend={props.viewFriend}
+                highscores={props.highscores}
+                userName={props.userName}
               ></Profile>) ||
+            props.showFriendProfile && (<FriendProfile
+                friendProfile = {props.friendProfile}
+                viewFriend={props.viewFriend}
+                closeFriend={props.setShowProfile}
+            ></FriendProfile>) ||
             props.showGaming &&
             (<GameCenter
                 updateHighscore = {props.updateHighscore}
