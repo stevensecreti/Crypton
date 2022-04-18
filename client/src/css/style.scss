@@ -608,6 +608,24 @@ input{
 
 //Gaming Styles
 
+//Simon Says Game
+
+.ss-blue-tile{
+    background-color: blue;
+    width: 100%;
+    height:100%;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.ss-red-tile{
+    background-color: red;
+    width: 100%;
+    height:100%;
+    font-size: 2.5em;
+    text-align: center;
+}
+
 //Memory Game
 
 .mem-cell{

@@ -166,13 +166,11 @@ module.exports = {
 			let highscores = currentUser.highscores;
 			if(highscores != undefined)
 			{
-				let newHigh = Array(highscores.length+1);
 				for(let i = 0;i<highscores.length;i++)
 				{
 					let cscore = highscores[i].split(",");
 					let curGame = cscore[0];
 					let curScore = parseInt(cscore[1]);
-					newHigh[i] = cscore;
 					if(curGame.localeCompare(game) == 0)
 					{
 						if(curScore < score)
@@ -187,8 +185,8 @@ module.exports = {
 						}
 					}
 				}
-				newHigh[newHigh.length-1] = game+","+score;
-				const updt = await User.updateOne({email: user},{highscores: newHigh});
+				highscores.push(game+","+score);
+				const updt = await User.updateOne({email: user},{highscores: highscores});
 				return true;
 			}
 			else

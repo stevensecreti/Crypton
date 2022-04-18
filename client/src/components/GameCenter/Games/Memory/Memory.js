@@ -1,9 +1,12 @@
 import React, { useState, useEffect }                            from 'react';
 import Grid from './Grid';
+import useInterval from 'react-useinterval';
 
 const Memory = (props) =>
 {
-    const [timer,setTimer] = useState(true);
+    const timeDelay = 10;
+    const [init,setInit] = useState(true);
+    const [timer,setTimer] = useState(timeDelay);
     const [score, setScore] = useState(0);
     function generateGrid(rows, columns, mapper) {
         return Array(rows)
@@ -29,20 +32,26 @@ const Memory = (props) =>
         const rcol = Math.floor(Math.random()*3);
         newGrid[rrow][rcol] = "X";
         setGrid(newGrid);
+        setTimer(timeDelay);
     }
 
-    if(timer)
+    const decTimer = () =>
     {
-        setTimer(false);
+        setTimer(timer-1);
+    }
+
+    if(init)
+    {
+        setInit(false);
         changeGrid();
     }
 
-    
+    useInterval(decTimer, 100);
 
     return(
         <>
             <Grid grid = {grid} score = {score} setScore = {setScore} changeGrid = {changeGrid}
-            endGame = {props.endGame}
+            endGame = {props.endGame} timer = {timer}
             ></Grid>
             <div className = "mem-score">
                 Score: {score}

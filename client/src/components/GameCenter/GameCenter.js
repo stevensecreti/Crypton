@@ -3,12 +3,13 @@ import Request from './Request';
 import Score from './Score';
 import GameChoice from './GameChoice';
 import Memory from './Games/Memory/Memory';
+import SimonSays from './Games/SimonSays/SimonSays';
 import { use } from 'passport';
 
 const GameCenter = (props) => {
     const chalReqs = props.challenges;
     const highscores = props.highscores;
-    const games = ["Reaction"];
+    const games = ["Reaction","Simon Says"];
     const [screen, setScreen] = useState(0);
     const [screenName, setScreenName] = useState("Game Center");
     const [isChal, setIsChal] = useState(false);
@@ -186,6 +187,11 @@ const GameCenter = (props) => {
                         screen == 5 &&
                         (<>
                         <Memory endGame = {endGame}></Memory>
+                        </>)
+                        ||
+                        screen == 6 &&
+                        (<>
+                        <SimonSays endGame = {endGame}></SimonSays>
                         </>)
                         }
                 </div>

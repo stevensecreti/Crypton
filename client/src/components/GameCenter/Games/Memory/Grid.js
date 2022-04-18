@@ -18,6 +18,11 @@ const Grid = (props) =>
         }
     }
 
+    if(props.timer <= 0)
+    {
+      props.endGame("Reaction",props.score);
+    }
+
     return(
         <div className='mem-main'>
       <div className='mem-grid'
