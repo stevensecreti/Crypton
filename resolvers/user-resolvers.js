@@ -261,7 +261,11 @@ module.exports = {
 		sendChallenge: async (_, args) =>
 		{
 			const {game,user,friend,coin,bet} = args;
-			const toFriend = await User.findOne({email: friend});
+			const toFriend = await User.findOne({userName: friend});
+			if(!toFriend)
+			{
+				return false;
+			}
 			const chals = toFriend.challenges;
 			const newChal = user+","+game+","+bet+" "+coin;
 			const newChalList = Array(chals.length+1);
@@ -283,7 +287,11 @@ module.exports = {
 		declineChallenge: async (_,args) =>
 		{
 			const {user,index} = args;
-			const thisUser = await User.findOne({email: user});
+			const thisUser = await User.findOne({userName: user});
+			if(!thisUser)
+			{
+				return false;
+			}
 			const chals = thisUser.challenges;
 			const newChals = Array(chals.length-1);
 			for(let i = 0;i<chals.length;i++)
@@ -310,7 +318,11 @@ module.exports = {
 		getChallengeScore: async (_, args) =>
 		{
 			const {user,game} = args;
-			const thisUser = await User.findOne({email: user});
+			const thisUser = await User.findOne({userName: user});
+			if(!thisUser)
+			{
+				return 0;
+			}
 			const highscores = thisUser.highscores;
 			for(let i = 0;i<highscores.length;i++)
 			{
