@@ -307,6 +307,11 @@ const Homescreen = (props) => {
             UpdatePfp({variables:{pfp: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
 
+        const addKryptonBucks = async (kbucks) =>
+        {
+            
+        }
+
         return( 
             <div className = "homescreen" >
                 <div className = "header" >
