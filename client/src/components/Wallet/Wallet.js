@@ -1,5 +1,6 @@
 import React, { useState, useEffect }                            from 'react';
 import { Chart as ChartJS, registerables } from "chart.js";
+import {Line} from 'react-chartjs-2';
 import Chart from "./Chart";
 import produce from "immer";
 import WMHeader from 'wt-frontend/build/components/wmodal/WMHeader';
@@ -116,8 +117,6 @@ const Wallet = (props) => {
     }
 
     const updateLatestBalance = async () => {
-      console.log("last balance",latestBalance);
-      console.log("balance",balance);
       if(balance !== latestBalance){
         var date='';
         date = date.concat(new Date().toLocaleDateString()+new Date().toLocaleTimeString())
@@ -126,7 +125,7 @@ const Wallet = (props) => {
           })
         setFinalTrend(finalTrend);
       }
-      setLatestBalance(balance);
+      setLatestBalance(latestBalance);
     }
 
   //     const updateChart = () => {
