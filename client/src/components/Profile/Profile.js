@@ -12,6 +12,9 @@ const Profile = (props) => {
     function addFriend(){
         props.addFriend();
     }
+    function showCryptoBucks(){
+        props.showCryptoBucks();
+    }
     return(<>
         <div className="profileScreen">
             <div className="profileHeaderWrapper">
@@ -53,6 +56,7 @@ const Profile = (props) => {
                         Friends List
                         <div className="addFriendButton">
                             <Button onClick={addFriend}><i className="material-icons" id="addFriendIcon">add</i></Button>
+                            <Button onClick={showCryptoBucks}><i className="material-icons" id="addFriendIcon">local_atm</i></Button>
                         </div>
                     </div>                    
                     <div className="profileFriendsList">

@@ -73,6 +73,7 @@ const MainContents = (props) => {
                 viewFriend={props.viewFriend}
                 highscores={props.highscores}
                 userName={props.userName}
+                showCryptoBucks = {props.showCryptoBucks}
               ></Profile>) ||
             props.showFriendProfile && (<FriendProfile
                 friendProfile = {props.friendProfile}

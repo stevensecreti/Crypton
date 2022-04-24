@@ -3,6 +3,7 @@ import Logo from '../navbar/Logo';
 import NavbarOptions from '../navbar/NavbarOptions';
 import Login from '../modals/Login';
 import Update from '../modals/Update';
+import CryptonBucks from '../modals/CryptonBucks';
 import CreateAccount from '../modals/CreateAccount';
 import Welcome from '../main/Welcome';
 import QRCodeModal from '../modals/QRCodeModal';
@@ -53,6 +54,7 @@ const Homescreen = (props) => {
         const [showChangeName, toggleShowChangeName] = useState(false);
         const [showChangeEmail, toggleShowChangeEmail] = useState(false);
         const [showChangePassword, toggleShowChangePassword] = useState(false);
+        const [showCryptonBucks, toggleShowCryptonBucks] = useState(false);
 
         const [QRCode, setQRCode] = useState([{
             show: false,
@@ -281,6 +283,10 @@ const Homescreen = (props) => {
             setChalGameName(gname);
         }
 
+        const setShowCryptonBucks = () => {
+            toggleShowCryptonBucks(!showCryptonBucks);
+        }
+
         const updateHighscores = async (game,score) => {
             const updt = await UpdateHighscore({variables:{game: game,score: score,user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
@@ -307,9 +313,9 @@ const Homescreen = (props) => {
             UpdatePfp({variables:{pfp: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
 
-        const addKryptonBucks = async (kbucks) =>
+        const addCryptonBucks = async (cbucks, amtAlgo) =>
         {
-            
+            console.log("AddCryptonBucks in Homescreen, amount of cBucks: , amountof algo: ", cbucks, amtAlgo);         
         }
 
         return( 
@@ -380,6 +386,7 @@ const Homescreen = (props) => {
                         setShowProfile={setShowProfile}
                         friendProfile={friendProfile}
                         userName={userName}
+                        showCryptoBucks={setShowCryptonBucks}
                     />
                     :
                     <Welcome />
@@ -396,6 +403,7 @@ const Homescreen = (props) => {
                 {showChangePassword && (<ChangePassword setShowChangePassword = {setShowChangePassword} ></ChangePassword>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userName={userName}></AddFriend>)}
                 {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends} assets = {userAssets} gname = {chalGameName} sendChal = {sendChallenge}></StartChallenge>)}
+                {showCryptonBucks && (<CryptonBucks setShowCryptonBucks = {setShowCryptonBucks} addCryptonBucks={addCryptonBucks} ></CryptonBucks>)}
             </div>
         );
 };
