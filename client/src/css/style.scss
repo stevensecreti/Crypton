@@ -187,6 +187,24 @@ body {
     background-color: $primary-color;
 }
 
+.gc-bal{
+    background-color: $primary-color;
+}
+
+.gc-bal-button{
+    color: green;
+}
+
+.gc-bal-button:hover{
+    color: rgb(1, 226, 1);
+    background-color: $background-color;
+    cursor: pointer;
+}
+
+.gc-bal-button:active{
+    background-color: $sidebar-background-color;
+}
+
 .chal-main{
     background-color: $primary-color;
     border-width: 2px;

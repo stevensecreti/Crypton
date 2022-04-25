@@ -5,23 +5,17 @@ import {WCol, WRow} from 'wt-frontend';
 const StartChallenge = (props) =>{
     const [betAmount, setBetAmount] = useState("");
     const [chalFriend, setChalFriend] = useState("");
-    const [chalCoin, setChalCoin] = useState("");
     const [init, setInit] = useState(false);
-    const assets = props.assets;
     const friends = props.friends;
     const gname = "Start "+props.gname+" Challenge";
     
     if(!init)
     {
-        if(assets.length > 0)
-        {
-            setChalCoin(assets[0]);
-        }
         if(friends.length > 0)
         {
             setChalFriend(friends[0]);
         }
-        setBetAmount("0.0");
+        setBetAmount("0");
         setInit(true);
     }
 
@@ -37,16 +31,26 @@ const StartChallenge = (props) =>{
         setChalFriend(value);
     }
 
-    const updateCoin = (e) =>
+    const startChallenge = async () =>
     {
-        const { name, value } = e.target;
-        setChalCoin(value);
-    }
-
-    const startChallenge = () =>
-    {
-        props.sendChal(betAmount,props.gname,chalFriend,chalCoin);
-        props.setShowStartChallenge();
+        if(!isNaN(parseInt(betAmount)))
+        {
+            const hasBucks = await props.updateCryptonBucks(parseInt(betAmount),false,"");
+            console.log("Has Bucks: "+hasBucks);
+            if(hasBucks)
+            {
+                props.sendChal(parseInt(betAmount)+"",props.gname,chalFriend,"CB");
+                props.setShowStartChallenge();
+            }
+            else
+            {
+                alert("Insufficient Funds");
+            }
+        }
+        else
+        {
+            alert("Enter a valid whole number amount");
+        }
     }
 
     return(<>
@@ -63,20 +67,14 @@ const StartChallenge = (props) =>{
                                         return(<option key={idx} value={friend}>{friend}</option>);
                                     })}   
                         </select>
-                        <WInput className="modal-input" onBlur={updateInput} name='bet' labelAnimation="up" barAnimation="solid" labelText="Coin Amount" wType="outlined" inputType='text' />
                     </WCol>
                     <WCol size="6">
-                        <label className="chal-label" htmlFor="coin-select">Choose a coin:</label>
-                        <select id="coin-select" className="friend-drop" onBlur={updateCoin}>
-                        {assets.map((asset, idx) => {
-                                        return(<option key={idx} value={asset}>{asset}</option>);
-                                    })}   
-                        </select>
-                        <div className="chal-button" onClick={startChallenge}>
-                            Start Challenge
-                        </div>
+                        <WInput className="modal-input" onBlur={updateInput} name='bet' labelAnimation="up" barAnimation="solid" labelText="Coin Amount" wType="outlined" inputType='text' />
                     </WCol>
                 </WRow>
+                <div className="chal-button" onClick={startChallenge}>
+                            Start Challenge
+                </div>
             </WMMain>
         </WModal>
         </>);

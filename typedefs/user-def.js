@@ -11,7 +11,7 @@ const typeDefs = gql `
 		displayName: String
 		friendsList: [String]
 		friendRequests: [String]
-		gameCenterBalance: Float
+		gameCenterBalance: Int
 		userName: String
 		highscores: [String]
 		banner: String
@@ -35,6 +35,7 @@ const typeDefs = gql `
 		sendChallenge(game: String!, user: String!, friend: String!, coin: String!, bet: String!): Boolean!
 		declineChallenge(user: String!, index: Int!): Boolean!
 		getChallengeScore(user: String!, game: String!): Int!
+		updateGCBalance(user: String!, amt: Int!, add: Boolean!): Boolean!
 		updatePfp(pfp: String!, user: String!): Boolean!
 	}
 `;

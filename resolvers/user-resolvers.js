@@ -305,7 +305,7 @@ module.exports = {
 					newChals[i-1] = chals[i];
 				}
 			}
-			const updt = await User.updateOne({email: user},{challenges: newChals});
+			const updt = await User.updateOne({userName: user},{challenges: newChals});
 			if(updt)
 			{
 				return true;
@@ -334,6 +334,48 @@ module.exports = {
 				}
 			}
 			return (0);
+		},
+		updateGCBalance: async (_, args) =>
+		{
+			const {user,amt,add} = args;
+			const thisUser = await User.findOne({userName: user});
+			if(add)
+			{
+				const curBalance = thisUser.gameCenterBalance;
+				if(curBalance == undefined)
+				{
+					let newBalance = amt;
+					await User.updateOne({userName: user},{gameCenterBalance: newBalance});
+					return (true);
+				}
+				else
+				{
+					let newBalance = amt+curBalance;
+					await User.updateOne({userName: user},{gameCenterBalance: newBalance});
+					return (true);
+				}
+			}
+			else
+			{
+				const curBalance = thisUser.gameCenterBalance;
+				if(curBalance == undefined)
+				{
+					return (false);
+				}
+				else
+				{
+					if(curBalance < amt)
+					{
+						return (false);
+					}
+					else
+					{
+						let newBalance = curBalance-amt;
+						await User.updateOne({userName: user},{gameCenterBalance: newBalance});
+						return (true);
+					}
+				}
+			}
 		},
 		updatePfp: async (_, args) =>
 		{

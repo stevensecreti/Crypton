@@ -8,6 +8,7 @@ import { use } from 'passport';
 
 const GameCenter = (props) => {
     const chalReqs = props.challenges;
+    const gcBalance = props.gcBalance != undefined ? props.gcBalance : 0;
     const highscores = props.highscores;
     const games = ["Reaction","Simon Says"];
     const [screen, setScreen] = useState(0);
@@ -20,18 +21,30 @@ const GameCenter = (props) => {
         props.setShowStartChallenge(gameName);
     }
 
-    const accChal = (gameName,chal) =>
+    const accChal = async (gameName,chal) =>
     {
-        setChalInfo(chal);
-        setIsChal(true);
-        playGame(gameName);
+        let chalAmt = parseInt(chal.split(",")[2].split(" ")[0]);
+        const hasFunds = await props.updateCryptonBucks(chalAmt,false,"");
+        if(hasFunds)
+        {
+            setChalInfo(chal);
+            setIsChal(true);
+            playGame(gameName);
+        }
+        else
+        {
+            alert("Insufficient funds");
+        }
     }
 
     const endChal = async (game,score) =>
     {
+        let chalAmt = parseInt(chalInfo.split(",")[2].split(" ")[0]);
         let challenger = chalInfo.split(",")[0];
         const chalScore = await props.getChalScore(challenger,game);
-        let win = score >= chalScore;
+        let win = score > chalScore;
+        let winner = win ? "" : challenger;
+        const fin = await props.updateCryptonBucks(2*chalAmt,true,winner);
         setChalInfo("");
         setIsChal(false);
         return win;
@@ -88,7 +101,7 @@ const GameCenter = (props) => {
                 alert("You Lost The Challenge.");
             }
         }
-        props.updateHighscore(game,score);
+        await props.updateHighscore(game,score);
         goBack();
     }
 
@@ -97,6 +110,12 @@ const GameCenter = (props) => {
             <div id="gc-container">
                 <div className='gc-header'>
                     {screenName}
+                </div>
+                <div className='gc-bal'>
+                    Balance: {gcBalance} CB 
+                    <div className='gc-bal-button' onClick={props.showCryptoBucks}>
+                        +
+                    </div>
                 </div>
                 <div className='gc-main'>
                     {
