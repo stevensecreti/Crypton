@@ -39,16 +39,6 @@ const LoggedIn = (props) => {
                 Wallet </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
-                onClick = { props.setShowTrading }
-                wType = "texted" >
-                Trading Bot </WButton> </WNavItem> 
-                <WNavItem hoverAnimation = "lighten" >
-                <WButton className = "navbar-options"
-                onClick = { props.setShowEducation }
-                wType = "texted" >
-                Education Center </WButton> </WNavItem> 
-                <WNavItem hoverAnimation = "lighten" >
-                <WButton className = "navbar-options"
                 onClick = { props.setShowGaming }
                 wType = "texted" >
                 Gaming Center </WButton> </WNavItem> 
@@ -99,16 +89,6 @@ const LoggedOut = (props) => {
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShowTrading }
-                wType = "texted" >
-                Trading Bot </WButton> </WNavItem> 
-                <WNavItem hoverAnimation = "lighten" >
-                <WButton className = "navbar-options"
-                onClick = { props.setShowEducation }
-                wType = "texted" >
-                Education Center </WButton> </WNavItem> 
-                <WNavItem hoverAnimation = "lighten" >
-                <WButton className = "navbar-options"
-                onClick = { props.setShowGamingCenter }
                 wType = "texted" >
                 Gaming Center </WButton> </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
