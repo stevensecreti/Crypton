@@ -88,6 +88,9 @@ const MainContents = (props) => {
                 setShowStartChallenge = {props.setShowStartChallenge}
                 declineChallenge = {props.declineChallenge}
                 getChalScore = {props.getChalScore}
+                gcBalance = {props.gcBalance}
+                showCryptoBucks = {props.showCryptoBucks}
+                updateCryptonBucks={props.updateCryptonBucks}
             >
             </GameCenter>)
         }
