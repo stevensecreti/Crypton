@@ -94,8 +94,8 @@ html {
 
 #wallet-container{
     padding: 20px;
-    width: 50%;
-    height: 20%;
+    width: 90%;
+    height: 40%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -284,11 +284,12 @@ html {
 .marketScreen{
     display: flex;
     flex-direction: column;
-    width: 66%;
-    height: 80vh;
+    width: 100%;
+    height: 90vh;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    z-index: -101;
 }
 .marketHeader{
     height: 7vh;
@@ -360,8 +361,8 @@ html {
 
 #account-container{
     padding: 20px;
-    width: 50%;
-    height: 20%;
+    width: 90%;
+    height: 40%;
     margin-left: auto;
     margin-right: auto;
 }
