@@ -1,98 +1,49 @@
-import React, {useState} from 'react'
-import styles from './Wallet.module.css';
-import Chart from './Chart'
-const Interactions = (props) => {
+import React, {useRef, useState} from "react";
+import { loadStdlib } from '@reach-sh/stdlib'
+import { FormStyle } from "./Form.style";
+import { Button, TransactionButton } from "./Button.styles";
+import { BodyText } from "./MyAlgoWallet.styles";
 
-	const [transferHash, setTransferHash] = useState();
-	// const [accountSum, setAccountSum] = useState(() => {
-    //     const saved = localStorage.getItem("accountSum");
-    //     const initialValue = JSON.parse(saved);
-    //     return initialValue || ""; 
-    // });
+const reach = loadStdlib("ALGO")
 
-    const [accountExist, setAccountExist] = useState(0);
-    // const [transactionSum, setTransactionSum] = useState(() => {
-    //     const saved = localStorage.getItem("transactionSum");
-    //     const initialValue = JSON.parse(saved);
-    //     return initialValue || ""; 
-    // });
-    // const [transactionCheck, setTransactionCheck] = useState(() => {
-    //     const saved = localStorage.getItem("transactionCheck");
-    //     const initialValue = JSON.parse(saved);
-    //     return initialValue || ""; 
-    // });
+const Interactions = ({account, getBalance}) => {
+    const transferAmount = useRef()
+    const receiverAddress = useRef()
+    const [isLoading, setLoading] = useState(false)
+    const [transferHash, setTransferHash] =useState('')
 
-	//   const [trendData, settrendData] = useState(() => {
-    //     const saved = localStorage.getItem("trendData");
-    //     const initialValue = JSON.parse(saved);
-    //     return initialValue || ""; 
-    // });
-    // const [trendSum, setTrendSum] = useState(() => {
-    //     const saved = localStorage.getItem("trendSum");
-    //     const initialValue = JSON.parse(saved);
-    //     return initialValue || ""; 
-    // });
+    const transferFund = async () =>{
+        try{
+        setLoading(true)
+        const receiver = await reach.connectAccount({
+             addr: receiverAddress.current
+         })
+         if(transferAmount.current <= 0){
+             window.alert('More than 0 should be inserted')
+             return false;
+         }
+         let txt = await reach.transfer(account.current, receiver, reach.parseCurrency(transferAmount.current))
+         await getBalance()
+         setLoading(false)
+         
+         receiverAddress.current.reset();
+         transferAmount.current.reset();
 
-	const transferHandler = async (e) => {
-		e.preventDefault();
-		let transferAmount = e.target.sendAmount.value;
-		let recieverAddress = e.target.recieverAddress.value;
-
-		let txt = await props.contract.transfer(recieverAddress, transferAmount);
-		document.getElementById("form1").reset();
-		//console.log(txt);
-		setTransferHash("Transfer confirmation hash: " + txt.hash);
-		
-		
-		//setTransactionCheck(new Date().toLocaleDateString()+new Date().toLocaleTimeString());
-        //localStorage.setItem("transactionSum", JSON.stringify(transactionSum));
-        //setTransactionSum([...transactionSum, transactionCheck]);
-        //localStorage.setItem("transactionCheck", JSON.stringify(transactionCheck));
-
-        // if(accountSum.includes(props.defaultAccount)){
-        //     setAccountExist(1);
-        // }
-        // else{
-        //     setAccountExist(0);
-        //     setAccountSum([...accountSum, props.defaultAccount]);
-        //     localStorage.setItem("accountSum", JSON.stringify(accountSum));
-        //     settrendData([]);
-        // }
-        
-        // if(accountExist == 0 && props.defaultAccount != null){
-        //     setTrendSum(Object.keys(trendSum).map((x) => {
-        //         return {...x, props.defaultAccount, trend: [...x.trend, trendData]}
-        //     }));
-        // }
-        
-        //settrendData([...trendData, e.contract.balance]);
-        //console.log(accountSum);
-        //localStorage.setItem("trendData", JSON.stringify(trendData));
-        // setTrendSum(Object.keys(trendSum).map((x) => {
-        //     if(x.account !== props.defaultAccount) return x;
-        //     return {...x, trendSum: [...x.trend, trendData]}
-        // }));
-        // localStorage.setItem("trendSum", JSON.stringify(trendSum));
-        // console.log(trendSum);
-	}
-
-	return (
-		
-			<div className={styles.interactionsCard}>
-				<form id = "form1" onSubmit={transferHandler}>
-					<h3> Transfer Coins </h3>
-						<p> Reciever Address </p>
-						<input type='tgext' id='recieverAddress' className={styles.addressInput}/>
-						<p> Send Amount </p>
-						<input type='number' id='sendAmount' min='0' step='1'/>
-						<button type='submit' className={styles.button6}>Send</button>
-						<div>
-							{/* <Chart data={trendData}/> */}
-						</div>
-			</form>
-			</div>
-		)
-	
+        window.alert('Safely transferred')
+        }catch(err){
+            console.log(err)
+            setLoading(false)
+        }
+     }
+    return(
+        <div>
+            <br/>
+            <BodyText>Transfer Fund</BodyText>
+            <FormStyle onChange = {(e) => receiverAddress.current = e.target.value} placeholder="Receiver address" id = 'receive'/><br/>
+            <FormStyle onChange = {(e) => transferAmount.current = e.target.value} placeholder="Amount" id = 'amount'/><br/>
+            <TransactionButton onClick ={transferFund}>{isLoading ? "loading...": "Transfer Fund"}</TransactionButton>
+        </div>
+    )
 }
 
-export default Interactions;
+export default Interactions
