@@ -12,6 +12,7 @@ export const GET_DB_USER = gql`
 			friendRequests
 			userName
 			highscores
+			gameCenterBalance
 			banner
 			pfp
 			challenges

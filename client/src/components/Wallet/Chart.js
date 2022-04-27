@@ -51,7 +51,7 @@ import HorizontalScroll from 'react-scroll-horizontal';
         labels : dataLabel,
         datasets : [
             {
-            label: 'Balance',
+            Label: 'Balance',
             fill: false,
             lineTension: 0.5,
             backgroundColor: '#013292',

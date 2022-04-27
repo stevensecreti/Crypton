@@ -73,6 +73,7 @@ const MainContents = (props) => {
                 viewFriend={props.viewFriend}
                 highscores={props.highscores}
                 userName={props.userName}
+                showCryptoBucks = {props.showCryptoBucks}
               ></Profile>) ||
             props.showFriendProfile && (<FriendProfile
                 friendProfile = {props.friendProfile}
@@ -87,6 +88,9 @@ const MainContents = (props) => {
                 setShowStartChallenge = {props.setShowStartChallenge}
                 declineChallenge = {props.declineChallenge}
                 getChalScore = {props.getChalScore}
+                gcBalance = {props.gcBalance}
+                showCryptoBucks = {props.showCryptoBucks}
+                updateCryptonBucks={props.updateCryptonBucks}
             >
             </GameCenter>)
         }

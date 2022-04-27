@@ -261,7 +261,11 @@ module.exports = {
 		sendChallenge: async (_, args) =>
 		{
 			const {game,user,friend,coin,bet} = args;
-			const toFriend = await User.findOne({email: friend});
+			const toFriend = await User.findOne({userName: friend});
+			if(!toFriend)
+			{
+				return false;
+			}
 			const chals = toFriend.challenges;
 			const newChal = user+","+game+","+bet+" "+coin;
 			const newChalList = Array(chals.length+1);
@@ -283,7 +287,11 @@ module.exports = {
 		declineChallenge: async (_,args) =>
 		{
 			const {user,index} = args;
-			const thisUser = await User.findOne({email: user});
+			const thisUser = await User.findOne({userName: user});
+			if(!thisUser)
+			{
+				return false;
+			}
 			const chals = thisUser.challenges;
 			const newChals = Array(chals.length-1);
 			for(let i = 0;i<chals.length;i++)
@@ -297,7 +305,7 @@ module.exports = {
 					newChals[i-1] = chals[i];
 				}
 			}
-			const updt = await User.updateOne({email: user},{challenges: newChals});
+			const updt = await User.updateOne({userName: user},{challenges: newChals});
 			if(updt)
 			{
 				return true;
@@ -310,7 +318,11 @@ module.exports = {
 		getChallengeScore: async (_, args) =>
 		{
 			const {user,game} = args;
-			const thisUser = await User.findOne({email: user});
+			const thisUser = await User.findOne({userName: user});
+			if(!thisUser)
+			{
+				return 0;
+			}
 			const highscores = thisUser.highscores;
 			for(let i = 0;i<highscores.length;i++)
 			{
@@ -322,6 +334,48 @@ module.exports = {
 				}
 			}
 			return (0);
+		},
+		updateGCBalance: async (_, args) =>
+		{
+			const {user,amt,add} = args;
+			const thisUser = await User.findOne({userName: user});
+			if(add)
+			{
+				const curBalance = thisUser.gameCenterBalance;
+				if(curBalance == undefined)
+				{
+					let newBalance = amt;
+					await User.updateOne({userName: user},{gameCenterBalance: newBalance});
+					return (true);
+				}
+				else
+				{
+					let newBalance = amt+curBalance;
+					await User.updateOne({userName: user},{gameCenterBalance: newBalance});
+					return (true);
+				}
+			}
+			else
+			{
+				const curBalance = thisUser.gameCenterBalance;
+				if(curBalance == undefined)
+				{
+					return (false);
+				}
+				else
+				{
+					if(curBalance < amt)
+					{
+						return (false);
+					}
+					else
+					{
+						let newBalance = curBalance-amt;
+						await User.updateOne({userName: user},{gameCenterBalance: newBalance});
+						return (true);
+					}
+				}
+			}
 		},
 		updatePfp: async (_, args) =>
 		{

@@ -85,6 +85,12 @@ export const GET_CHALLENGE_SCORE = gql`
 	}
 `;
 
+export const UPDATE_GC_BALANCE = gql`
+	mutation UpdateGCBalance($user: String!, $amt: Int!, $add: Boolean!){
+		updateGCBalance(user: $user, amt: $amt, add: $add)
+	}
+`;
+
 export const UPDATE_PFP = gql`
 	mutation UpdatePfp($pfp: String!, $user: String!){
 		updatePfp(pfp: $pfp, user: $user)

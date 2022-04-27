@@ -10,11 +10,12 @@ const Request = (props) =>
     const acceptChal = () =>
     {
         props.accChal(game,props.req);
-        props.declineReq(index);
+        props.declineReq(index,"",0);
     }
 
     const declineChal = () => {
-        props.declineReq(index);
+        let refundAmt = parseInt(bet.split(" ")[0]);
+        props.declineReq(index,name,refundAmt);
     }
 
     return(

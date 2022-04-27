@@ -3,6 +3,7 @@ import Logo from '../navbar/Logo';
 import NavbarOptions from '../navbar/NavbarOptions';
 import Login from '../modals/Login';
 import Update from '../modals/Update';
+import CryptonBucks from '../modals/CryptonBucks';
 import CreateAccount from '../modals/CreateAccount';
 import Welcome from '../main/Welcome';
 import QRCodeModal from '../modals/QRCodeModal';
@@ -29,7 +30,6 @@ const Homescreen = (props) => {
         const userBuyingPower = 200.23;
         const userBalanceData = [0,4,6,7];
         const userWalletHex = "#AE473C";
-        const userAssets = ["ALG","BTC"];
 
         const [chalGameName, setChalGameName] = useState("");
         const [showLogin, toggleShowLogin] = useState(false);
@@ -53,6 +53,7 @@ const Homescreen = (props) => {
         const [showChangeName, toggleShowChangeName] = useState(false);
         const [showChangeEmail, toggleShowChangeEmail] = useState(false);
         const [showChangePassword, toggleShowChangePassword] = useState(false);
+        const [showCryptonBucks, toggleShowCryptonBucks] = useState(false);
 
         const [QRCode, setQRCode] = useState([{
             show: false,
@@ -67,6 +68,7 @@ const Homescreen = (props) => {
         const [GetChallengeScore] = useMutation(mutations.GET_CHALLENGE_SCORE);
         const [UpdatePfp] = useMutation(mutations.UPDATE_PFP);
         const [AcceptFriendRequest] = useMutation(mutations.ACCEPT_FRIEND_REQUEST);
+        const [UpdateGCBalance] = useMutation(mutations.UPDATE_GC_BALANCE);
 
         const auth = props.user === null ? false : true;
         let displayName = "";
@@ -77,6 +79,7 @@ const Homescreen = (props) => {
         let friendRequests = [];
         let highscores = [];
         let challenges = [];
+        let gcBalance = 0;
         let userName = "";
         if (auth) {
             console.log("USER: ", props.user);
@@ -89,11 +92,12 @@ const Homescreen = (props) => {
             displayName = firstName + " " + lastName;
             friends = props.user.friendsList;
             highscores = props.user.highscores;
+            gcBalance = props.user.gameCenterBalance;
             pfp = props.user.pfp;
             banner = props.user.banner;
             challenges = props.user.challenges;
             console.log("HIGHSCORES: " + highscores);
-            console.log("Challenges: " + challenges);
+            console.log("Challenges: " + gcBalance);
         } else {
             displayName = "";
         }
@@ -281,6 +285,10 @@ const Homescreen = (props) => {
             setChalGameName(gname);
         }
 
+        const setShowCryptonBucks = () => {
+            toggleShowCryptonBucks(!showCryptonBucks);
+        }
+
         const updateHighscores = async (game,score) => {
             const updt = await UpdateHighscore({variables:{game: game,score: score,user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
@@ -289,8 +297,16 @@ const Homescreen = (props) => {
             const updt = await SendChallenge({variables:{game: game,user: email,friend: friend,coin: coin,bet: amount}});
         }
 
-        const declineChallenge = async (index) => {
-            const updt = await DeclineChallenge({variables:{user: email,index: index}, refetchQueries: [{query: GET_DB_USER}]});
+        const declineChallenge = async (index,refund,cbucks) => {
+            if(refund.length == 0)
+            {
+                const updt = await DeclineChallenge({variables:{user: userName, index: index}, refetchQueries: [{query: GET_DB_USER}]});
+            }
+            else
+            {
+                const updt1 = await DeclineChallenge({variables:{user: userName, index: index}, refetchQueries: [{query: GET_DB_USER}]});
+                const updt2 = await UpdateGCBalance({variables:{user: refund, amt: cbucks, add: true}, refetchQueries: [{ query: GET_DB_USER }]});
+            }
         }
 
         const getChallengeScore = async (user,game) => {
@@ -305,6 +321,26 @@ const Homescreen = (props) => {
 
         const updatePfp = async (string) => {
             UpdatePfp({variables:{pfp: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
+        }
+
+        const addCryptonBucks = async (cbucks, amtAlgo) =>
+        {
+            console.log("AddCryptonBucks in Homescreen, amount of cBucks: , amountof algo: ", cbucks, amtAlgo);
+            const data = await UpdateGCBalance({variables:{user: userName, amt: cbucks, add: true}, refetchQueries: [{ query: GET_DB_USER }]});        
+        }
+
+        const updateCryptonBucks = async (cbucks,add,acc) =>
+        {
+            if(acc.length == 0)
+            {
+                const { data, loading, error } = await UpdateGCBalance({variables:{user: userName, amt: cbucks, add: add}, refetchQueries: [{ query: GET_DB_USER }]});
+                return data.updateGCBalance;
+            }
+            else
+            {
+                const { data, loading, error } = await UpdateGCBalance({variables:{user: acc, amt: cbucks, add: add}, refetchQueries: [{ query: GET_DB_USER }]});
+                return data.updateGCBalance;
+            }
         }
 
         return( 
@@ -375,6 +411,9 @@ const Homescreen = (props) => {
                         setShowProfile={setShowProfile}
                         friendProfile={friendProfile}
                         userName={userName}
+                        showCryptoBucks={setShowCryptonBucks}
+                        gcBalance = {gcBalance}
+                        updateCryptonBucks={updateCryptonBucks}
                     />
                     :
                     <Welcome />
@@ -390,7 +429,8 @@ const Homescreen = (props) => {
                 {showChangeEmail && (<ChangeEmail setShowChangeEmail = {setShowChangeEmail} ></ChangeEmail>)}
                 {showChangePassword && (<ChangePassword setShowChangePassword = {setShowChangePassword} ></ChangePassword>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userName={userName}></AddFriend>)}
-                {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends} assets = {userAssets} gname = {chalGameName} sendChal = {sendChallenge}></StartChallenge>)}
+                {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends} gname = {chalGameName} sendChal = {sendChallenge} updateCryptonBucks={updateCryptonBucks}></StartChallenge>)}
+                {showCryptonBucks && (<CryptonBucks setShowCryptonBucks = {setShowCryptonBucks} addCryptonBucks={addCryptonBucks} ></CryptonBucks>)}
             </div>
         );
 };
