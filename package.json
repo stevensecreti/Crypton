@@ -21,6 +21,7 @@
   "homepage": "https://github.com/stevensecreti/Crypton#readme",
   "dependencies": {
     "@apollo/client": "^3.3.7",
+    "@reach-sh/stdlib": "^0.1.6-rc.2",
     "apollo-server": "^2.14.5",
     "apollo-server-express": "^2.14.5",
     "bcryptjs": "^2.4.3",
@@ -47,6 +48,7 @@
     "react-scroll-horizontal": "^1.6.6",
     "react-useinterval": "^1.0.2",
     "serve-static": "^1.14.2",
+    "styled-components": "^5.3.5",
     "validator": "^13.1.1",
     "wt-frontend": "^1.2.15",
     "xss-clean": "^0.1.1"
