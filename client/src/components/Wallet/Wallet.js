@@ -1,81 +1,132 @@
-import React, { useState, useEffect }                            from 'react';
+import React, { useState, useEffect, useRef }                            from 'react';
 import { Chart as ChartJS, registerables } from "chart.js";
-import {Line} from 'react-chartjs-2';
 import Chart from "./Chart";
 import produce from "immer";
-import WMHeader from 'wt-frontend/build/components/wmodal/WMHeader';
-import WMMain from 'wt-frontend/build/components/wmodal/WMMain';
-import WLayout from 'wt-frontend/build/components/wlayout/WLayout';
-import WCol from 'wt-frontend/build/components/wgrid/WCol';
-import WRow from 'wt-frontend/build/components/wgrid/WRow';
+import { loadStdlib } from '@reach-sh/stdlib'
+import { ALGO_MyAlgoConnect as MyAlgoConnect } from '@reach-sh/stdlib';
+// import ConnectWalletButton from './ConnectButton/ConnectWalletBtn';
+// import TransferFund from './Transferfund';
 import QRCode from '../modals/QRCodeModal';
-import {ethers} from 'ethers'
 import styles from './Wallet.module.css'
 import Interactions from './Interactions';
 import simple_token_abi from '../Contracts/simple_token_abi.json'
-import ls from 'local-storage'
+
+const reach = loadStdlib("ALGO")
+
+reach.setWalletFallback(reach.walletFallback({
+  providerEnv: 'TestNet', MyAlgoConnect })); 
 
 const Wallet = (props) => {
-    // const balance = props.balance;
-    // const buyingPower = props.buyingPower;
-    // const balancesum = [];
-    // const walletHex = props.walletHex;
-    //const currentTrend = trendData[trendData.length-1]-trendData[0];
-    //const trend = "Current Trend: " + (currentTrend >= 0 ? "+"+currentTrend+"%" : "-"+(-currentTrend)+"%");
-    //const trendStyle = currentTrend >= 0 ? "wallet-trend-pos" : "wallet-trend-neg";
+
     ChartJS.register(...registerables);
       const toggleQRCode = () => {
-        props.setShowQRCode(defaultAccount);
+        if(account.current == null){
+          window.alert('Need to connect to the account first');
+          return false;
+        } else{
+          props.setShowQRCode(accountAddress);
+        }
       }
-    let contractAddress = '0xEFBdA78Efd27da42dB314820514fCA7b79348B27';
+    //let contractAddress = '0xEFBdA78Efd27da42dB314820514fCA7b79348B27';
 
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [defaultAccount, setDefaultAccount] = useState(null);
-    const [newAccount, setNewAccount] = useState(null);
+
+  //const [connectAccount, setConnectAccount] = useState(null);
+  
 	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
   const [refreshButton, setRefreshButton] = useState('Refresh');
+  const [moreBalanceButton, setMoreBalanceButton] = useState('More algorand?');
 
 	const [provider, setProvider] = useState(null);
 	const [signer, setSigner] = useState(null);
 	const [contract, setContract] = useState(null);
 
 	const [tokenName, setTokenName] = useState("Token");
-	const [balance, setBalance] = useState(null);
-  const [latestBalance, setLatestBalance] = useState(0);
-  //const [date, setDate] = useState(new Date().toLocaleDateString()+new Date().toLocaleTimeString());
+  
+	const account = useRef()
+    const balance = useRef()
+
+
+    const [accountBal, setAccountBal] = useState(0);
+    const [accountAddress, setAccountAddress] = useState('');
+
+
+    const connectWallet = async () =>{
+        try{
+            await getAccount()
+            await getBalance()
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const getAccount = async () => {
+      try{
+         account.current = await reach.getDefaultAccount()
+          setAccountAddress(account.current.networkAccount.addr)
+          console.log("Account :" + account.current.networkAccount.addr)
+          localStorage.setItem("connectAccount", accountAddress);
+          setConnButtonText('Connected');
+      }catch(err){
+          console.log(err)
+      }
+  }
+
+  const getBalance = async () => {
+      try{
+            let rawBalance = await reach.balanceOf(account.current)
+              balance.current = reach.formatCurrency(rawBalance, 4)
+              setAccountBal(balance.current)
+          console.log("Balance :" + balance.current)
+          updateLatestBalance(balance.current);
+      }catch(err){
+          console.log(err)
+      }
+    
+  }
+
+  const [connected, setConnected] = useState(false);
+  const [WalletConnect, setWalletConnect] = useState(false)
   const [finalTrend, setFinalTrend] = useState([
     {
-      account: "",
+      accounts: "",
       balance: 0,
       time: ""
     },
   ]);
   const [trendSum, setTrendSum] = useState([]);
   const [index, setIndex] = useState(1);
-    const connectWalletHandler = () => {
-		if (window.ethereum && window.ethereum.isMetaMask) {
+  //   const connectWalletHandler = () => {
+	// 	if (window.ethereum && window.ethereum.isMetaMask) {
+	// 		window.ethereum.request({ method: 'eth_requestAccounts'})
+	// 		.then(result => {
+	// 			accountChangedHandler(result[0]);
+  //       localStorage.setItem("connectAccount", result[0]);
+	// 		})
+	// 		.catch(error => {
+	// 			setErrorMessage(error.message);
 
-			window.ethereum.request({ method: 'eth_requestAccounts'})
-			.then(result => {
-				accountChangedHandler(result[0]);
-				setConnButtonText('Wallet Connected');
-			})
-			.catch(error => {
-				setErrorMessage(error.message);
+	// 		});
 
-			});
-
-		} else {
-			console.log('Need to install MetaMask');
-			setErrorMessage('Please install MetaMask browser extension to interact');
-		}
-	}
+	// 	} else {
+	// 		console.log('Need to install MetaMask');
+	// 		setErrorMessage('Please install MetaMask browser extension to interact');
+	// 	}
+	// }
     
 
     const accountChangedHandler = (newAccount) => {
-		setDefaultAccount(newAccount);
-        setNewAccount("Account:"+newAccount);
-		updateEthers();
+      try {
+      if(accountAddress != null && newAccount != accountAddress){
+        setConnected(true);
+        window.location.reload();
+      }
+      //setDefaultAccount(newAccount);
+      //updateEthers();
+      } catch(error) {
+        console.log(error)
+      }
 	}
 
     const LongText = ({content,limit}) => {
@@ -86,7 +137,7 @@ const Wallet = (props) => {
         if(!content) return false;
         if (content.length <= limit) {
           // there is nothing more to show
-          return <div>{content}</div>
+          return <div>account:{content}</div>
         }
         if (showAll) {
           // We show the extended text and a link to reduce it
@@ -105,85 +156,71 @@ const Wallet = (props) => {
 
 
 
-    const updateBalance = async () => {
-		let balanceBigN = await contract.balanceOf(defaultAccount);
-		let balanceNumber = balanceBigN.toNumber();
+    // const updateBalance = async () => {
+    //   try {
+    //     let balanceBigN = await contract.balanceOf(defaultAccount);
+    //     let balanceNumber = balanceBigN.toNumber();
+    
+    //     let tokenDecimals = await contract.decimals();
+    
+    //     let tokenBalance = balanceNumber / Math.pow(10, tokenDecimals);
+    
+    //     setBalance(toFixed(tokenBalance));	
+    //     updateLatestBalance(toFixed(tokenBalance));
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+      
+    // }
 
-		let tokenDecimals = await contract.decimals();
+    const updateLatestBalance = async (data) => {
 
-		let tokenBalance = balanceNumber / Math.pow(10, tokenDecimals);
-
-		setBalance(toFixed(tokenBalance));	
-    }
-
-    const updateLatestBalance = async () => {
-      if(balance !== latestBalance){
         var date='';
         date = date.concat(new Date().toLocaleDateString()+new Date().toLocaleTimeString())
         const finalTrend = produce(trendSum, draft => {
-              draft.push({account: defaultAccount, balance: toFixed(balance), time: date})
+              draft.push({accounts: account.current.networkAccount.addr, balance: data, time: date})
           })
         setFinalTrend(finalTrend);
-      }
-      setLatestBalance(latestBalance);
+        console.log(finalTrend);
     }
 
-  //     const updateChart = () => {
-  //   return <Chart data={balance}/>
-  // }
-    function toFixed(x) {
-        if (Math.abs(x) < 1.0) {
-           var e = parseInt(x.toString().split('e-')[1]);
-           if (e) {
-              x *= Math.pow(10, e - 1);
-              x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
-           }
-        } else {
-           var e = parseInt(x.toString().split('+')[1]);
-           if (e > 20) {
-              e -= 20;
-              x /= Math.pow(10, e);
-              x += (new Array(e + 1)).join('0');
-           }
-        }
-        return x;
-     }
+    // function toFixed(x) {
+    //     if (Math.abs(x) < 1.0) {
+    //        var e = parseInt(x.toString().split('e-')[1]);
+    //        if (e) {
+    //           x *= Math.pow(10, e - 1);
+    //           x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
+    //        }
+    //     } else {
+    //        var e = parseInt(x.toString().split('+')[1]);
+    //        if (e > 20) {
+    //           e -= 20;
+    //           x /= Math.pow(10, e);
+    //           x += (new Array(e + 1)).join('0');
+    //        }
+    //     }
+    //     return x;
+    //  }
 
-     const chainChangedHandler = () => {
-		// reload the page to avoid any errors with chain change mid use of application
-        updateBalance();
-	}
+  //    const chainChangedHandler = () => {
+	// 	// reload the page to avoid any errors with chain change mid use of application
+  //       window.location.reload();
+	// }
 
   const refreshHandler =() => {
-    updateBalance();
-    updateLatestBalance();
+    if(account.current == null){
+      window.alert('Need to connect to wallet first');
+      return false;
+    }
+    getBalance();
+    window.alert('Refresh Complete. Latest status');
   }
-
-    window.ethereum.on('accountsChanged', accountChangedHandler);
-
-	window.ethereum.on('chainChanged', chainChangedHandler);
-
-	const updateEthers = () => {
-		let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
-		setProvider(tempProvider);
-
-		let tempSigner = tempProvider.getSigner();
-		setSigner(tempSigner);
-
-		let tempContract = new ethers.Contract(contractAddress, simple_token_abi, tempSigner);
-		setContract(tempContract);	
-	}
-
 	useEffect(() => {
-		if (contract != null) {
-			updateBalance();
-			updateTokenName();
-		}
-	}, [contract, latestBalance, balance]);
-
-    const updateTokenName = async () => {
-		setTokenName(await contract.name());
-	}
+		
+    if(localStorage.getItem('connectAccount') == null || localStorage.getItem('connectAccount') != null){
+      connectWallet();
+    }
+	}, [(localStorage.getItem('connectAccount'))]);
 
     return(
         <>
@@ -193,19 +230,20 @@ const Wallet = (props) => {
                 <div className="wallet-main">
                         <div className='wallet-div'>
                             <div id="wallet-balance">
-                                <LongText content = {newAccount} limit = {20} /> 
+                            account <LongText content = {accountAddress} limit = {20} /> 
                             </div>
                             <div id="wallet-balance">
-                                Balance: {balance}ST
+                                Balance: {accountBal}
                             </div>
                             <div id="wallet-button" onClick={() => {toggleQRCode()}}>
                                 QRCode...
                             </div>
-                            <button id="wallet-button" onClick={() => {connectWalletHandler()}}>{connButtonText}</button>
+                            <button id="wallet-button" onClick={() => {connectWallet()}} disabled={connected}>{connButtonText}</button>
                             <button id="wallet-button" onClick={() => {refreshHandler()}}>{refreshButton}</button>
+                            <button id="wallet-button" onClick={() => window.open('https://dispenser.testnet.aws.algodev.network/')}>{moreBalanceButton}</button>
                             {errorMessage}
-                            <Chart finalTrend={finalTrend}/>
-                            <Interactions contract={contract}/>
+                            <Chart finalTrend={finalTrend} accountAddress = {accountAddress} />
+                            <Interactions account={account} getBalance = {getBalance}/>
                         {errorMessage}
                 </div>
                 </div>
