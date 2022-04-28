@@ -72,8 +72,8 @@ html {
 }
 
 .wallet-div{
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     margin: auto;
 }
 
@@ -89,40 +89,23 @@ html {
 
 .wallet-main{
     display: flex;
-    height: 600px;
+    height: 720px;
 }
 
 #wallet-container{
     padding: 20px;
-    width: 90%;
-    height: 40%;
+    width: 50%;
+    height: 20%;
     margin-left: auto;
     margin-right: auto;
 }
 
 #gc-container{
     padding: 20px;
-    width: 90%;
-    height: 40%;
+    width: 50%;
+    height: 20%;
     margin-left: auto;
     margin-right: auto;
-}
-
-.gc-bal{
-    text-align: center;
-    font-size: 1.2vw;
-    width: 35%;
-    height: 20%;
-    margin: auto;
-    display: block;
-    margin-top: 5%;
-}
-
-.gc-bal-button{
-    display: block;
-    float: right;
-    padding-right: 2%;
-    padding-left: 2%;
 }
 
 .gc-header{
@@ -137,8 +120,7 @@ html {
 
 .gc-main{
     display: flex;
-    height: 100%;
-    height: 500px;
+    height: 600px;
 }
 .gc-pannel-l{
     display: inline;
@@ -187,7 +169,7 @@ html {
 }
 
 .req-list{
-    width: 80%;
+    width: 50%;
     margin: auto;
     margin-top: 2%;
     height: 90%;
@@ -202,36 +184,10 @@ html {
     display: block;
 }
 
-.friend-drop{
-    width: 90%;
-    font-size: 1.1em;
-    margin-top: 5%;
-    margin-bottom: 10%;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-.chal-label{
-    width: 90%;
-    font-size: 1.1em;
-    margin-bottom: 10%;
-    margin-left: 10%;
-    margin-right: 10%;
-    text-align: center;
-}
-
-.chal-button{
-    width: 80%;
-    height: 40%;
-    margin: auto;
-    padding-top: 5%;
-    text-align: center;
-}
-
 #wallet-balance{
     margin-right: 5%;
     margin-top: 5%;
-    width: 45%;
+    width: 100%;
     height: 6%;
     display: inline;
     float: left;
@@ -245,11 +201,13 @@ html {
 }
 
 .line-graph{
+    width: 30em;
+    height: 20em;
     margin-top: 15%;
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    width: 70%;
+    
 }
 
 #wallet-button{
@@ -284,17 +242,15 @@ html {
 .marketScreen{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 90vh;
+    width: 66%;
+    height: 80vh;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    z-index: -101;
 }
 .marketHeader{
     height: 7vh;
     width: 100%;
-    vertical-align: middle;
 }
 .marketMain{
     height: auto;
@@ -307,6 +263,7 @@ html {
     color: #FFFFFF;
     text-align: center;
     text-anchor: middle;
+    //align-items: center;
 }
 .marketCoinSelect{
     width: 25vh;
@@ -323,173 +280,23 @@ html {
     height: 60vh;
 }
 
-// ************** ACCOUNT SETTINGS **********************
-.account-pannel-left{
-    width: 40%;
-    float: left;
-    display: inline;
-    height: 100%;
-}
-
-.account-pannel-right{
-    width: 60%;
-    float: left;
-    display: inline;
-    height: 100%;
-}
-
-.account-div{
-    width: 90%;
-    height: 90%;
-    margin: auto;
-}
-
-.account-header{
-    text-align: center;
-    font-size: 1.5vw;
-    font-weight: bold;
-    width: 50%;
-    height: 20%;
-    margin: auto;
-    display: block;
-}
-
-.account-main{
-    display: flex;
-    height: 600px;
-}
-
-#account-container{
-    padding: 20px;
-    width: 90%;
-    height: 40%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#account-info{
-    margin-right: 5%;
-    margin-top: 5%;
-    width: 45%;
-    height: 6%;
-    display: inline;
-    float: left;
-}
-#account-trend-pos, #account-trend-neg{
-    margin-top: 2%;
-    width: 45%;
-    height: 6%;
-    display: inline;
-    float: left;
-}
-
-#account-button{
-    margin-top: 2%;
-    height: 6%;
-    margin-left: 5%;
-    width: 45%;
-    display: inline;
-    float: left;
-}
-
-#banner-button{
-    margin-top: 2%;
-    height: 6%;
-    margin-left: 5%;
-    width: 45%;
-    display: inline;
-    float: left;
-}
-
-#banner-button-l{
-    width: 60%;
-    padding: 1%;
-    height: 25%;
-    margin: auto;
-    margin-top: 5%;
-    display: block;
-}
-
-#banner-button{
-    width: 60%;
-    padding: 1%;
-    height: 15%;
-    margin: auto;
-    margin-top: 5%;
-    display: block;
-}
-
-#picture-button{
-    margin-top: 2%;
-    height: 6%;
-    margin-left: 5%;
-    width: 45%;
-    display: inline;
-    float: left;
-}
-
-#picture-button-l{
-    width: 60%;
-    padding: 1%;
-    height: 25%;
-    margin: auto;
-    margin-top: 5%;
-    display: block;
-}
-
-#picture-button{
-    width: 60%;
-    padding: 1%;
-    height: 15%;
-    margin: auto;
-    margin-top: 5%;
-    display: block;
-}
-// ************** ACCOUNT SETTINGS **********************
-
 .profileScreen{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 90vh;
+    width: 66%;
+    height: 80vh;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    z-index: -101;
-}
-
-.profileHeaderWrapper{
-    position: relative;
-    width: 100%;
-    height: 15vh;
 }
 .profileHeader{
-    height: inherit;
-    width: inherit;
-    display: flex;
-    flex-direction: column;
-    row-gap: 8px;
-    align-items: center;
-    position: relative;
-    z-index: 100;
+    height: 7vh;
+    width: 100%;
 }
-.profileHeaderBackground{
-    position: absolute;
-    height: inherit;
-    width: inherit;
-    top: 0;
-    left: 0;
-    z-index: 99;
-}
-.profileBanner{
-    height: inherit;
-    width: inherit;
-}
-
 .profileMain{
     display: flex;
     flex-direction: row;
-    column-gap: 10vw;
+    column-gap: 25vw;
     height: 73vh;
     color: #FFFFFF;
     text-align: center;
@@ -501,12 +308,9 @@ html {
 .profileInfo{
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 5px;
     text-align: center;
     text-anchor: middle;
-    min-width: 20vw;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 .profileCryptosHeld{}
 .profileCryptoList{}
@@ -514,62 +318,9 @@ html {
 .profileFriends{
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 5px;
     text-align: center;
     text-anchor: middle;
-    min-width: 20vw;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 .profileFriendsList{}
-
-
-.friendsListHeader{
-    text-align: inherit;
-    text-anchor: inherit;
-    display: flex;
-    flex-direction: row;
-    column-gap: 50px;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.listHeader{
-    text-align: inherit;
-    text-anchor: inherit;
-    display: flex;
-    flex-direction: row;
-    column-gap: 50px;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.profileListHeader{
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-    text-align: center;
-}
 .profileAddFriend{}
-
-
-.profileGames{
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    text-align: center;
-    text-anchor: middle;
-    min-width: 20vw;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.pfp{
-    padding-top: 5px;
-    width: 8%;
-}
-
-
-

@@ -158,7 +158,7 @@ body {
     background-color: $primary-color;
     color: $sidebar-background-color;
     text-align: center;
-    font-size: 1.7em;
+    font-size: 2em;
 }
 
 .gc-button:hover{
@@ -185,50 +185,6 @@ body {
 
 .gc-header{
     background-color: $primary-color;
-}
-
-.gc-bal{
-    background-color: $primary-color;
-}
-
-.gc-bal-button{
-    color: green;
-}
-
-.gc-bal-button:hover{
-    color: rgb(1, 226, 1);
-    background-color: $background-color;
-    cursor: pointer;
-}
-
-.gc-bal-button:active{
-    background-color: $sidebar-background-color;
-}
-
-.chal-main{
-    background-color: $primary-color;
-    border-width: 2px;
-    border-color: $navbar-background-color;
-    border-style: solid;
-    color: #262626;
-}
-
-.chal-button{
-    background-color: $navbar-background-color;
-    color: $text-color;
-    font-size: 1.1em;
-}
-
-.chal-button:hover{
-    background-color: $text-color;
-    color: $primary-color;
-    cursor: pointer;
-}
-
-.chal-button:active{
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
 }
 
 .req-list{
@@ -348,7 +304,7 @@ input{
 
 
 .marketScreen{
-    background-color: $navbar-background-color;
+    background-color: $sidebar-background-color;
 }
 .marketHeader{
     color: $text-color;
@@ -360,299 +316,37 @@ input{
 .marketChart{
     font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;
-    color: $primary-color;
+    color: $background-color;
     background-color: #262626;
 }
 
-.marketGraphContainer{
-    background-color: $primary-color;
+.profileScreen{
+    background-color: #262626;
 }
-
-// ************************** ACCOUNT SETTINGS *******************************
-.account-div{
-    background-color: $primary-color;
-}
-
-.account-main{
-    background-color: $navbar-background-color;
-}
-
-.account-header{
-    background-color: $primary-color;
-}
-
-.account-pannel-left{
-    background-color: $primary-color;
-}
-
-.account-pannel-right{
-    background-color: $primary-color;
-}
-
-#account-container{
-    color: $text-color;
-    background-color: $navbar-background-color;
-}
-
-#account-button,#qr-button,#qr-button-l{
-    color: $text-color;
-    font-size: 1.5em;
-    background-color: $navbar-background-color;
+.profileHeader{
+    background-color: #8DC5D1;
+    color:#262626;
+    font-size: 30px;
+    font-weight: bold;
     text-align: center;
+    text-anchor: middle;
 }
-
-#account-button:hover,#qr-button:hover,#qr-button-l:hover{
-    background-color: $background-color;
-    color: $primary-color;
-    cursor: pointer;
+.profileMain{
+    background-color: #262626;
+    font-size: 24px;
 }
-
-#account-button:active,#qr-button:active,#qr-button-l:active{
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
+.profileInfo{
+    color: #8DC5D1;
 }
-
-#account-info{
-    font-size: 1.5em;
-    border-width: 2px;
-    border-style: solid;
-    border-color: $navbar-background-color;
+.profileCryptosHeld{}
+.profileCryptoList{}
+.profileFriends{
+    color: #8DC5D1;
 }
-
-#account-trend-pos{
-    font-size: 1.5em;
-    border-width: 2px;
-    border-style: solid;
-    border-color: $navbar-background-color;
-    color: rgb(0, 141, 42);
-}
-#account-trend-neg{
-    font-size: 1.5em;
-    border-width: 2px;
-    border-style: solid;
-    border-color: $navbar-background-color;
-    color: rgb(139, 2, 121);
-}
-
-#banner-button,#banner-button,#banner-button-l{
-    color: $text-color;
-    font-size: 1.5em;
-    background-color: $navbar-background-color;
-    text-align: center;
-}
-
-#banner-button:hover,#banner-button:hover,#banner-button-l:hover{
-    background-color: $background-color;
-    color: $primary-color;
-    cursor: pointer;
-}
-
-#banner-button:active,#banner-button:active,#banner-button-l:active{
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-}
-
-.banner-header{
-    background-color: $navbar-background-color;
-    color: $text-color;
-    text-align: center;
-    font-size: 1.5em;
-}
-
-.banner-main{
-    background-color: $primary-color;
-    border-width: 2px;
-    border-color: $navbar-background-color;
-    border-style: solid;
-    color: #262626;
-}
-
-#picture-button,#picture-button,#picture-button-l{
-    color: $text-color;
-    font-size: 1.5em;
-    background-color: $navbar-background-color;
-    text-align: center;
-}
-
-#picture-button:hover,#picture-button:hover,#picture-button-l:hover{
-    background-color: $background-color;
-    color: $primary-color;
-    cursor: pointer;
-}
-
-#picture-button:active,#picture-button:active,#picture-button-l:active{
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-}
-
-.picture-header{
-    background-color: $navbar-background-color;
-    color: $text-color;
-    text-align: center;
-    font-size: 1.5em;
-}
-
-.picture-main{
-    background-color: $primary-color;
-    border-width: 2px;
-    border-color: $navbar-background-color;
-    border-style: solid;
-    color: #262626;
-}
-// ************************** ACCOUNT SETTINGS ********************************
-
-@mixin object-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  $circleSize: 165px;
-  $radius: 100px;
-  $shadow: 0 0 10px 0 rgba(255,255,255,.35);
-  $fontColor: rgb(250,250,250);
-  
-  .profile-pic {
-    color: transparent;
-    transition: all .3s ease;
-    @include object-center;
-    position: relative;
-    transition: all .3s ease;
-    
-    input {
-      display: none;
-    }
-    
-    img {
-      position: absolute;
-      object-fit: cover;
-      width: $circleSize;
-      height: $circleSize;
-      box-shadow: $shadow;
-      border-radius: $radius;
-      z-index: 0;
-    }
-    
-    .-label {
-      cursor: pointer;
-      height: $circleSize;
-      width: $circleSize;
-    }
-    
-    &:hover {
-      .-label {
-        @include object-center;
-        //background-color: rgba(0,0,0,.8);
-        z-index: 10000;
-        color: $fontColor;
-        transition: background-color .2s ease-in-out;
-        border-radius: $radius;
-        margin-bottom: 0;
-      }
-    }
-    
-    span {
-      display: inline-flex;
-      padding: .2em;
-      height: 2em;
-    }
-  }
-  
-  /////////////////////////
-  // Body styling 🐾
-  /////////---------->
-  
-  body {
-    height: 100vh;
-    //background-color: rgb(25, 24, 21);
-    @include object-center;
-    
-    a:hover {
-      text-decoration: none;
-    }
-  }
-// ************************** PROFILE PICTURE ********************************
-
-@mixin banner-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  $circleSize: 165px;
-  $radius: 100px;
-  $shadow: 0 0 10px 0 rgba(255,255,255,.35);
-  $fontColor: rgb(250,250,250);
-
-.banner-pic {
-    color: transparent;
-    transition: all .3s ease;
-    @include banner-center;
-    position: relative;
-    transition: all .3s ease;
-
-    input {
-        display: none;
-    }
-    
-    img {
-        position: absolute;
-        object-fit: cover;
-        width: $circleSize;
-        height: $circleSize;
-        box-shadow: $shadow;
-        border-radius: $radius;
-        z-index: 0;
-    }
-    
-    .banner-label {
-      cursor: pointer;
-      height: $circleSize;
-      width: $circleSize;
-    }
-
-    &:hover {
-        .banner-label {
-          @include object-center;
-          //background-color: rgba(0,0,0,.8);
-          z-index: 10000;
-          color: $fontColor;
-          transition: background-color .2s ease-in-out;
-          border-radius: $radius;
-          margin-bottom: 0;
-        }
-      }
-
-    span {
-        display: inline-flex;
-        padding: .2em;
-        height: 2em;
-      }
-  }
-// ************************** BANNER PICTURE ********************************
+.profileFriendsList{}
+.profileAddFriend{}
 
 //Gaming Styles
-
-//Simon Says Game
-
-.ss-blue-tile{
-    background-color: blue;
-    width: 100%;
-    height:100%;
-    font-size: 2.5em;
-    text-align: center;
-}
-
-.ss-red-tile{
-    background-color: red;
-    width: 100%;
-    height:100%;
-    font-size: 2.5em;
-    text-align: center;
-}
 
 //Memory Game
 
@@ -688,59 +382,4 @@ input{
     text-align: center;
     display: block;
     margin: auto;
-}
-
-/*PROFILE SCREEN*/
-.profileScreen{
-    background-color: $navbar-background-color;
-}
-/*
-.profileHeader{
-    background-color: $primary-color;
-}
-*/
-.profileMain{
-}
-.profileInfo{
-    background-color: $background-color;
-}
-.profileCryptosHeld{}
-.profileCryptoList{}
-
-.profileFriends{
-    background-color: $background-color;
-}
-.profileFriendsList{}
-
-.friendsListHeader{
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.listHeader{
-    font-size: 22px;
-    font-weight: bold;
-}
-
-
-.profileListHeader{
-    background-color: $primary-color;
-    color: black;
-}
-
-.addFriendButton{
-    background-color: $text-color;
-}
-.addFriendButton:hover{
-    background-color: $background-color;
-}
-
-#addFriendIcon{
-    color: $primary-color;
-}
-
-.profileAddFriend{}
-
-.friend{
-    color: white;
 }
