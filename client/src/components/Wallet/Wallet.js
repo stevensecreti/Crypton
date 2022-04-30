@@ -36,7 +36,7 @@ const Wallet = (props) => {
   
 	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
   const [refreshButton, setRefreshButton] = useState('Refresh');
-  const [moreBalanceButton, setMoreBalanceButton] = useState('More algorand?');
+  const [moreBalanceButton, setMoreBalanceButton] = useState('Add Funds');
 
 	const [provider, setProvider] = useState(null);
 	const [signer, setSigner] = useState(null);
@@ -237,7 +237,7 @@ const Wallet = (props) => {
                           {accountBal}
                       </div>
                       <div className="walletInteractionsMain">
-                        <button className="walletInteractionButton" onClick={() => window.open('https://dispenser.testnet.aws.algodev.network/')}>
+                        <button className="walletInteractionButton" id="moreAlgorand" onClick={() => window.open('https://dispenser.testnet.aws.algodev.network/')}>
                           {moreBalanceButton}
                         </button>
                       </div>
@@ -253,7 +253,7 @@ const Wallet = (props) => {
                   </div>
                   <div className="walletButtonsRow">
                     <button className="walletButton" onClick={() => {toggleQRCode()}}>
-                          QRCode...
+                          Account #
                     </button>
                     <button className="walletButton" onClick={() => {refreshHandler()}}>
                       {refreshButton}

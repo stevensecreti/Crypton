@@ -24,9 +24,8 @@ const Grid = (props) =>
     }
 
     return(
-        <div className='mem-main'>
-      <div className='mem-grid'
-      >
+    <div className='mem-main'>
+      <div className='mem-grid'>
         {grid.map((row, rowIdx) =>
           row.map((cell, colIdx) => (
             // We put the colIdx first because that is our X-axis value
@@ -43,10 +42,10 @@ const Grid = (props) =>
 
 export default Grid;
   
-  function Cell({ cell , handleClick }) {
+function Cell({ cell , handleClick }) {
     return (
       <div className='mem-cell' onClick = {() => handleClick(cell)}>
           {cell}
       </div>
     )
-  }
+}

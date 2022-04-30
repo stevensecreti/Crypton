@@ -86,16 +86,18 @@ const SimonSays = (props) =>
     useInterval(decTimer, 100);
 
     return(
-        <>
-            <MemGrid grid = {grid} score = {score} setScore = {setScore} changeGrid = {changeGrid}
-            endGame = {props.endGame} timer = {timer} setShowColors = {setShowColors} showColors = {showColors}
-            blueTiles = {blueTiles} numCorrect = {numCorrect} setNumCorrect = {setNumCorrect}
-            solvedTiles = {solvedTiles} setSolvedTiles = {setSolvedTiles}
-            ></MemGrid>
-            <div className = "mem-score">
+        <div className="gameMain">
+            <div className="gameScore">
                 Score: {score}
             </div>
-        </>
+            <div className="gameContent">
+                <MemGrid grid = {grid} score = {score} setScore = {setScore} changeGrid = {changeGrid}
+                endGame = {props.endGame} timer = {timer} setShowColors = {setShowColors} showColors = {showColors}
+                blueTiles = {blueTiles} numCorrect = {numCorrect} setNumCorrect = {setNumCorrect}
+                solvedTiles = {solvedTiles} setSolvedTiles = {setSolvedTiles}
+                ></MemGrid>
+            </div>
+        </div>
     );
 }
 
