@@ -14,8 +14,8 @@ const Friend = (props) => {
 
     return(
         <div className="profileListItem">
-            <Button className="profileListButton" onClick={handleViewFriend} style={{color: "white"}}>{props.name}</Button>
-            <Button className="profileListButton" onClick={handleDelete}><i className="material-icons" style={{color: "white"}}>delete</i></Button>
+            <Button id="profileListButton" onClick={handleViewFriend} style={{color: "white"}}>{props.name}</Button>
+            <Button id="profileListButton" onClick={handleDelete}><i className="material-icons" style={{color: "white"}}>delete</i></Button>
         </div>
     );
 }

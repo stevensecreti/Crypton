@@ -24,7 +24,7 @@ const Profile = (props) => {
                             <span className="glyphicon glyphicon-camera"></span>
                         </label>
                         <img src={props.pfp} id="output" className="pfp"/>
-                        <div className="listHeader">
+                        <div className="listHeader" id="usernameProfile">
                             {props.userName}
                         </div>
                     </div>
@@ -36,7 +36,7 @@ const Profile = (props) => {
             <div className="screenMain" id="profileMain">
                 <div className="profileCard">
                     <div className="profileListHeader">
-                        User Info
+                         Highscores
                     </div>
                     <div className="profileListMain">
                             {
@@ -51,9 +51,8 @@ const Profile = (props) => {
                 <div className="profileCard">
                     <div className="profileListHeader">
                         Friends List
-                        <div className="addFriendButton">
+                        <div className="profileListButton">
                             <Button onClick={addFriend}><i className="material-icons" id="addFriendIcon">add</i></Button>
-                            <Button onClick={showCryptoBucks}><i className="material-icons" id="addFriendIcon">local_atm</i></Button>
                         </div>
                     </div>                    
                     <div className="profileListMain">
