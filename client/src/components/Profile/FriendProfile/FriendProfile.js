@@ -24,45 +24,42 @@ const FriendProfile = (props) => {
     return(<>
         <div className="profileScreen">
             <div className="profileHeaderWrapper">
-                <div className="profileHeader">
-                    <label className="-label" htmlFor="file">
-                        <span className="glyphicon glyphicon-camera"></span>
-                    </label>
-                    <img src={pfp} id="output" className="pfp"/>
-                    <div className="listHeader">
-                        {userName}
+                <div className="screenHeader" id="profileHeaderWrapped">
+                    <div className="profileHeader">
+                        <label className="-label" htmlFor="file">
+                            <span className="glyphicon glyphicon-camera"></span>
+                        </label>
+                        <img src={pfp} id="output" className="pfp"/>
+                        <div className="listHeader" id="usernameProfile">
+                            {userName}
+                        </div>
                     </div>
                 </div>
                 <div className="profileHeaderBackground">
                     <img className="profileBanner" src={banner}/>
                 </div>
             </div>
-            <div className="profileMain">
-                <div className="profileInfo">
-                    <div className="listHeader">
-                        User Info
-                        <Button className="friendProfileButton" onClick={closeFriend} style={{color: "white"}}><i className="material-icons">close</i></Button>
+            <div className="screenMain" id="profileMain">
+                <div className="profileCard">
+                    <div className="profileListHeader">
+                        Highscores
+                        <Button className="profileListButton" onClick={closeFriend} style={{color: "white"}}><i className="material-icons">close</i></Button>
                     </div>
-                    <div className="profileGames">
-                        <div className="listHeader">
-                            Top Games
-                        </div>
-                        <div className="profileCryptoList">
-                            {//Here map each crypto held into list w bullet points
-                                highscores.map((highscore) => 
-                                <Highscore
-                                    highscore={highscore}
-                                />
+                    <div className="profileListMain">
+                        {//Here map each crypto held into list w bullet points
+                            highscores.map((highscore) => 
+                            <Highscore
+                                highscore={highscore}
+                            />
                             )
                         }
-                        </div>
                     </div>
                 </div>
-                <div className="profileFriends">
-                    <div className="friendsListHeader">
+                <div className="profileCard">
+                    <div className="profileListHeader">
                         Friends List
                     </div>                    
-                    <div className="profileFriendsList">
+                    <div className="profileListMain">
                         {//Here map each friend in list to a new friend component <Friend/>
                             friendsList ? 
                             friendsList.map((friend) => 

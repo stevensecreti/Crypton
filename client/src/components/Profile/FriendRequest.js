@@ -12,10 +12,10 @@ const FriendRequest = (props) => {
     }
 
     return(
-        <div className="friend">
-            <Button className="friendProfileButton" style={{color: "white"}}>{props.name}</Button>
-            <Button className="friendRemoveButton" onClick={handleAccept} style={{color: "white"}}><i className="material-icons">check</i></Button>
-            <Button className="friendRemoveButton" onClick={handleDecline} style={{color: "white"}}><i className="material-icons">delete</i></Button>
+        <div className="profileListItem">
+            <Button id="profileListButton" style={{color: "white"}}>{props.name}</Button>
+            <Button id="profileListButton" onClick={handleAccept} style={{color: "white"}}><i className="material-icons">check</i></Button>
+            <Button id="profileListButton" onClick={handleDecline} style={{color: "white"}}><i className="material-icons">delete</i></Button>
         </div>
     );
 }

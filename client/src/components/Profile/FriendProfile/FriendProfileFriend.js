@@ -9,8 +9,8 @@ const FriendProfileFriend = (props) => {
     }
 
     return(
-        <div className="friend">
-            <Button className="friendProfileButton" onClick={handleViewFriend} style={{color: "white"}}>{props.name}</Button>
+        <div className="profileListItem">
+            <Button id="profileListButton" onClick={handleViewFriend} style={{color: "white"}}>{props.name}</Button>
         </div>
     );
 }
