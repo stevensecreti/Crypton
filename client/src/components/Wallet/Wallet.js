@@ -67,7 +67,7 @@ const Wallet = (props) => {
           setAccountAddress(account.current.networkAccount.addr)
           console.log("Account :" + account.current.networkAccount.addr)
           localStorage.setItem("connectAccount", accountAddress);
-          setConnButtonText('Connected');
+          setConnButtonText('Status: Connected');
       }catch(err){
           console.log(err)
       }
@@ -223,32 +223,54 @@ const Wallet = (props) => {
 	}, [(localStorage.getItem('connectAccount'))]);
 
     return(
-        <>
-            <div id="wallet-container">
-                <div className={styles.walletCard}>
-                </div>
-                <div className="wallet-main">
-                        <div className='wallet-div'>
-                            <div id="wallet-balance">
-                            account <LongText content = {accountAddress} limit = {20} /> 
-                            </div>
-                            <div id="wallet-balance">
-                                Balance: {accountBal}
-                            </div>
-                            <div id="wallet-button" onClick={() => {toggleQRCode()}}>
-                                QRCode...
-                            </div>
-                            <button id="wallet-button" onClick={() => {connectWallet()}} disabled={connected}>{connButtonText}</button>
-                            <button id="wallet-button" onClick={() => {refreshHandler()}}>{refreshButton}</button>
-                            <button id="wallet-button" onClick={() => window.open('https://dispenser.testnet.aws.algodev.network/')}>{moreBalanceButton}</button>
-                            {errorMessage}
-                            <Chart finalTrend={finalTrend} accountAddress = {accountAddress} />
-                            <Interactions account={account} getBalance = {getBalance}/>
-                        {errorMessage}
-                </div>
-                </div>
+        <div className="screenContainer">
+            <div className="screenHeader">
+                My Wallet
             </div>
-</>
+            <div className="screenMain">
+              <div className='wallet-div'>
+                  <div className="walletButtonsRow">
+                    <div className="walletInteractions">
+                      <div className="walletInteractionsHeaderB">
+                          Balance:
+                          <br/>
+                          {accountBal}
+                      </div>
+                      <div className="walletInteractionsMain">
+                        <button className="walletInteractionButton" onClick={() => window.open('https://dispenser.testnet.aws.algodev.network/')}>
+                          {moreBalanceButton}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="walletInteractions" id="sendFunds">
+                      <Interactions account={account} getBalance = {getBalance}/>
+                    </div>
+                  </div>
+                  <div  className="chartWalletButtonsRow">
+                    <div className="walletChart">
+                        <Chart finalTrend={finalTrend} accountAddress = {accountAddress} />
+                    </div>
+                  </div>
+                  <div className="walletButtonsRow">
+                    <button className="walletButton" onClick={() => {toggleQRCode()}}>
+                          QRCode...
+                    </button>
+                    <button className="walletButton" onClick={() => {refreshHandler()}}>
+                      {refreshButton}
+                    </button>
+                    <button className="walletButton" onClick={() => {connectWallet()}} disabled={connected}>
+                      {connButtonText}
+                    </button>
+                  </div>
+                  <div className="walletComponentsGroup">
+                    {errorMessage}
+                    
+                    
+                    {errorMessage}
+                  </div>
+              </div>
+            </div>
+        </div> 
     );
 }
 export default Wallet;

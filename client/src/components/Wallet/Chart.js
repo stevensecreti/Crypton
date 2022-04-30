@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {Line} from 'react-chartjs-2';
+import { Chart as ChartJS, registerables } from "chart.js";
 import HorizontalScroll from 'react-scroll-horizontal';
     const Chart = (finalTrend, accountAddress) => {
+    ChartJS.register(...registerables);
     const [dataLabel, setDataLabel] = useState([]);
     const [balanceLabel, setBalanceLabel] = useState([]);
     var index = 0;  
@@ -54,33 +56,29 @@ import HorizontalScroll from 'react-scroll-horizontal';
             label: 'Balance',
             fill: false,
             lineTension: 0.5,
-            backgroundColor: '#013292',
-            borderColor: '#013292',
+            backgroundColor: "rgba(240, 255, 255, 0.9)",
+            borderColor: "rgba(240, 255, 255, 0.5)",
             borderWidth: 2,
             data : balanceLabel
             }
         ]
     }
+    const opts = {
+        display:true,
+        text:'',
+        fontSize:20,
+        display:true,
+        maintainAspectRatio: false,
+        responsive: true
+    };
     return (
             <div className='line-graph'>
-            <HorizontalScroll>
-                <Line
-                data={ChartData}
-                                options={{
-                                    title:{
-                                    display:true,
-                                    text:'',
-                                    fontSize:20
-                                    },
-                                    legend:{
-                                    display:true,
-                                    position:'right'
-                                    }
-                                }}
-                                
-                >
-                </Line></HorizontalScroll>
-            </div>
+                    <Line
+                        data={ChartData}
+                        options={opts}                               
+                    />
+               { //</HorizontalScroll>
+    }       </div>
     )
 }
 export default Chart;

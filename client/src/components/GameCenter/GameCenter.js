@@ -4,6 +4,7 @@ import Score from './Score';
 import GameChoice from './GameChoice';
 import Memory from './Games/Memory/Memory';
 import SimonSays from './Games/SimonSays/SimonSays';
+import Button from '@mui/material/Button';
 import { use } from 'passport';
 
 const GameCenter = (props) => {
@@ -107,40 +108,50 @@ const GameCenter = (props) => {
 
     return(
             <>
-            <div id="gc-container">
-                <div className='gc-header'>
+            <div className="screenContainer">
+                <div className="screenHeader">
                     {screenName}
                 </div>
-                <div className='gc-bal'>
-                    Balance: {gcBalance} CB 
-                    <div className='gc-bal-button' onClick={props.showCryptoBucks}>
-                        +
+                <div className="screenHeader">
+                        Balance: {gcBalance} CryptonBucks 
+                        <Button className='gc-bal-button' onClick={props.showCryptoBucks}>
+                            <i className="material-icons" id="addCBIcon">add</i>
+                        </Button>
                     </div>
-                </div>
-                <div className='gc-main'>
+                <div className='screenMain'>
                     {
                         screen == 0 &&
                         (
-                            <>
-                            <div className='gc-pannel-l'>
-                                <div className='gc-button' onClick={startChallenge}>
-                                    Start Challenge
+                            <div className="screenMain gameCenterHome">
+                                <div className='gameCenterCard'>
+                                    <div className="gameCenterCardHeader">
+                                        Roll the Dice
+                                    </div>
+                                    <div className="gameCenterCardButtons">
+                                        <div className="gameCenterCardButton" onClick={startChallenge}>
+                                            Start Challenge
+                                        </div>
+                                        <div className="gameCenterCardButton" onClick={acceptChallenge}>
+                                            Accept Challenge
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className='gc-button' onClick={acceptChallenge}>
-                                    Accept Challenge
+                                <div className="gameCenterCard">
+                                    <div className="gameCenterCardHeader">
+                                        Perfect Your Craft
+                                    </div>
+                                    <div className="gameCenterCardButtons">
+                                        <div className="gameCenterCardButton" onClick={practiceGame}>
+                                            Practice Game
+                                        </div>
+                                        <div className="gameCenterCardButton" onClick={viewHighscores}>
+                                            Highscores
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className='gc-pannel-r'>
-                            <div className='gc-button' onClick={practiceGame}>
-                                    Practice Game
-                                </div>
-                                <div className='gc-button' onClick={viewHighscores}>
-                                    Highscores
-                                </div>
-                            </div>
-                            </>
                         ) ||
-                        screen == 1 &&
+                        screen == 1 && //Screen 1 is Chal Requests
                         (
                             <>
                                 <div className='req-list'>
@@ -156,7 +167,7 @@ const GameCenter = (props) => {
                                 </div>
                             </>
                         ) ||
-                        screen == 2 &&
+                        screen == 2 && //Screen 2 is Highscores
                         (
                             <>
                                 <div className='req-list'>

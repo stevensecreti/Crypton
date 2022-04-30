@@ -35,11 +35,14 @@ const Interactions = ({account, getBalance}) => {
      }
     return(
         <div>
-            <br/>
-            Transfer Fund
-            <input onChange = {(e) => receiverAddress.current = e.target.value} placeholder="Receiver address" id = 'receive'/><br/>
-            <input onChange = {(e) => transferAmount.current = e.target.value} placeholder="Amount" id = 'amount'/><br/>
-            <button onClick ={transferFund}>{isLoading ? "loading...": "Transfer Fund"}</button>
+            <div className="walletInteractionsHeader">
+                Send Funds
+            </div>
+            <div className="walletInteractionsMain">
+                <input className="walletInput" onChange = {(e) => receiverAddress.current = e.target.value} placeholder="Receiver address" id = 'receive'/>
+                <input className="walletInput" onChange = {(e) => transferAmount.current = e.target.value} placeholder="Amount" id = 'amount'/>
+                <button className="walletInteractionButton" onClick ={transferFund}>{isLoading ? "loading...": "Transfer Funds"}</button>  
+            </div>            
         </div>
     )
 }

@@ -52,7 +52,7 @@ $button-background-color: #252525; //Same as navbar background color
 $button-background-color-hover: #454545;
 $main-content-background-color: #29292B; //Might Change
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Yanone+Kaffeesatz:wght@200;300;350;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat&family=Yanone+Kaffeesatz:wght@200;300;350;400;500;600;700&display=swap');
 html{
     font-family: 'Yanone Kaffeesatz', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -132,9 +132,15 @@ html{
 //NAVBAR STUFF
 //NAVBAR STUFF
 .navbar-options {
+    display: flex;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
     color: $primary-color;
     font-weight: bold;
+    height: 100%;
+    width: 100%;
 }
 
 .menu-outer {
@@ -170,11 +176,13 @@ ul.horizontal-list {
 }
 
 ul.horizontal-list li {
-    text-align: center;
     height: 100%;
     width: 200%;
     color: black;
-    
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
 }
 
 button.wbutton{
@@ -220,15 +228,20 @@ input{
 }
 .marketGraph{//Stores Price Info
     font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     height: 100vh;
 }
 .marketGraphContainer{
     background-color: #262626;
 }
+.marketCoinData{
+    
+}
 .marketCoinListItem{
     cursor: pointer;
-    font-size: 2em;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif;
     background-color: $button-background-color;
     border: 3px outset $main-content-background-color;
     height: 50px;
@@ -297,6 +310,46 @@ input{
 //GAME STUFF
 //GAME STUFF
 //GAME STUFF
+#addCBIcon{
+    color: $text-color;
+    font-size: 50px;
+}
+#addCBIcon:active{
+    color: green;
+}
+
+.gameCenterCard{
+    border-radius: 0.5%;
+    border: 2px outset $text-color;
+}
+
+.gameCenterCardHeader{
+    background-color: $navbar-background-color;
+    color: $text-color;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 0.5%;
+    border-bottom: 2px outset $text-color;
+}
+
+.gameCenterCardButtons{
+}
+
+.gameCenterCardButton{
+    cursor: pointer;
+    color: $text-color;
+    font-size: 27px;
+    font-weight: 400;
+    background-color: $button-background-color;
+    text-align: center;
+    border-radius: 3%;
+    border: 4px outset $main-content-background-color;
+}
+.gameCenterCardButton:hover{
+    background-color: $button-background-color-hover;
+}
+
 .req-main,.score-main{
     background-color: $sidebar-background-color;
     color: $primary-color;
@@ -511,75 +564,79 @@ input{
 //WALLET STUFF
 //WALLET STUFF
 
-.wallet-div{
-    background-color: $primary-color;
-}
-
-.wallet-main{
-    background-color: $navbar-background-color;
-}
-
-.wallet-header{
-    background-color: $primary-color;
-}
-
-.wallet-pannel-left{
-    background-color: $primary-color;
-}
-
-.wallet-pannel-right{
-    background-color: $primary-color;
-}
-
-#wallet-container{
-    color: $text-color;
-    background-color: $navbar-background-color;
-}
-
-#wallet-button{
-    color: $text-color;
-    font-size: 1.5em;
-    background-color: $navbar-background-color;
-    text-align: center;
-}
-
-#wallet-button:hover{
-    background-color: $background-color;
-    color: $primary-color;
+.walletButton{
     cursor: pointer;
+    color: $text-color;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 27px;
+    font-weight: 400;
+    background-color: $button-background-color;
+    text-align: center;
+    border-radius: 3%;
+    border: 4px outset $main-content-background-color;
 }
 
-#wallet-button:active{
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
+.walletButtonsColumn{
+    border-radius: 0.5%;
+    border: 2px outset $text-color;
 }
 
-
-
-
-#wallet-balance{
+.walletInput{
+    cursor: pointer;
+    color: $text-color;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 27px;
+    font-weight: 400;
+    background-color: $button-background-color;
+    text-align: center;
+    border-radius: 3%;
+    border: 3px ridge $main-content-background-color;
+}
+.walletInteractionButton{
+    cursor: pointer;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    color: $text-color;
+    font-size: 27px;
+    font-weight: 400;
+    background-color: $button-background-color;
+    text-align: center;
+    border-radius: 3%;
+    border: 4px outset $main-content-background-color;
+}
+.walletButton:hover, .walletInteractionButton:hover{
+    background-color: $button-background-color-hover;
+}
+.walletInfo{
+    color: $text-color;
+    font-size: 27px;
+    font-weight: 400;
+    background-color: $button-background-color;
+    border-radius: 3%;
+    border: 1px outset $text-color;
+}
+.line-graph{
+    background-color: #262626;
+}
+.walletInteractions{
+    border-radius: 0.5%;
+    border: 2px outset $text-color;
+}
+.walletInteractionsHeader{
+    background-color: $navbar-background-color;
+    color: $text-color;
     font-size: 1.5em;
-    border-width: 2px;
-    border-style: solid;
-    border-color: $navbar-background-color;
+    text-align: center;
+    border-radius: 0.5%;
+    border-bottom: 2px outset $text-color;
 }
-
-#wallet-trend-pos{
+.walletInteractionsHeaderB{
+    background-color: $navbar-background-color;
+    color: $text-color;
     font-size: 1.5em;
-    border-width: 2px;
-    border-style: solid;
-    border-color: $navbar-background-color;
-    color: rgb(0, 141, 42);
+    text-align: center;
+    border-radius: 0.5%;
+    border-bottom: 2px outset $text-color;
 }
-#wallet-trend-neg{
-    font-size: 1.5em;
-    border-width: 2px;
-    border-style: solid;
-    border-color: $navbar-background-color;
-    color: rgb(139, 2, 121);
-}
-
 
 
 // ************************** ACCOUNT SETTINGS *******************************
