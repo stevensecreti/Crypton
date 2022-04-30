@@ -15,7 +15,7 @@ const GameCenter = (props) => {
     const [screen, setScreen] = useState(0);
     const [screenName, setScreenName] = useState("Game Center");
     const [isChal, setIsChal] = useState(false);
-    const [chalInfo, setChalInfo] = useState("");
+    const [chalInfo, setChalInfo] = useState(""); //Info about the challenge
 
     const chalGame = (gameName) =>
     {
@@ -120,12 +120,12 @@ const GameCenter = (props) => {
                     </div>
                 <div className='screenMain'>
                     {
-                        screen == 0 &&
+                        screen == 0 && //Game Center Home
                         (
                             <div className="screenMain gameCenterHome">
                                 <div className='gameCenterCard'>
                                     <div className="gameCenterCardHeader">
-                                        Roll the Dice
+                                        Challenge a Friend
                                     </div>
                                     <div className="gameCenterCardButtons">
                                         <div className="gameCenterCardButton" onClick={startChallenge}>
@@ -138,7 +138,7 @@ const GameCenter = (props) => {
                                 </div>
                                 <div className="gameCenterCard">
                                     <div className="gameCenterCardHeader">
-                                        Perfect Your Craft
+                                        Practice
                                     </div>
                                     <div className="gameCenterCardButtons">
                                         <div className="gameCenterCardButton" onClick={practiceGame}>
@@ -156,7 +156,7 @@ const GameCenter = (props) => {
                             <>
                                 <div className='req-list'>
                                     {
-                                        chalReqs.map((thisReq,rind) =>(
+                                        chalReqs.map((thisReq,rind) =>( //Rind = ReqIndex
                                             <Request req ={thisReq}
                                             accChal = {accChal}
                                             declineReq = {props.declineChallenge}
@@ -189,7 +189,7 @@ const GameCenter = (props) => {
                                             <GameChoice 
                                             req ={thisGame}
                                             playGame = {playGame}
-                                            isChal = {false}
+                                            isChal = {false} //If game is a challenge
                                             chalGame = {chalGame}
                                             >
                                             </GameChoice>

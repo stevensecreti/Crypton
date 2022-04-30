@@ -615,7 +615,7 @@ input{
     border: 1px outset $text-color;
 }
 .line-graph{
-    background-color: #262626;
+    background-color: $main-content-background-color;
 }
 .walletInteractions{
     border-radius: 0.5%;
