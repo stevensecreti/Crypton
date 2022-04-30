@@ -17,19 +17,19 @@ const Memory = (props) =>
               .map(mapper)
           )
       }
-    const newTicTacToeGrid = () => generateGrid(3, 3, () => null);
+    const newTicTacToeGrid = () => generateGrid(5, 5, () => null);
     const [grid,setGrid] = useState(newTicTacToeGrid());
 
     const changeGrid = () =>
     {
-        const newGrid = Array(3)
+        const newGrid = Array(5)
         .fill()
         .map(() =>
-          Array(3)
+          Array(5)
             .fill()
             .map(() => null));
-        const rrow = Math.floor(Math.random()*3);
-        const rcol = Math.floor(Math.random()*3);
+        const rrow = Math.floor(Math.random()*5);
+        const rcol = Math.floor(Math.random()*5);
         newGrid[rrow][rcol] = "X";
         setGrid(newGrid);
         setTimer(timeDelay);
@@ -46,7 +46,7 @@ const Memory = (props) =>
         changeGrid();
     }
 
-    useInterval(decTimer, 100);
+    useInterval(decTimer, 1000);
 
     return(
         <>
