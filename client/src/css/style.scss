@@ -51,6 +51,11 @@ $button-text-color: black,
 $button-background-color: #252525; //Same as navbar background color
 $button-background-color-hover: #454545;
 $main-content-background-color: #29292B; //Might Change
+$accent-color: #54B9B4;
+$accent-color-hover: #74D9D4;
+$text-color-dark: #262626;
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat&family=Yanone+Kaffeesatz:wght@200;300;350;400;500;600;700&display=swap');
 html{
@@ -317,6 +322,16 @@ input{
 #addCBIcon:active{
     color: green;
 }
+#gcBalanceButton{
+    background-color: $accent-color;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: $text-color-dark;
+}
+#gcBalanceButton:hover{
+    background-color: $accent-color-hover;
+}
 
 .gameCenterCard{
     border-radius: 0.5%;
@@ -350,10 +365,55 @@ input{
     background-color: $button-background-color-hover;
 }
 
-.req-main,.score-main{
+.gcList{
+    background-color: $background-color;
+    border-radius: 1%;
+    border: 2px solid $text-color;
+}
+
+.gameChoice, .gcListItem{
     background-color: $sidebar-background-color;
     color: $primary-color;
     font-size: 1.5em;
+}
+.gameChoiceName{
+    font-size: 42px;
+    font-weight: 500;
+}
+.gamePlayButton{
+    color: $text-color-dark;
+    font-size: 36px;
+    font-weight: 600;
+    background-color: $accent-color;
+    border-radius: 25%;
+    border: 4px solid $text-color-dark;
+}
+.gamePlayButton:hover{
+    font-size: 38px;
+    background-color: $accent-color-hover
+}
+.gameScore{
+    font-size: 36px;
+    font-weight: 600;
+    color: $text-color;
+}
+
+.gc-back{
+    color: $text-color-dark;
+    font-size: 36px;
+    font-weight: 600;
+    background-color: $accent-color;
+    border-radius: 25%;
+    border: 4px solid $text-color-dark;
+}
+.gc-back:hover{
+    font-size: 38px;
+    background-color: $accent-color-hover
+}
+.gameHighScore{
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .score-main:hover{
@@ -422,66 +482,7 @@ input{
     text-align: center;
 }
 
-.gc-back{
-    background-color: $sidebar-background-color;
-    color: $primary-color;
-    font-size: 1.5em;
-    text-align: center;
-}
-.gc-back:hover{
-    background-color: $primary-color;
-    color: $sidebar-background-color;
-    cursor: pointer;
-}
-.gc-back:active{
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-}
-.gc-pannel-l,.gc-pannel-r{
-    background-color: $background-color;
-}
-.gc-button{
-    background-color: $primary-color;
-    color: $sidebar-background-color;
-    text-align: center;
-    font-size: 1.7em;
-}
-.gc-button:hover{
-    background-color: $sidebar-background-color;
-    color: $primary-color;
-    cursor: pointer;
-}
-.gc-button:active
-{
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-}
-#gc-container{
-    color: $text-color;
-    background-color: $navbar-background-color;
-}
-.gc-main{
-    background-color: $navbar-background-color;
-}
-.gc-header{
-    background-color: $primary-color;
-}
-.gc-bal{
-    background-color: $primary-color;
-}
-.gc-bal-button{
-    color: green;
-}
-.gc-bal-button:hover{
-    color: rgb(1, 226, 1);
-    background-color: $background-color;
-    cursor: pointer;
-}
-.gc-bal-button:active{
-    background-color: $sidebar-background-color;
-}
+
 .chal-main{
     background-color: $primary-color;
     border-width: 2px;
@@ -503,9 +504,6 @@ input{
     border-width: 2px;
     border-style: solid;
     border-color: black;
-}
-.req-list{
-    background-color: $background-color;
 }
 
 //Gaming Styles
@@ -552,12 +550,7 @@ input{
     grid-template-rows: repeat(3,1fr);
     grid-template-columns: repeat(3,1fr);
 }
-.mem-score{
-    font-size: 3.5em;
-    text-align: center;
-    display: block;
-    margin: auto;
-}
+
 
 
 //WALLET STUFF

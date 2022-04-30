@@ -6,11 +6,11 @@ const Score = (props) =>
     const score = props.req.split(",")[1];
     return(
     <>
-        <div className='score-main'>
-            <div className='score-info'>
+        <div className='gcListItem'>
+            <div className='gameChoiceName'>
                 {game}
             </div>
-            <div className='score-info'>
+            <div className='gameHighScore'>
                 {score}
             </div>
         </div>

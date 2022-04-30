@@ -112,13 +112,13 @@ const GameCenter = (props) => {
                 <div className="screenHeader">
                     {screenName}
                 </div>
-                <div className="screenHeader">
-                        Balance: {gcBalance} CryptonBucks 
-                        <Button className='gc-bal-button' onClick={props.showCryptoBucks}>
-                            <i className="material-icons" id="addCBIcon">add</i>
+                <div className="screenHeader" id="gcBalanceHeader">
+                        <div>Balance: {gcBalance} CryptonBucks</div>
+                        <Button id='gcBalanceButton' onClick={props.showCryptoBucks}>
+                            Add Funds
                         </Button>
-                    </div>
-                <div className='screenMain'>
+                </div>
+                <div className='screenMain' id="gameCenterFull">
                     {
                         screen == 0 && //Game Center Home
                         (
@@ -154,7 +154,7 @@ const GameCenter = (props) => {
                         screen == 1 && //Screen 1 is Chal Requests
                         (
                             <>
-                                <div className='req-list'>
+                                <div className='gcList'>
                                     {
                                         chalReqs.map((thisReq,rind) =>( //Rind = ReqIndex
                                             <Request req ={thisReq}
@@ -170,7 +170,7 @@ const GameCenter = (props) => {
                         screen == 2 && //Screen 2 is Highscores
                         (
                             <>
-                                <div className='req-list'>
+                                <div className='gcList'>
                                     {
                                         highscores.map(thisScore =>(
                                             <Score req ={thisScore}>
@@ -180,10 +180,10 @@ const GameCenter = (props) => {
                                 </div>
                             </>
                         ) ||
-                        screen == 3 &&
+                        screen == 3 && //Practice Game Screen
                         (
                             <>
-                            <div className='req-list'>
+                            <div className="gcList">
                                     {
                                         games.map(thisGame =>(
                                             <GameChoice 
@@ -195,12 +195,12 @@ const GameCenter = (props) => {
                                             </GameChoice>
                                         ))
                                     }
-                                </div>
+                            </div>
                             </>
                         ) ||
-                        screen == 4 &&
+                        screen == 4 && //Start Challenge Screen
                         (<>
-                            <div className='req-list'>
+                            <div className='gcList'>
                                 {
                                     games.map(thisGame =>(
                                         <GameChoice 
@@ -214,23 +214,24 @@ const GameCenter = (props) => {
                                 }
                             </div>
                         </>) ||
-                        screen == 5 &&
+                        screen == 5 && //Memory Game
                         (<>
                         <Memory endGame = {endGame}></Memory>
                         </>)
                         ||
-                        screen == 6 &&
+                        screen == 6 && //Simon Says Game
                         (<>
                         <SimonSays endGame = {endGame}></SimonSays>
                         </>)
                         }
+                        {
+                            (screen != 0 && screen < 5) &&
+                            <div className='gc-back' onClick={goBack}>
+                                Back To Game Center...
+                            </div>
+                        }
                 </div>
-                {
-                    (screen != 0 && screen < 5) &&
-                    <div className='gc-back' onClick={goBack}>
-                        Back To Game Center...
-                    </div>
-                }
+                
             </div>
             </>
     );

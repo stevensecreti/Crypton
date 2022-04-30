@@ -49,14 +49,16 @@ const Memory = (props) =>
     useInterval(decTimer, 100);
 
     return(
-        <>
-            <Grid grid = {grid} score = {score} setScore = {setScore} changeGrid = {changeGrid}
-            endGame = {props.endGame} timer = {timer}
-            ></Grid>
-            <div className = "mem-score">
+        <div className="gameMain">
+            <div className = "gameScore">
                 Score: {score}
             </div>
-        </>
+            <div className="gameContent">
+                <Grid grid = {grid} score = {score} setScore = {setScore} changeGrid = {changeGrid}
+                                    endGame = {props.endGame} timer = {timer}
+                ></Grid>
+            </div>
+        </div>
     );
 }
 
