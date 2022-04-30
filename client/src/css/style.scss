@@ -1,8 +1,20 @@
-@use 'node_modules/wt-frontend/build/global/theme' with ( $primary-color: #DEF2F1, $background-color: #2B7A78, //#d9d6cc,
-$navbar-background-color: #3AAFA9, //rgb(64, 69, 78),
+@use 'node_modules/wt-frontend/build/global/theme' with ( 
+$primary-color: #DEF2F1, 
+$background-color: #191919, 
+$navbar-background-color: #252525, //rgb(64, 69, 78),
 $sidebar-background-color: #2b2e36, //#353a44,
-$text-color: #17252A, $modal-background: rgb(64, 69, 78), $modal-section-padding: 24px, $modal-radius: 4px, $modal-border: 1px solid rgb(87, 93, 105), $modal-button-color: rgba(255, 255, 255, 0.7), $modal-button-hover: #e9edf0, $button-text-color: black, // other variable changes here
+$text-color: #F2F3F4, 
+$modal-background: #F2F3F4,
+$modal-section-padding: 24px, 
+$modal-radius: 4px, 
+$modal-border: 1px solid rgb(87, 93, 105), //No
+$modal-button-color: rgba(255, 255, 255, 0.7), //NO
+$modal-button-hover: purple, 
+$button-text-color: black,
 );
+
+@use "sass:color";
+
 @use 'node_modules/wt-frontend/build/global/wolfie' as *;
 @use 'node_modules/wt-frontend/build/global/components';
 :root {
@@ -20,7 +32,7 @@ $text-color: #17252A, $modal-background: rgb(64, 69, 78), $modal-section-padding
     --light-beige: #d9d6cc;
     --light-gray: #e9edf0;
     --bright-orange: #fca234;
-    --yellow-orange: #ffc800;
+    --yellow-orange: #ffc80e;
     --hover-light: rgba(255, 255, 255, 0.7);
     --deep-blue: rgb(64, 69, 78);
     --deep-blue-lighter: rgb(87, 93, 105);
@@ -33,32 +45,236 @@ $text-color: #17252A, $modal-background: rgb(64, 69, 78), $modal-section-padding
     --warm-black: #322d2d;
     --button-color: #990054;
     --button-hover-color:rgb(0, 169, 236);
+    
 }
 
-html,
-body {
-    margin: 0;
-    font-family: 'Monaco', monospace;
+$button-background-color: #252525; //Same as navbar background color
+$button-background-color-hover: #454545;
+$main-content-background-color: #29292B; //Might Change
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Yanone+Kaffeesatz:wght@200;300;350;400;500;600;700&display=swap');
+html{
+    font-family: 'Yanone Kaffeesatz', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: $background-color;
+    color: $text-color;
+    height:100%;
 }
 
-.qr-header{
+
+.screenContainer{
     background-color: $navbar-background-color;
+    border-radius: 0.5%;
+    border: 2px outset $text-color;
+}
+.screenHeader{
+    color: $text-color;
+    background-color: $navbar-background-color;
+    border-bottom: 1px outset $text-color;
+    font-size: 36px;
+    font-weight: 600;
+}
+.screenMain{
+    background-color: $main-content-background-color;
+    color: $text-color;
+}
+
+//Welcome Screen
+//Welcome Screen
+//Welcome Screen
+.welcome-text {
+    text-align: center;
+    color: $text-color;
+    font-weight: 500;
+}
+//Welcome Screen
+//Welcome Screen
+//Welcome Screen
+
+//MODAL STUFF
+//MODAL STUFF
+//MODAL STUFF
+.modal-header{
+    background-color: $button-background-color;
     color: $text-color;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 30px;
+    font-weight: 400;
 }
-
-.qr-main{
-    background-color: $primary-color;
+.modal-main{
+    background-color: $modal-background;
     border-width: 2px;
-    border-color: $navbar-background-color;
+    border-color: $button-background-color;
     border-style: solid;
     color: #262626;
 }
 
+.modal-button, .modal-button-1{
+    color: $text-color;
+    font-size: 27px;
+    font-weight: 400;
+    background-color: $button-background-color;
+    text-align: center;
+}
+.modal-button:hover, .modal-button-1:hover{
+    background-color: $button-background-color-hover;
+}
+
+//MODAL STUFF
+//MODAL STUFF
+//MODAL STUFF
+
+
+
+
+//NAVBAR STUFF
+//NAVBAR STUFF
+//NAVBAR STUFF
+.navbar-options {
+    text-align: center;
+    color: $primary-color;
+    font-weight: bold;
+}
+
+.menu-outer {
+    height: 15%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 1%;
+    display: flex;
+    /* Allow the centering to work */
+    background-color: $navbar-background-color;
+    border-radius: 1.5%;
+    border-style: outset;
+    border: 2px outset $text-color;
+}
+
+
+ul.horizontal-list {
+    margin: auto;
+    padding-inline-start: 0px;
+    list-style: none;
+    width: 75vw;
+    display: flex;
+    flex-direction: row;
+    row-gap: 0.5em;
+}
+
+ul.horizontal-list li {
+    text-align: center;
+    height: 100%;
+    width: 200%;
+    color: black;
+    
+}
+
+button.wbutton{
+    font-size: 1.5em;
+    //Set font weight to bolder than bold
+    font-weight: 500;
+}
+
+input{
+    background-color: $navbar-background-color;
+    color: #262626;
+}
+//NAVBAR STUFF
+//NAVBAR STUFF
+//NAVBAR STUFF
+
+
+//Market Styles
+//Market Styles
+//Market Styles
+.marketChart{
+    font-size: 30px;
+    background-color: #262626;
+}
+.marketGraph{//Stores Price Info
+    font-size: 2em;
+    font-weight: 300;
+    height: 100vh;
+}
+.marketGraphContainer{
+    background-color: #262626;
+}
+.marketCoinListItem{
+    cursor: pointer;
+    font-size: 2em;
+    background-color: $button-background-color;
+    border: 3px outset $main-content-background-color;
+    height: 50px;
+}
+//Market Styles
+//Market Styles
+//Market Styles
+
+
+
+
+/*PROFILE SCREEN*/
+.profileScreen{
+    background-color: $navbar-background-color;
+}
+.profileMain{
+}
+.profileInfo{
+    background-color: $background-color;
+}
+.profileCryptosHeld{}
+.profileCryptoList{}
+
+.profileFriends{
+    background-color: $background-color;
+}
+.profileFriendsList{}
+
+.friendsListHeader{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.listHeader{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+.profileListHeader{
+    background-color: $primary-color;
+    color: black;
+}
+
+.addFriendButton{
+    background-color: $text-color;
+}
+.addFriendButton:hover{
+    background-color: $background-color;
+}
+
+#addFriendIcon{
+    color: $primary-color;
+}
+
+.profileAddFriend{}
+
+.friend{
+    color: white;
+}
+
+
+//GAME STUFF
+//GAME STUFF
+//GAME STUFF
 .req-main,.score-main{
     background-color: $sidebar-background-color;
     color: $primary-color;
@@ -137,74 +353,60 @@ body {
     font-size: 1.5em;
     text-align: center;
 }
-
 .gc-back:hover{
     background-color: $primary-color;
     color: $sidebar-background-color;
     cursor: pointer;
 }
-
 .gc-back:active{
     border-width: 2px;
     border-style: solid;
     border-color: black;
 }
-
 .gc-pannel-l,.gc-pannel-r{
     background-color: $background-color;
 }
-
 .gc-button{
     background-color: $primary-color;
     color: $sidebar-background-color;
     text-align: center;
     font-size: 1.7em;
 }
-
 .gc-button:hover{
     background-color: $sidebar-background-color;
     color: $primary-color;
     cursor: pointer;
 }
-
 .gc-button:active
 {
     border-width: 2px;
     border-style: solid;
     border-color: black;
 }
-
 #gc-container{
     color: $text-color;
     background-color: $navbar-background-color;
 }
-
 .gc-main{
     background-color: $navbar-background-color;
 }
-
 .gc-header{
     background-color: $primary-color;
 }
-
 .gc-bal{
     background-color: $primary-color;
 }
-
 .gc-bal-button{
     color: green;
 }
-
 .gc-bal-button:hover{
     color: rgb(1, 226, 1);
     background-color: $background-color;
     cursor: pointer;
 }
-
 .gc-bal-button:active{
     background-color: $sidebar-background-color;
 }
-
 .chal-main{
     background-color: $primary-color;
     border-width: 2px;
@@ -212,28 +414,80 @@ body {
     border-style: solid;
     color: #262626;
 }
-
 .chal-button{
     background-color: $navbar-background-color;
     color: $text-color;
     font-size: 1.1em;
 }
-
 .chal-button:hover{
     background-color: $text-color;
     color: $primary-color;
     cursor: pointer;
 }
-
 .chal-button:active{
     border-width: 2px;
     border-style: solid;
     border-color: black;
 }
-
 .req-list{
     background-color: $background-color;
 }
+
+//Gaming Styles
+
+//Simon Says Game
+
+.ss-blue-tile{
+    background-color: blue;
+    width: 100%;
+    height:100%;
+    font-size: 2.5em;
+    text-align: center;
+}
+.ss-red-tile{
+    background-color: red;
+    width: 100%;
+    height:100%;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+//Memory Game
+.mem-cell{
+    background-color: $primary-color;
+    color: $sidebar-background-color;
+    width: 100%;
+    height:100%;
+    font-size: 2.5em;
+    text-align: center;
+}
+.mem-cell:hover{
+    background-color: $sidebar-background-color;
+    color: $primary-color;
+    cursor: pointer;
+}
+.mem-main{
+    width: 60%;
+    height: auto;
+    margin: auto;
+}
+.mem-grid{
+    display: grid;
+    background-color: #000;
+    grid-template-rows: repeat(3,1fr);
+    grid-template-columns: repeat(3,1fr);
+}
+.mem-score{
+    font-size: 3.5em;
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+
+
+//WALLET STUFF
+//WALLET STUFF
+//WALLET STUFF
 
 .wallet-div{
     background-color: $primary-color;
@@ -260,24 +514,27 @@ body {
     background-color: $navbar-background-color;
 }
 
-#wallet-button,#qr-button,#qr-button-l{
+#wallet-button{
     color: $text-color;
     font-size: 1.5em;
     background-color: $navbar-background-color;
     text-align: center;
 }
 
-#wallet-button:hover,#qr-button:hover,#qr-button-l:hover{
+#wallet-button:hover{
     background-color: $background-color;
     color: $primary-color;
     cursor: pointer;
 }
 
-#wallet-button:active,#qr-button:active,#qr-button-l:active{
+#wallet-button:active{
     border-width: 2px;
     border-style: solid;
     border-color: black;
 }
+
+
+
 
 #wallet-balance{
     font-size: 1.5em;
@@ -301,72 +558,7 @@ body {
     color: rgb(139, 2, 121);
 }
 
-.welcome-text {
-    text-align: center;
-    color: $text-color;
-}
 
-.navbar-options {
-    text-align: center;
-    color: $primary-color;
-    background-color: #00ff7f;
-    font-weight: 900;
-}
-
-.menu-outer {
-    height: 15%;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.table {
-    display: table;
-    /* Allow the centering to work */
-    margin-left: auto;
-    margin-right: auto;
-    background-color: $text-color;
-}
-
-ul.horizontal-list {
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    word-wrap: break-word;
-    word-break: break-all;
-    list-style: none;
-    background-color: $text-color;
-}
-
-ul.horizontal-list li {
-    display: inline;
-}
-
-input{
-    background-color: $navbar-background-color;
-    color: #262626;
-}
-
-
-.marketScreen{
-    background-color: $navbar-background-color;
-}
-.marketHeader{
-    color: $text-color;
-    background-color: $primary-color;
-    font-size: 36px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.marketChart{
-    font-size: 24px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: $primary-color;
-    background-color: #262626;
-}
-
-.marketGraphContainer{
-    background-color: $primary-color;
-}
 
 // ************************** ACCOUNT SETTINGS *******************************
 .account-div{
@@ -394,20 +586,20 @@ input{
     background-color: $navbar-background-color;
 }
 
-#account-button,#qr-button,#qr-button-l{
+#account-button{
     color: $text-color;
     font-size: 1.5em;
     background-color: $navbar-background-color;
     text-align: center;
 }
 
-#account-button:hover,#qr-button:hover,#qr-button-l:hover{
+#account-button:hover{
     background-color: $background-color;
     color: $primary-color;
     cursor: pointer;
 }
 
-#account-button:active,#qr-button:active,#qr-button-l:active{
+#account-button:active{
     border-width: 2px;
     border-style: solid;
     border-color: black;
@@ -560,20 +752,6 @@ input{
       height: 2em;
     }
   }
-  
-  /////////////////////////
-  // Body styling 🐾
-  /////////---------->
-  
-  body {
-    height: 100vh;
-    //background-color: rgb(25, 24, 21);
-    @include object-center;
-    
-    a:hover {
-      text-decoration: none;
-    }
-  }
 // ************************** PROFILE PICTURE ********************************
 
 @mixin banner-center {
@@ -633,114 +811,3 @@ input{
       }
   }
 // ************************** BANNER PICTURE ********************************
-
-//Gaming Styles
-
-//Simon Says Game
-
-.ss-blue-tile{
-    background-color: blue;
-    width: 100%;
-    height:100%;
-    font-size: 2.5em;
-    text-align: center;
-}
-
-.ss-red-tile{
-    background-color: red;
-    width: 100%;
-    height:100%;
-    font-size: 2.5em;
-    text-align: center;
-}
-
-//Memory Game
-
-.mem-cell{
-    background-color: $primary-color;
-    color: $sidebar-background-color;
-    width: 100%;
-    height:100%;
-    font-size: 2.5em;
-    text-align: center;
-}
-
-.mem-cell:hover{
-    background-color: $sidebar-background-color;
-    color: $primary-color;
-    cursor: pointer;
-}
-
-.mem-main{
-    width: 60%;
-    height: auto;
-    margin: auto;
-}
-.mem-grid{
-    display: grid;
-    background-color: #000;
-    grid-template-rows: repeat(3,1fr);
-    grid-template-columns: repeat(3,1fr);
-}
-
-.mem-score{
-    font-size: 3.5em;
-    text-align: center;
-    display: block;
-    margin: auto;
-}
-
-/*PROFILE SCREEN*/
-.profileScreen{
-    background-color: $navbar-background-color;
-}
-/*
-.profileHeader{
-    background-color: $primary-color;
-}
-*/
-.profileMain{
-}
-.profileInfo{
-    background-color: $background-color;
-}
-.profileCryptosHeld{}
-.profileCryptoList{}
-
-.profileFriends{
-    background-color: $background-color;
-}
-.profileFriendsList{}
-
-.friendsListHeader{
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.listHeader{
-    font-size: 22px;
-    font-weight: bold;
-}
-
-
-.profileListHeader{
-    background-color: $primary-color;
-    color: black;
-}
-
-.addFriendButton{
-    background-color: $text-color;
-}
-.addFriendButton:hover{
-    background-color: $background-color;
-}
-
-#addFriendIcon{
-    color: $primary-color;
-}
-
-.profileAddFriend{}
-
-.friend{
-    color: white;
-}

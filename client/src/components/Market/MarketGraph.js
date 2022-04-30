@@ -21,7 +21,7 @@ function MarketGraph({ price, data }) {
     }
     console.log("About to return market graph");
     return(
-        <div className="marketGraph">
+        <div className="marketCoinData">
             <h2>{`$${price}`}</h2>
 
             <div className="marketGraphContainer">

@@ -47,14 +47,14 @@ const ChangePassword = (props) => {
 	return (
         // Replace div with WModal
 
-		<WModal className="login-modal" cover={true} visible={true}>
-			<WMHeader className="qr-header" onClose={() => props.setShowChangePassword(false)}>
+		<WModal className="modal" cover={true} visible={true}>
+			<WMHeader className="modal-header" onClose={() => props.setShowChangePassword(false)}>
 				Change Password
 			</WMHeader>
 
 			{
 				loading ? <div />
-					: <WMMain className = "qr-main">
+					: <WMMain className = "modal-main">
 						<WRow className="modal-col-gap signup-modal">
 							<WCol size="6">
 								
@@ -69,7 +69,7 @@ const ChangePassword = (props) => {
 							className="modal-input" onBlur={updateInput} name="password" labelAnimation="up" 
 							barAnimation="solid" labelText="Password" wType="outlined" inputType="password" 
 						/>
-						<div id="qr-button" onClick={handleChangePassword}>
+						<div className="modal-button" onClick={handleChangePassword}>
 							Submit
 						</div>
 					</WMMain>

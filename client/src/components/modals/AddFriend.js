@@ -36,14 +36,13 @@ const AddFriend = (props) => {
 
     return(
 
-        <WModal className="login-modal" cover={true} visible={true}>
-        <WMHeader className="qr-header" onClose={() => props.setShowAddFriend(false)}>
+    <WModal className="modal" cover={true} visible={true}>
+        <WMHeader className="modal-header" onClose={() => props.setShowAddFriend(false)}>
             Send Friend Request
         </WMHeader>
-
         {
             loading ? <div />
-                : <WMMain className="qr-main">
+                : <WMMain className="modal-main">
 
                     <WInput className="modal-input" onBlur={updateInput} name='userName' labelAnimation="up" barAnimation="solid" labelText="Friend's Username" wType="outlined" inputType='text' />
 
@@ -53,14 +52,12 @@ const AddFriend = (props) => {
                         </div>
                             : <div className='modal-error'>&nbsp;</div>
                     }
-                    <div id="qr-button-l" onClick={handleAddFriend}>
+                    <div className="modal-button-1" onClick={handleAddFriend}>
                         Add
                     </div>
-                </WMMain>
-                
+                </WMMain>  
         }
     </WModal>
-
     );
 }
 

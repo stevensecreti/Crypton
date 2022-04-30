@@ -7,7 +7,7 @@ const BannerModal = (props) => {
 
     return(
         <>
-        <WModal className="login-modal" cover={true} visible={true}>
+        <WModal className="modal" cover={true} visible={true}>
         <WMHeader className="banner-header" onClose={() => props.setShowBanner()}>
 				Banner
 			</WMHeader>

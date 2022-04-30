@@ -23,10 +23,12 @@ const LoggedIn = (props) => {
         <div className = "table" >
             <ul className = "horizontal-list" >
                 <WNavItem hoverAnimation = "lighten" >
-                <WButton className = "navbar-options"
-                onClick = { props.setShowHome }
-                wType = "texted" >
-                Home </WButton> </WNavItem> 
+                    <WButton className = "navbar-options"
+                        onClick = { props.setShowHome }
+                        wType = "texted" >
+                            Home 
+                    </WButton> 
+                </WNavItem> 
                 <WNavItem hoverAnimation = "lighten" >
                 <WButton className = "navbar-options"
                 onClick = { props.setShowMarket }

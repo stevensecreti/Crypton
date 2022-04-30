@@ -1,28 +1,78 @@
 @use 'node_modules/wt-frontend/build/global/theme' with (
-    $primary-color: #ffc800,
-    $background-color: rgb(64, 69, 78),//#d9d6cc,
+    $primary-color: #454545, //Color for Model Inputs on Selection
+    $background-color: rgb(64, 69, 78),//#d9d6cc, #NOT HERE
     $navbar-background-color: #353a44,//rgb(64, 69, 78),
     $sidebar-background-color: #2b2e36,//#353a44,
     $text-color: #262626,
     $modal-background: rgb(64, 69, 78),
     $modal-section-padding: 24px,
     $modal-radius: 4px,
-    $modal-border: 1px solid rgb(87, 93, 105),
-    $modal-button-color: rgba(255,255,255, 0.7),
-    $modal-button-hover: #e9edf0,
+    $modal-border: 1px solid rgb(87, 93, 105), 
+    $modal-button-color: rgba(255,255,255, 0.2),
+    $modal-button-hover: #e9edf0,//Not here
     $button-text-color: black,
     // other variable changes here
 );
 
+@use "sass:color";
+
+$modal-button-background-color: #252525; //Same as navbar background color
+$modal-button-background-color-hover: #303030;
+
 @use 'node_modules/wt-frontend/build/global/wolfie' as *;
 @use 'node_modules/wt-frontend/build/global/components';
 
-#root {
-    height: 100vh;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Yanone+Kaffeesatz:wght@200;300;350;400;500;600;700&display=swap');
+
+body, #root {
+    //min-height: 100%;
+    display: inline;
+    margin: 0px;
+    min-height: 100vh;
+    //disallow overflow in y direction
+    overflow-y: hidden;
 }
 
-html {
-    height: 100%;
+.homescreen{
+    //Set height to maximum without y overflow
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    height: 15%;
+}
+.navbar{
+    //display: block;
+}
+.main{
+    height: 85%;
+}
+
+.screenContainer{
+    height: 95%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    z-index: -2;
+    /* Allow the centering to work */
+}
+.screenHeader{
+    height: 8vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.screenMain{
+    height: 92vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1%;
 }
 
 /* ----------------------------- Top-Level Setup ---------------------------- */
@@ -38,6 +88,9 @@ html {
     display: flex;
 }
 
+//WELCOMES
+//WELCOMES
+//WELCOMES
 .welcome-image{
     width: 584px;
     height: 490px;
@@ -45,38 +98,144 @@ html {
     margin-right: auto;
     padding-top: 50px;
 }
-
 .welcome-text{
     padding-top: 50px;
 }
+//WELCOMES
+//WELCOMES
+//WELCOMES
 
+//MODALS
+//MODALS
+//MODALS
+.modal{
+    width: 30vw;
+    border: none;
+}
+.modal-header{
+    border-bottom: 0.5px solid #575D69;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+.modal-main{
+    height: 120%;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.modal-input.outlined > fieldset{
+    position: relative;
+    width: 100%;
+    margin: 0;
+    border: 1px solid $modal-button-background-color;
+    border-radius: 4px;
+    padding: 0;
+    background: none;
+}
+.modal-input label{
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    color: $modal-button-background-color;
+    font-weight: 600;
+    font-size: 22px;
+}
+.modal-input.outlined > fieldset > input{
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 22px;
+    font-weight: 350;
+    color: #252525;
+}
+.modal-button, .modal-button-1{
+    width: 67%;
+    padding: 1%;
+    height: 25%;
+    margin: auto;
+    text-align: center;
+    //Set text in this div to be in the middle of the button
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+//MODALS
+//MODALS
+//MODALS
+
+//MARKET SCREEN
+//MARKET SCREEN
+//MARKET SCREEN
+
+.marketScreen{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    z-index: 0;
+}
+.marketMainContents{
+    display: flex;
+    height: 72vh;
+    width: 100%;
+    flex-direction: row;
+    column-gap: 2px; 
+    text-anchor: middle;
+    //Make all children align to the left of the container
+    justify-content: flex-start;
+}
+.marketCoinSelect{
+    margin-left: 0px;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5px;
+    overflow-y: scroll;
+}
+.marketCoinSelection{
+    margin-left: 0px;
+    width: 25vw;
+    text-align: center;
+    font-size: 24px;
+}
+.marketGraph{
+    margin-right: 0px;
+    width: 70%;
+    height: 100vh;
+}
+.marketGraphContainer{
+    height: 60vh;
+}
+//MARKET SCREEN
+//MARKET SCREEN
+//MARKET SCREEN
+
+
+
+//WALLET
+//WALLET
+//WALLET
 .wallet-pannel-left{
     width: 40%;
     float: left;
     display: inline;
     height: 100%;
 }
-
 .wallet-pannel-right{
     width: 60%;
     float: left;
     display: inline;
     height: 100%;
 }
-
 .qrcode{
     margin-left: 30%;
     margin-right: auto;
     margin-top: 5%;
     width:50%;
 }
-
 .wallet-div{
     width: 90%;
     height: 90%;
     margin: auto;
 }
-
 .wallet-header{
     text-align: center;
     font-size: 1.5vw;
@@ -86,12 +245,10 @@ html {
     margin: auto;
     display: block;
 }
-
 .wallet-main{
     display: flex;
     height: 600px;
 }
-
 #wallet-container{
     padding: 20px;
     width: 50%;
@@ -101,7 +258,47 @@ html {
     margin-left: auto;
     margin-right: auto;
 }
+#wallet-balance{
+    margin-right: 5%;
+    margin-top: 5%;
+    width: 45%;
+    height: 6%;
+    display: inline;
+    float: left;
+}
+#wallet-trend-pos, #wallet-trend-neg{
+    margin-top: 2%;
+    width: 45%;
+    height: 6%;
+    display: inline;
+    float: left;
+}
+.line-graph{
+    width: 30em;
+    height: 20em;
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
 
+}
+#wallet-button{
+    margin-top: 2%;
+    height: 6%;
+    margin-left: 5%;
+    width: 45%;
+    display: inline;
+    float: left;
+}
+//WALLET
+//WALLET
+//WALLET
+
+
+
+//GAMECENTER
+//GAMECENTER
+//GAMECENTER
 #gc-container{
     padding: 20px;
     width: 90%;
@@ -229,105 +426,9 @@ html {
     padding-top: 5%;
     text-align: center;
 }
-
-#wallet-balance{
-    margin-right: 5%;
-    margin-top: 5%;
-    width: 45%;
-    height: 6%;
-    display: inline;
-    float: left;
-}
-#wallet-trend-pos, #wallet-trend-neg{
-    margin-top: 2%;
-    width: 45%;
-    height: 6%;
-    display: inline;
-    float: left;
-}
-
-.line-graph{
-    width: 30em;
-    height: 20em;
-    margin-top: 15%;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-
-}
-
-#wallet-button{
-    margin-top: 2%;
-    height: 6%;
-    margin-left: 5%;
-    width: 45%;
-    display: inline;
-    float: left;
-}
-
-#qr-button-l{
-    width: 60%;
-    padding: 1%;
-    height: 25%;
-    margin: auto;
-    margin-top: 5%;
-    display: block;
-}
-
-#qr-button{
-    width: 60%;
-    padding: 1%;
-    height: 15%;
-    margin: auto;
-    margin-top: 5%;
-    display: block;
-}
-
-
-
-.marketScreen{
-    display: flex;
-    flex-direction: column;
-    width: 66%;
-    height: 80vh;
-    width: 100%;
-    height: 90vh;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    z-index: -101;
-}
-.marketHeader{
-    height: 7vh;
-    width: 100%;
-    vertical-align: middle;
-}
-.marketMain{
-    height: auto;
-}
-.marketMainContents{
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    height: 73vh;
-    color: #FFFFFF;
-    text-align: center;
-    text-anchor: middle;
-}
-.marketCoinSelect{
-    width: 25vh;
-    text-align: center;
-    font-size: 24px;
-}
-.marketGraph{
-    row-gap: 10px;
-    margin: 0 auto;
-    width: 90%;
-    height: 100vh;
-}
-.marketGraphContainer{
-    height: 60vh;
-}
+//GAMECENTER
+//GAMECENTER
+//GAMECENTER
 
 // ************** ACCOUNT SETTINGS **********************
 .account-pannel-left{
@@ -455,6 +556,9 @@ html {
 }
 // ************** ACCOUNT SETTINGS **********************
 
+//PROFILE SCREEN
+//PROFILE SCREEN
+//PROFILE SCREEN
 .profileScreen{
     display: flex;
     flex-direction: column;
@@ -465,7 +569,6 @@ html {
     text-align: center;
     z-index: -101;
 }
-
 .profileHeaderWrapper{
     position: relative;
     width: 100%;
@@ -493,7 +596,6 @@ html {
     height: inherit;
     width: inherit;
 }
-
 .profileMain{
     display: flex;
     flex-direction: row;
@@ -516,9 +618,6 @@ html {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-.profileCryptosHeld{}
-.profileCryptoList{}
-
 .profileFriends{
     display: flex;
     flex-direction: column;
@@ -529,9 +628,6 @@ html {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-.profileFriendsList{}
-
-
 .friendsListHeader{
     text-align: inherit;
     text-anchor: inherit;
@@ -542,7 +638,6 @@ html {
     margin-left: auto;
     margin-right: auto;
 }
-
 .listHeader{
     text-align: inherit;
     text-anchor: inherit;
@@ -553,16 +648,12 @@ html {
     margin-left: auto;
     margin-right: auto;
 }
-
 .profileListHeader{
     display: flex;
     flex-direction: row;
     column-gap: 10px;
     text-align: center;
 }
-.profileAddFriend{}
-
-
 .profileGames{
     display: flex;
     flex-direction: column;
@@ -573,11 +664,12 @@ html {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-
 .pfp{
     padding-top: 5px;
     width: 8%;
 }
-
+//PROFILE SCREEN
+//PROFILE SCREEN
+//PROFILE SCREEN
 
 

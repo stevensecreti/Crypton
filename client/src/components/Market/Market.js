@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import MarketGraph from './MarketGraph'
 import MarketDataFormatter from './MarketDataFormatter'
+import CoinSelection from './CoinSelection';
 
 const Market = (props) => {
     const[currencies, setCurrencies] = useState([]);
@@ -89,8 +90,8 @@ const Market = (props) => {
         };
     }, [pair]);
 
-    const handleSelect = (e) =>{
-        console.log("target val", e.target.value);
+    const handleSelect = (value) =>{
+        console.log("target val", value);
 
         let unsubMsg = {
             type: 'unsubscribe',
@@ -102,27 +103,28 @@ const Market = (props) => {
 
         ws.current.send(unsub);
 
-        setPair(e.target.value);
+        setPair(value);
     }
 
 
     return(
-        <div className="marketScreen">
-            <div className="marketHeader">
-                Market Data
-            </div>
-            <div className="marketMain">
-                <div className="marketMainContents">
-                    <div>
-                        {<select className="marketCoinSelect" name="currency" value={pair} onChange={handleSelect}>
+        <div className="screenContainer">
+            <div className="marketScreen">
+                <div className="screenHeader">
+                    Market Data
+                </div>
+                <div className="screenMain">
+                    <div className="marketMainContents">
+                        <div className="marketCoinSelect">
                             {currencies.map((cur, idx) => {
-                                return(<option key={idx} value={cur.id}>{cur.display_name}</option>);
-                            })}    
-                        </select>}
-                    </div>                    
-                    <div className="marketGraph">
-                        {dataRetrieved ? <MarketGraph price={price} data={pastData}/> :
-                        <text>Please Select a Token.</text>}
+                                return(<CoinSelection key={idx} value={cur.id} name={cur.display_name} handleSelect={handleSelect}/>);
+                                //return(<option key={idx} value={cur.id}>{cur.display_name}</option>);
+                            })}  
+                        </div>                    
+                        <div className="marketGraph">
+                            {dataRetrieved ? <MarketGraph price={price} data={pastData}/> :
+                            <text>Please Select a Token.</text>}
+                        </div>
                     </div>
                 </div>
             </div>

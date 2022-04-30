@@ -8,7 +8,7 @@ const Welcome = (props) =>{
                 <img src={cryptonLogo} alt="Crypton" className='welcome-image'></img>
             </div>
             <h1 className='welcome-text'>
-                Welcome to Crypton!
+                WELCOME TO CRYPTON
             </h1>   
         </div>  
     );

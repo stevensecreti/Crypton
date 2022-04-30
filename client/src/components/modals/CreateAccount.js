@@ -47,24 +47,24 @@ const CreateAccount = (props) => {
 	return (
         // Replace div with WModal
 
-		<WModal className="login-modal" cover={true} visible={true}>
-			<WMHeader className="qr-header" onClose={() => props.setShowCreate(false)}>
+		<WModal className="modal" cover={true} visible={true} animation="slide-fade-right">
+			<WMHeader className="modal-header" onClose={() => props.setShowCreate(false)}>
 				Sign Up
 			</WMHeader>
 
 			{
 				loading ? <div />
-					: <WMMain className = "qr-main">
+					: <WMMain className = "modal-main">
 						<WRow className="modal-col-gap signup-modal">
 							<WCol size="6">
 								<WInput 
-									className="" onBlur={updateInput} name="firstName" labelAnimation="up" 
+									className="modal-input" onBlur={updateInput} name="firstName" labelAnimation="up" 
 									barAnimation="solid" labelText="First Name" wType="outlined" inputType="text" 
 								/>
 							</WCol>
 							<WCol size="6">
 								<WInput 
-									className="" onBlur={updateInput} name="lastName" labelAnimation="up" 
+									className="modal-input" onBlur={updateInput} name="lastName" labelAnimation="up" 
 									barAnimation="solid" labelText="Last Name" wType="outlined" inputType="text" 
 								/>
 							</WCol>
@@ -80,7 +80,8 @@ const CreateAccount = (props) => {
 							className="modal-input" onBlur={updateInput} name="password" labelAnimation="up" 
 							barAnimation="solid" labelText="Password" wType="outlined" inputType="password" 
 						/>
-						<div id="qr-button" onClick={handleCreateAccount}>
+						<div className="modal-spacer">&nbsp;</div>
+						<div className="modal-button" onClick={handleCreateAccount}>
 							Submit
 						</div>
 					</WMMain>

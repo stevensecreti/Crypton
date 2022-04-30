@@ -39,14 +39,14 @@ const Update = (props) => {
 	return (
         // Replace div with WModal
 
-		<WModal className="login-modal" cover={true} visible={true}>
-			<WMHeader className="qr-header" onClose={() => props.setShowUpdate(false)}>
+		<WModal className="modal" cover={true} visible={true}>
+			<WMHeader className="modal-header" onClose={() => props.setShowUpdate(false)}>
 				Update Account Info
 			</WMHeader>
 
 			{
 				loading ? <div />
-					: <WMMain className = "qr-main">
+					: <WMMain className = "modal-main">
 						<WRow className="modal-col-gap signup-modal">
 							<WCol size="6">
 								<WInput 
@@ -72,7 +72,7 @@ const Update = (props) => {
 							className="modal-input" onBlur={updateInput} name="password" labelAnimation="up" 
 							barAnimation="solid" labelText="Password" wType="outlined" inputType="password" 
 						/>
-						<div id="qr-button" onClick={handleUpdateAccount}>
+						<div className="modal-button" onClick={handleUpdateAccount}>
 							Submit
 						</div>
 					</WMMain>

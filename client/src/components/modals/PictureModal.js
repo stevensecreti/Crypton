@@ -7,7 +7,7 @@ const PictureModal = (props) => {
 
     return(
         <>
-        <WModal className="login-modal" cover={true} visible={true}>
+        <WModal className="modal" cover={true} visible={true}>
         <WMHeader className="picture-header" onClose={() => props.setShowPicture()}>
 				Profile Picture
 			</WMHeader>
@@ -18,7 +18,7 @@ const PictureModal = (props) => {
             </div>
 
             <div id="picture-button">
-            Change Profile Picture
+                Change Profile Picture
             </div>
             </WMMain>
         </WModal>

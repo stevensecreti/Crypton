@@ -36,14 +36,14 @@ const Login = (props) => {
 	return (
         // Replace div with WModal
 
-		<WModal className="login-modal" cover={true} visible={true}>
-			<WMHeader className="qr-header" onClose={() => props.setShowLogin(false)}>
+		<WModal className="modal" cover={true} visible={true} animation="slide-fade-left">
+			<WMHeader className="modal-header" onClose={() => props.setShowLogin(false)}>
 				Login
 			</WMHeader>
 
 			{
 				loading ? <div />
-					: <WMMain className="qr-main">
+					: <WMMain className="modal-main">
 
 						<WInput className="modal-input" onBlur={updateInput} name='email' labelAnimation="up" barAnimation="solid" labelText="Email Address" wType="outlined" inputType='text' />
 						<div className="modal-spacer">&nbsp;</div>
@@ -55,8 +55,8 @@ const Login = (props) => {
 							</div>
 								: <div className='modal-error'>&nbsp;</div>
 						}
-						<div id="qr-button-l" onClick={handleLogin}>
-							Login
+						<div className="modal-button-1" onClick={handleLogin}>
+							Submit
 						</div>
 					</WMMain>
 					

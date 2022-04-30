@@ -7,11 +7,11 @@ const QRCodeModal = (code) => {
     console.log(code['QRCode'][0].show);
     return(
         <>
-        <WModal className="login-modal" cover={true} visible={true}>
-        <WMHeader className="qr-header" onClose={code['QRCode'][0].show}>
+        <WModal className="modal" cover={true} visible={true}>
+        <WMHeader className="modal-header" onClose={code['QRCode'][0].show}>
 				QRCode
 			</WMHeader>
-            <WMMain className="qr-main">
+            <WMMain className="modal-main">
                 <p text-align="center">{code['QRCode'][0].account}</p>
             <QRCode className='qrcode' value={code['QRCode'][0].account} size={180}/>
             {/* <div id="qr-button">

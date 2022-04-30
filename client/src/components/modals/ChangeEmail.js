@@ -46,14 +46,14 @@ const ChangeEmail = (props) => {
 	return (
         // Replace div with WModal
 
-		<WModal className="login-modal" cover={true} visible={true}>
-			<WMHeader className="qr-header" onClose={() => props.setShowChangeEmail(false)}>
+		<WModal className="modal" cover={true} visible={true}>
+			<WMHeader className="modal-header" onClose={() => props.setShowChangeEmail(false)}>
 				Change Email
 			</WMHeader>
 
 			{
 				loading ? <div />
-					: <WMMain className = "qr-main">
+					: <WMMain className = "modal-main">
 						<WRow className="modal-col-gap signup-modal">
 							<WCol size="6">
 								
@@ -68,7 +68,7 @@ const ChangeEmail = (props) => {
 						/>
 						<div className="modal-spacer">&nbsp;</div>
 						
-						<div id="qr-button" onClick={handleChangeEmail}>
+						<div className="modal-button" onClick={handleChangeEmail}>
 							Submit
 						</div>
 					</WMMain>

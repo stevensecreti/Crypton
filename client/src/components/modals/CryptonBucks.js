@@ -87,14 +87,14 @@ const CryptonBucks = (props) => {
 
     return(
 
-        <WModal className="login-modal" cover={true} visible={true}>
-        <WMHeader className="qr-header" onClose={() => props.setShowCryptonBucks()}>
+        <WModal className="modal" cover={true} visible={true}>
+        <WMHeader className="modal-header" onClose={() => props.setShowCryptonBucks()}>
             Add CryptonBucks
         </WMHeader>
 
         {
             loading ? <div />
-                : <WMMain className="qr-main">
+                : <WMMain className="modal-main">
 
                     <WInput className="modal-input" onChange={updateInput} name='numCryptonBucks' labelAnimation="up" barAnimation="solid" labelText="Amount of CryptonBucks" wType="outlined" inputType='text' />
                     {
@@ -106,7 +106,7 @@ const CryptonBucks = (props) => {
                                 </div> :
                                 <div>Loading...</div>
                     }
-                    <div id="qr-button-l" onClick={handleAddAlgorand}>
+                    <div className="modal-button-l" onClick={handleAddAlgorand}>
                         Add
                     </div>
                 </WMMain>

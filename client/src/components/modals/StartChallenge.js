@@ -54,8 +54,8 @@ const StartChallenge = (props) =>{
     }
 
     return(<>
-        <WModal className="login-modal" cover={true} visible={true}>
-        <WMHeader className="qr-header" onClose={() => props.setShowStartChallenge()}>
+        <WModal className="modal" cover={true} visible={true}>
+        <WMHeader className="modal-header" onClose={() => props.setShowStartChallenge()}>
 				{gname}
 			</WMHeader>
             <WMMain className="chal-main">

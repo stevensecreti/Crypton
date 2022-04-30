@@ -47,14 +47,14 @@ const ChangeName = (props) => {
 	return (
         // Replace div with WModal
 
-		<WModal className="login-modal" cover={true} visible={true}>
-			<WMHeader className="qr-header" onClose={() => props.setShowChangeName(false)}>
+		<WModal className="modal" cover={true} visible={true}>
+			<WMHeader className="modal-header" onClose={() => props.setShowChangeName(false)}>
 				Change Name
 			</WMHeader>
 
 			{
 				loading ? <div />
-					: <WMMain className = "qr-main">
+					: <WMMain className = "modal-main">
 						<WRow className="modal-col-gap signup-modal">
 							<WCol size="6">
 								<WInput 
@@ -74,7 +74,7 @@ const ChangeName = (props) => {
 
 						<div className="modal-spacer">&nbsp;</div>
 						
-						<div id="qr-button" onClick={handleChangeName}>
+						<div className="modal-button" onClick={handleChangeName}>
 							Submit
 						</div>
 					</WMMain>
