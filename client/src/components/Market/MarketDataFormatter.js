@@ -4,8 +4,8 @@ export const MarketDataFormatter = (data) =>{
         datasets: [{
             label: "Price ($)",
             data: [],
-            backgroundColor: "rgb(42, 122, 120, 0.8)",
-            borderColor: "rgba(42, 122, 120, 0.2)",
+            backgroundColor: "rgba(240, 255, 255, 0.9)",
+            borderColor: "rgba(240, 255, 255, 0.5)",
             fill: false
         }]
     };

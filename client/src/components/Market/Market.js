@@ -122,7 +122,7 @@ const Market = (props) => {
                             })}  
                         </div>                    
                         <div className="marketGraph">
-                            {dataRetrieved ? <MarketGraph price={price} data={pastData}/> :
+                            {dataRetrieved ? <MarketGraph price={price} data={pastData} pair={pair}/> :
                             <text>Please Select a Token.</text>}
                         </div>
                     </div>

@@ -72,7 +72,6 @@ body, #root {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 1%;
 }
 
 /* ----------------------------- Top-Level Setup ---------------------------- */
@@ -174,7 +173,7 @@ body, #root {
 }
 .marketMainContents{
     display: flex;
-    height: 72vh;
+    height: 74vh;
     width: 100%;
     flex-direction: row;
     column-gap: 2px; 
@@ -184,22 +183,24 @@ body, #root {
 }
 .marketCoinSelect{
     margin-left: 0px;
+    margin-bottom: 0px;
     width: 25vw;
     display: flex;
     flex-direction: column;
     row-gap: 2.5px;
     overflow-y: scroll;
+
 }
 .marketCoinSelection{
-    margin-left: 0px;
     width: 25vw;
     text-align: center;
     font-size: 24px;
 }
 .marketGraph{
-    margin-right: 0px;
+    margin: auto;
     width: 70%;
     height: 100vh;
+    padding-top: 1%;
 }
 .marketGraphContainer{
     height: 60vh;

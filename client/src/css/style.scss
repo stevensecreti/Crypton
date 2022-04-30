@@ -191,6 +191,25 @@ input{
 //NAVBAR STUFF
 //NAVBAR STUFF
 
+//SCROLLBAR STYLES
+::-webkit-scrollbar {
+    width: 20px;
+}
+    
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #202020; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:rgb(54, 56, 58); 
+}
+//SCROLLBAR STYLES
 
 //Market Styles
 //Market Styles
@@ -213,6 +232,9 @@ input{
     background-color: $button-background-color;
     border: 3px outset $main-content-background-color;
     height: 50px;
+}
+.marketCoinListItem:hover{
+    background-color: $button-background-color-hover;
 }
 //Market Styles
 //Market Styles
