@@ -37,6 +37,7 @@ const Memory = (props) =>
 
     const decTimer = () =>
     {
+        console.log(timer);
         setTimer(timer-1);
     }
 
@@ -44,9 +45,10 @@ const Memory = (props) =>
     {
         setInit(false);
         changeGrid();
+        setTimer(2*timeDelay);
     }
 
-    useInterval(decTimer, 1000);
+    useInterval(decTimer, 100);
 
     return(
         <div className="gameMain">

@@ -7,6 +7,10 @@ import SimonSays from './Games/SimonSays/SimonSays';
 import Snake from "./Games/Snake/Snake";
 import Button from '@mui/material/Button';
 import TetrisGame from './Games/Tetris/Tetris';
+import icon1 from '../../assets/images/stopwatch.png';
+import icon2 from '../../assets/images/brain.png';
+import icon3 from '../../assets/images/snake.png';
+import icon4 from '../../assets/images/tetris.png';
 import { use } from 'passport';
 
 const GameCenter = (props) => {
@@ -14,6 +18,8 @@ const GameCenter = (props) => {
     const gcBalance = props.gcBalance != undefined ? props.gcBalance : 0;//Users KryptonBuck balance
     const highscores = props.highscores;//Users list of game highscores
     const games = ["Reaction","Memory","Snake","Tetris"];//List of playable games
+    const gameDescs = ["Click the square with the X before its too late!","Memorize the blue squares and click them accordingly.","Eat as many apples as possible but don't get too long!","Fit each piece together like a puzzle without hitting the top."];
+    const gameIcons = [icon1,icon2,icon3,icon4];
     const [screen, setScreen] = useState(0);//Current game center screen index
     const [screenName, setScreenName] = useState("Game Center");//Name of current game center screen
     const [isChal, setIsChal] = useState(false);//Flag for if current game is a challenge
@@ -193,6 +199,8 @@ const GameCenter = (props) => {
                                             playGame = {playGame}
                                             isChal = {false} //If game is a challenge
                                             chalGame = {chalGame}
+                                            desc = {gameDescs[games.indexOf(thisGame)]}
+                                            imgLink = {gameIcons[games.indexOf(thisGame)]}
                                             >
                                             </GameChoice>
                                         ))

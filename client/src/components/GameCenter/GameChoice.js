@@ -4,6 +4,8 @@ const GameChoice = (props) =>
 {
     const game = props.req;
     const isChal = props.isChal;
+    const desc = props.desc;
+    const imgLink = props.imgLink;
     return(
     <>
     {
@@ -20,13 +22,13 @@ const GameChoice = (props) =>
         <div className='gameChoice'>
             <div className='gameChoiceInfo'>
                 <div className="gameChoicePicture">     
-                    <img className="gameChoicePic" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpngimg.com%2Fuploads%2Fstopwatch%2Fstopwatch_PNG91.png&f=1&nofb=1"/>
+                    <img className="gameChoicePic" src={imgLink}/>
                 </div>
                 <div className='gameChoiceName'>
                     {game}
                 </div>
                 <div className="gameChoiceDescription">
-                    Click the square with the X to test your reaction times!
+                    {desc}
                 </div>
             </div>
             <div className='gamePlayButton' onClick={() => props.playGame(game)}>

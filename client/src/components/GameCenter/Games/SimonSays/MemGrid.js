@@ -64,11 +64,11 @@ export default MemGrid;
         {
             !showColors && !isClicked ?
             <div className='mem-cell' onClick = {() => handleClick(cell,row,col)}>
-                X
+                -
             </div>
             :
             <div className={cell}>
-                X
+                -
             </div>
         }
     </>
