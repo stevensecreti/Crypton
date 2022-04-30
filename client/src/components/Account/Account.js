@@ -88,56 +88,46 @@ const Account = (props) => {
 
 
     return(
-        <>
-            <div id="account-container">
-                <div className="account-header">
-                    Account Settings
-                </div>
-                <div className="account-main">
-                        <ul className='account-div'>
-
-                            <div className="banner-pic">
-                              <label className="banner-label" htmlFor="banner-file">
-                                <span className="glyphicon glyphicon-camera"></span>
-                                <span>Change Banner</span>
-                              </label>
-                                <input id="banner-file" type="file" onChange={uploadBanner}/>
-                                <img src={banner} id="banner-output" width="500" />
-                            </div>
-
-                            <div className="modal-spacer">&nbsp;</div>
-
-                            <div id="account-info" onClick={toggleChangeName}>
-                                Display Name: {props.displayName}
-                            </div>
-
-                            <div id="account-info" onClick={toggleChangeEmail}>
-                                Current Email: {props.userEmail}
-                            </div>
-
-                            <div id="account-info" onClick={toggleChangePassword}>
-                                Current Password: ****
-                            </div>
-
-                            <div className="modal-spacer">&nbsp;</div>
-                            <div className="modal-spacer">&nbsp;</div>
-                            <div className="modal-spacer">&nbsp;</div>
-                            <div className="modal-spacer">&nbsp;</div>
-                            <div className="modal-spacer">&nbsp;</div>
-
-                            <div className="profile-pic">
-                              <label className="-label" htmlFor="file">
-                                <span className="glyphicon glyphicon-camera"></span>
-                                <span>Change Profile Picture</span>
-                              </label>
-                                <input id="file" type="file" accept="image/*" onChange={uploadPFP}/>
-                                <img src={pfp} id="output" width="200" />
-                            </div>
-
-                        </ul>
-                </div>
+      <div className="screenContainer">
+        <div className="screenHeader">
+            Account Settings
+        </div>
+        <div className="screenMain" id="accountMain">
+          <div className="banner-pic">
+            <label className="banner-label" htmlFor="banner-file">
+              <span className="glyphicon glyphicon-camera"></span>
+              <span>Change Banner</span>
+            </label>
+            <input id="banner-file" type="file" onChange={uploadBanner}/>
+            <img src={banner} id="banner-output" width="500" />
+          </div>
+          <div className="accountInfoButtons">
+            <div className="accountInfoRow">
+              <div className="profile-pic">
+                <label className="-label" htmlFor="file">
+                  <span className="glyphicon glyphicon-camera"></span>
+                  <span>Change Profile Picture</span>
+                </label>
+                <input id="file" type="file" accept="image/*" onChange={uploadPFP}/>
+                <img src={pfp} id="output" width="200" />
+              </div>  
+              <div className="accountInfo" id="displayName" onClick={toggleChangeName}>
+                Display Name: {props.displayName}
+              </div>
             </div>
-        </>
+            <div className="accountInfo" onClick={toggleChangeEmail}>
+                Current Email: {props.userEmail}
+            </div>
+            <div className="accountInfo" onClick={toggleChangePassword}>
+                Current Password: ****
+            </div>
+          </div>
+          
+          
+            
+        </div>
+      </div>
+     
     );
 }
 export default Account;

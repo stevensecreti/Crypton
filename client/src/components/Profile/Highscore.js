@@ -7,7 +7,7 @@ const Highscore = (props) => {
     const game = hs[0];
     const score = hs[1];
     return(
-        <div className="highscore">
+        <div className="profileListItem">
            <div className="game">{game}: {score}</div>
         </div>
     );
