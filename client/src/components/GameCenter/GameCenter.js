@@ -4,14 +4,16 @@ import Score from './Score';
 import GameChoice from './GameChoice';
 import Memory from './Games/Memory/Memory';
 import SimonSays from './Games/SimonSays/SimonSays';
+import Snake from "./Games/Snake/Snake";
 import Button from '@mui/material/Button';
+import TetrisGame from './Games/Tetris/Tetris';
 import { use } from 'passport';
 
 const GameCenter = (props) => {
     const chalReqs = props.challenges;//Users challenge requests
     const gcBalance = props.gcBalance != undefined ? props.gcBalance : 0;//Users KryptonBuck balance
     const highscores = props.highscores;//Users list of game highscores
-    const games = ["Reaction","Memory"];//List of playable games
+    const games = ["Reaction","Memory","Snake","Tetris"];//List of playable games
     const [screen, setScreen] = useState(0);//Current game center screen index
     const [screenName, setScreenName] = useState("Game Center");//Name of current game center screen
     const [isChal, setIsChal] = useState(false);//Flag for if current game is a challenge
@@ -222,6 +224,16 @@ const GameCenter = (props) => {
                         screen == 6 && //Simon Says Game
                         (<>
                         <SimonSays endGame = {endGame}></SimonSays>
+                        </>)
+                        ||
+                        screen == 7 && //Snake
+                        (<>
+                        <Snake endGame = {endGame}></Snake>
+                        </>)
+                        ||
+                        screen == 8 && //Snake
+                        (<>
+                        <TetrisGame endGame = {endGame}></TetrisGame>
                         </>)
                         }
                         {
