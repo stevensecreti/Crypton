@@ -4,24 +4,26 @@ import Score from './Score';
 import GameChoice from './GameChoice';
 import Memory from './Games/Memory/Memory';
 import SimonSays from './Games/SimonSays/SimonSays';
+import Snake from "./Games/Snake/Snake";
 import Button from '@mui/material/Button';
+import TetrisGame from './Games/Tetris/Tetris';
 import { use } from 'passport';
 
 const GameCenter = (props) => {
-    const chalReqs = props.challenges;
-    const gcBalance = props.gcBalance != undefined ? props.gcBalance : 0;
-    const highscores = props.highscores;
-    const games = ["Reaction","Simon Says"];
-    const [screen, setScreen] = useState(0);
-    const [screenName, setScreenName] = useState("Game Center");
-    const [isChal, setIsChal] = useState(false);
-    const [chalInfo, setChalInfo] = useState(""); //Info about the challenge
-
+    const chalReqs = props.challenges;//Users challenge requests
+    const gcBalance = props.gcBalance != undefined ? props.gcBalance : 0;//Users KryptonBuck balance
+    const highscores = props.highscores;//Users list of game highscores
+    const games = ["Reaction","Memory","Snake","Tetris"];//List of playable games
+    const [screen, setScreen] = useState(0);//Current game center screen index
+    const [screenName, setScreenName] = useState("Game Center");//Name of current game center screen
+    const [isChal, setIsChal] = useState(false);//Flag for if current game is a challenge
+    const [chalInfo, setChalInfo] = useState("");//Info of challenge currently being played
+    //Open challenge modal
     const chalGame = (gameName) =>
     {
         props.setShowStartChallenge(gameName);
     }
-
+    //Accept challenge from request list, start game, and check for user wager funds
     const accChal = async (gameName,chal) =>
     {
         let chalAmt = parseInt(chal.split(",")[2].split(" ")[0]);
@@ -37,7 +39,7 @@ const GameCenter = (props) => {
             alert("Insufficient funds");
         }
     }
-
+    //Decide winner of challenge and give out winnings accordingly
     const endChal = async (game,score) =>
     {
         let chalAmt = parseInt(chalInfo.split(",")[2].split(" ")[0]);
@@ -50,44 +52,44 @@ const GameCenter = (props) => {
         setIsChal(false);
         return win;
     }
-
+    //Start a game
     const playGame = (gameName) =>
     {
         const gameInd = games.indexOf(gameName)+5;
         setScreen(gameInd);
         setScreenName(gameName);
     }
-
+    //Go to start challenges screen
     const startChallenge = () =>
     {
         setScreen(4);
         setScreenName("Start Challenge");
     }
-
+    //Go to challenge list screen
     const acceptChallenge = () =>
     {
         setScreen(1);
         setScreenName("Challenges");
     }
-
+    //Go to highscores screen
     const viewHighscores = () =>
     {
         setScreen(2);
         setScreenName("Highscores");
     }
-
+    //Go to playable games screen 
     const practiceGame = () =>
     {
         setScreen(3);
         setScreenName("Practice");
     }
-
+    //Go back to main game center screen
     const goBack = () =>
     {
         setScreen(0);
         setScreenName("Game Center");
     }
-
+    //Update highscores after game and alert player if challenge mode enabled
     const endGame = async (game,score) =>
     {
         if(isChal)
@@ -151,7 +153,7 @@ const GameCenter = (props) => {
                                 </div>
                             </div>
                         ) ||
-                        screen == 1 && //Screen 1 is Chal Requests
+                        screen == 1 && //Screen 1 is Challenge Requests
                         (
                             <>
                                 <div className='gcList'>
@@ -222,6 +224,16 @@ const GameCenter = (props) => {
                         screen == 6 && //Simon Says Game
                         (<>
                         <SimonSays endGame = {endGame}></SimonSays>
+                        </>)
+                        ||
+                        screen == 7 && //Snake
+                        (<>
+                        <Snake endGame = {endGame}></Snake>
+                        </>)
+                        ||
+                        screen == 8 && //Snake
+                        (<>
+                        <TetrisGame endGame = {endGame}></TetrisGame>
                         </>)
                         }
                         {
