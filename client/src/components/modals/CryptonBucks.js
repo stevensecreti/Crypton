@@ -5,11 +5,16 @@ import { useMutation }    	from '@apollo/client';
 import { WModal, WMHeader, WMMain, WMFooter, WButton, WInput } from 'wt-frontend';
 import { parseValue } from 'graphql';
 import { display } from '@mui/system';
-
+import Wallet from '../Wallet/Wallet';
+import { loadStdlib } from '@reach-sh/stdlib'
+const reach = loadStdlib("ALGO")
 const CryptonBucks = (props) => {
     const [numCryptonBucks, setNumCryptonBucks] = useState(0);
     const [priceUSD, setPriceUSD] = useState('0.00');
     const [amountAlgo, setAmountAlgo] = useState('0.00');
+    const sender = useRef()
+    const receiverAddress = useRef()
+    const currentAlgo = useRef()
     const [loading, toggleLoading] = useState(false);
 	const [showErr, displayErrorMsg] = useState(false);
 	const errorMsg = "Error. Transaction Cancelled.";
@@ -76,9 +81,25 @@ const CryptonBucks = (props) => {
 	}
 
     const handleAddAlgorand = async (e) => {
+        let numAlgo = parseFloat(amountAlgo);
         if(priceUSD != "0.00"){
-            let numAlgo = parseFloat(amountAlgo);
-            props.addCryptonBucks(numCryptonBucks, numAlgo);
+            if(props.account == '' || props.balance == 0 ||  (props.balance - numAlgo)< 0){
+                window.alert('Please check the wallet status and retry');
+                return false;
+            }
+            try{
+                const receiver = await reach.connectAccount({
+                     addr: "PGA2GVPRKN34PXD26YM6H35VZCCFXFHFVJYLP2FGNQL3R24JM2M63KIV7E"
+                 })
+                 currentAlgo.current = numAlgo;
+                 let txt = await reach.transfer(props.account.current, receiver, reach.parseCurrency(currentAlgo.current));
+                 props.addCryptonBucks(numCryptonBucks, numAlgo);
+                 window.alert('Purchase Complete');
+                 props.setShowCryptonBucks();
+            }
+            catch(err){
+                console.log(err)
+            }
         }
         else{
             alert("Please wait until the price is updated.");

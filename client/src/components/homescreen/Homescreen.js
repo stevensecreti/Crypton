@@ -58,6 +58,10 @@ const Homescreen = (props) => {
             show: false,
             account: ""
         }]);
+
+        const balance = useRef();
+        const account = useRef();
+
         const [temp, setTemp] = useState([])
         const [UpdateHighscore] = useMutation(mutations.UPDATE_HIGHSCORE);
         const [RemoveFriend] = useMutation(mutations.REMOVE_FRIEND);
@@ -250,6 +254,15 @@ const Homescreen = (props) => {
           setQRCode(QRCode);
         };
 
+        const setDefaultAccount = (defaultAccount) => {
+            account.current = defaultAccount.current;
+        }
+
+        const setCurrentBalance = async (CurrentBalance) => {
+            balance.current = CurrentBalance;
+            console.log("Balance", typeof(balance.current))
+        }
+
         const setShowBanner = () => {
             toggleShowBanner(!showBanner);
         };
@@ -364,53 +377,52 @@ const Homescreen = (props) => {
                 <div className = "main" >{
                     auth ?
                     <MainContents
-                        setShowWallet={setShowWallet}
-                        setShowMarket={setShowMarket}
-                        setShowGaming={setShowGaming}
-                        showHome={showHome} 
-                        showWallet = {showWallet}
-                        showGaming = {showGaming}
-                        showMarket = {showMarket}
-                        showAccount = {showAccount}
-                        showProfile = {showProfile}
-                        setShowQRCode = {setShowQRCode}
-                        QRCode = {QRCode}
-                        setShowBanner = {setShowBanner}
-                        setShowPicture = {setShowPicture}
-                        setShowChangeName = {setShowChangeName}
-                        setShowChangeEmail = {setShowChangeEmail}
-                        setShowChangePassword = {setShowChangePassword}
-                        balance = {userBalance}
-                        buyingPower = {userBuyingPower}
-                        balanceData = {userBalanceData}
-                        walletHex = {userWalletHex}
-                        addFriend={setShowAddFriend}
-                        deleteFriend={handleDeleteFriend}
-                        acceptFriendRequest={handleAcceptFriendRequest}
-                        declineFriendRequest={handleDeclineFriendRequest}
-                        updateHighscore={updateHighscores}
-                        banner = {banner}
-                        updateBanner={updateBanner}
-                        pfp = {pfp}
-                        updatePfp={updatePfp}
-                        friendsList={friends}
-                        friendRequests={friendRequests}
-                        highscores={highscores}
-                        challenges={challenges}
-                        setShowStartChallenge = {setShowStartChallenge}
-                        declineChallenge = {declineChallenge}
-                        displayName = {displayName}
-                        userEmail={email}
-                        user = {props.user}
-                        getChalScore = {getChallengeScore}
-                        viewFriend={viewFriend}
-                        showFriendProfile={showFriendProfile}
-                        setShowProfile={setShowProfile}
-                        friendProfile={friendProfile}
-                        userName={userName}
-                        showCryptoBucks={setShowCryptonBucks}
-                        gcBalance = {gcBalance}
-                        updateCryptonBucks={updateCryptonBucks}
+                    showWallet = {showWallet}
+                    showGaming = {showGaming}
+                    showMarket = {showMarket}
+                    showAccount = {showAccount}
+                    showProfile = {showProfile}
+                    setShowQRCode = {setShowQRCode}
+                    addCryptonBucks = {addCryptonBucks}
+                    QRCode = {QRCode}
+                    setShowBanner = {setShowBanner}
+                    setShowPicture = {setShowPicture}
+                    setShowChangeName = {setShowChangeName}
+                    setShowChangeEmail = {setShowChangeEmail}
+                    setShowChangePassword = {setShowChangePassword}
+                    balance = {userBalance}
+                    buyingPower = {userBuyingPower}
+                    balanceData = {userBalanceData}
+                    walletHex = {userWalletHex}
+                    addFriend={setShowAddFriend}
+                    deleteFriend={handleDeleteFriend}
+                    acceptFriendRequest={handleAcceptFriendRequest}
+                    declineFriendRequest={handleDeclineFriendRequest}
+                    updateHighscore={updateHighscores}
+                    banner = {banner}
+                    updateBanner={updateBanner}
+                    pfp = {pfp}
+                    updatePfp={updatePfp}
+                    friendsList={friends}
+                    friendRequests={friendRequests}
+                    highscores={highscores}
+                    challenges={challenges}
+                    setShowStartChallenge = {setShowStartChallenge}
+                    declineChallenge = {declineChallenge}
+                    displayName = {displayName}
+                    userEmail={email}
+                    user = {props.user}
+                    getChalScore = {getChallengeScore}
+                    viewFriend={viewFriend}
+                    showFriendProfile={showFriendProfile}
+                    setShowProfile={setShowProfile}
+                    friendProfile={friendProfile}
+                    userName={userName}
+                    showCryptoBucks={setShowCryptonBucks}
+                    gcBalance = {gcBalance}
+                    updateCryptonBucks={updateCryptonBucks}
+                    setCurrentBalance = {setCurrentBalance}
+                    setDefaultAccount = {setDefaultAccount}
                     />
                     :
                     <Welcome />
@@ -426,7 +438,7 @@ const Homescreen = (props) => {
                 {showChangePassword && (<ChangePassword setShowChangePassword = {setShowChangePassword} ></ChangePassword>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userName={userName}></AddFriend>)}
                 {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends} gname = {chalGameName} sendChal = {sendChallenge} updateCryptonBucks={updateCryptonBucks}></StartChallenge>)}
-                {showCryptonBucks && (<CryptonBucks setShowCryptonBucks = {setShowCryptonBucks} addCryptonBucks={addCryptonBucks} ></CryptonBucks>)}
+                {showCryptonBucks && (<CryptonBucks setShowCryptonBucks = {setShowCryptonBucks} addCryptonBucks={addCryptonBucks} account = {account}></CryptonBucks>)}
             </div>
         );
 };

@@ -38,6 +38,8 @@ const MainContents = (props) => {
                 buyingPower = {props.buyingPower}
                 balanceData = {props.balanceData}
                 walletHex = {props.walletHex}
+                setDefaultAccount = {props.setDefaultAccount}
+                setCurrentBalance = {props.setCurrentBalance}
             ></Wallet>) ||
             props.showMarket &&
             (<Market 
