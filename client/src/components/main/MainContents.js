@@ -96,6 +96,9 @@ const MainContents = (props) => {
             </GameCenter>) ||
             props.showHome && (<Home
                 userName = {props.userName}
+                setShowMarket={props.setShowMarket}
+                setShowGaming={props.setShowGaming}
+                setShowWallet={props.setShowWallet}
             >
 
             </Home>)

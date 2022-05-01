@@ -364,6 +364,9 @@ const Homescreen = (props) => {
                 <div className = "main" >{
                     auth ?
                     <MainContents
+                        setShowWallet={setShowWallet}
+                        setShowMarket={setShowMarket}
+                        setShowGaming={setShowGaming}
                         showHome={showHome} 
                         showWallet = {showWallet}
                         showGaming = {showGaming}

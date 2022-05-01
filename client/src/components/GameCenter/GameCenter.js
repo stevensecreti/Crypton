@@ -7,6 +7,12 @@ import SimonSays from './Games/SimonSays/SimonSays';
 import Snake from "./Games/Snake/Snake";
 import Button from '@mui/material/Button';
 import TetrisGame from './Games/Tetris/Tetris';
+
+import ReactionImg from '../images/Reaction.png';
+import MemoryImg from '../images/Memory.png';
+import SnakeImg from '../images/Snake.png';
+import TetrisImg from '../images/Tetris.png';
+
 import { use } from 'passport';
 
 const GameCenter = (props) => {
@@ -18,6 +24,10 @@ const GameCenter = (props) => {
     const [screenName, setScreenName] = useState("Game Center");//Name of current game center screen
     const [isChal, setIsChal] = useState(false);//Flag for if current game is a challenge
     const [chalInfo, setChalInfo] = useState("");//Info of challenge currently being played
+    
+    const images = [ReactionImg, MemoryImg, SnakeImg, TetrisImg];
+    const descriptions = ["Remember OSU? Check out our NEW and IMPROVED version!","Lets see if you can remember where the blue tiles are. Be careful! One wrong move and its game over.","Keep munching those apples to continue to grow!","Classic Tetris. Try to beat your highscore!"];
+
     //Open challenge modal
     const chalGame = (gameName) =>
     {
@@ -187,12 +197,14 @@ const GameCenter = (props) => {
                             <>
                             <div className="gcList">
                                     {
-                                        games.map(thisGame =>(
+                                        games.map((thisGame, i) =>(
                                             <GameChoice 
                                             req ={thisGame}
                                             playGame = {playGame}
                                             isChal = {false} //If game is a challenge
                                             chalGame = {chalGame}
+                                            image={images[i]}
+                                            description={descriptions[i]}
                                             >
                                             </GameChoice>
                                         ))
