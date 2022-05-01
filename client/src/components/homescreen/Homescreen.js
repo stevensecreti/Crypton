@@ -423,6 +423,10 @@ const Homescreen = (props) => {
                     updateCryptonBucks={updateCryptonBucks}
                     setCurrentBalance = {setCurrentBalance}
                     setDefaultAccount = {setDefaultAccount}
+                    showHome={showHome}
+                    setShowGaming={setShowGaming}
+                    setShowMarket={setShowMarket}
+                    setShowWallet={setShowWallet}
                     />
                     :
                     <Welcome />

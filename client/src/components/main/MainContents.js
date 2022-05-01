@@ -102,7 +102,6 @@ const MainContents = (props) => {
                 setShowGaming={props.setShowGaming}
                 setShowWallet={props.setShowWallet}
             >
-
             </Home>)
         }
         </>
