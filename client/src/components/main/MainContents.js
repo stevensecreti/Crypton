@@ -7,6 +7,7 @@ import Account from "../Account/Account";
 import Profile from "../Profile/Profile";
 import FriendProfile from "../Profile/FriendProfile/FriendProfile";
 import GameCenter from '../GameCenter/GameCenter';
+import Home from '../homescreen/Home';
 
 var marketSocket = null;
 const MainContents = (props) => {
@@ -92,7 +93,12 @@ const MainContents = (props) => {
                 showCryptoBucks = {props.showCryptoBucks}
                 updateCryptonBucks={props.updateCryptonBucks}
             >
-            </GameCenter>)
+            </GameCenter>) ||
+            props.showHome && (<Home
+                userName = {props.userName}
+            >
+
+            </Home>)
         }
         </>
     );

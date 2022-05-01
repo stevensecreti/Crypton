@@ -85,6 +85,16 @@ html{
     color: $text-color;
 }
 
+//HOME
+//HOME
+//HOME
+.homeImageText{
+    font-size: 60px;
+}
+.homeText{
+    font-size: 48px;
+}
+
 //Welcome Screen
 //Welcome Screen
 //Welcome Screen
@@ -124,6 +134,10 @@ html{
 }
 .modal-button:hover, .modal-button-1:hover{
     background-color: $button-background-color-hover;
+}
+.modal-algo{
+    font-size: 24px;
+    font-weight: 500;
 }
 
 //MODAL STUFF

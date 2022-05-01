@@ -54,17 +54,17 @@ const StartChallenge = (props) =>{
     }
 
     return(<>
-        <WModal className="modal" cover={true} visible={true}>
+        <WModal className="modal" cover={true} visible={true} animation="slide-fade-left">
         <WMHeader className="modal-header" onClose={() => props.setShowStartChallenge()}>
 				{gname}
 			</WMHeader>
             <WMMain className="chal-main">
                 <WRow>
                     <WCol size="6">
-                        <label className="chal-label" htmlFor="friend-select">Choose a friend:</label>
+                        <label className="modal-algo" htmlFor="friend-select">Choose a friend:</label>
                         <select id="friend-select" className="friend-drop" onBlur={updateFriend}>
                         {friends.map((friend, idx) => {
-                                        return(<option key={idx} value={friend}>{friend}</option>);
+                                        return(<option className="modal-algo" key={idx} value={friend}>{friend}</option>);
                                     })}   
                         </select>
                     </WCol>
@@ -72,7 +72,7 @@ const StartChallenge = (props) =>{
                         <WInput className="modal-input" onBlur={updateInput} name='bet' labelAnimation="up" barAnimation="solid" labelText="Coin Amount" wType="outlined" inputType='text' />
                     </WCol>
                 </WRow>
-                <div className="chal-button" onClick={startChallenge}>
+                <div className="modal-button" onClick={startChallenge}>
                             Start Challenge
                 </div>
             </WMMain>

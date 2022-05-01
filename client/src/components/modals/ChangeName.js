@@ -47,30 +47,24 @@ const ChangeName = (props) => {
 	return (
         // Replace div with WModal
 
-		<WModal className="modal" cover={true} visible={true}>
+		<WModal className="modal" cover={true} visible={true} animation="slide-fade-left">
 			<WMHeader className="modal-header" onClose={() => props.setShowChangeName(false)}>
-				Change Name
+				Change Username
 			</WMHeader>
 
 			{
 				loading ? <div />
 					: <WMMain className = "modal-main">
-						<WRow className="modal-col-gap signup-modal">
-							<WCol size="6">
-								<WInput 
-									className="" onBlur={updateInput} name="firstName" labelAnimation="up" 
-									barAnimation="solid" labelText="First Name" wType="outlined" inputType="text" 
-								/>
-							</WCol>
-							<WCol size="6">
-								<WInput 
-									className="" onBlur={updateInput} name="lastName" labelAnimation="up" 
-									barAnimation="solid" labelText="Last Name" wType="outlined" inputType="text" 
-								/>
-							</WCol>
-						</WRow>
-
+						
+						<WInput 
+							className="modal-input" onBlur={updateInput} name="firstName" labelAnimation="up" 
+							barAnimation="solid" labelText="First Name" wType="outlined" inputType="text" 
+						/>
 						<div className="modal-spacer">&nbsp;</div>
+						<WInput 
+							className="modal-input" onBlur={updateInput} name="lastName" labelAnimation="up" 
+							barAnimation="solid" labelText="Last Name" wType="outlined" inputType="text" 
+						/>
 
 						<div className="modal-spacer">&nbsp;</div>
 						

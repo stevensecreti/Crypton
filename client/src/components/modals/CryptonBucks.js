@@ -87,7 +87,7 @@ const CryptonBucks = (props) => {
 
     return(
 
-        <WModal className="modal" cover={true} visible={true}>
+        <WModal className="modal" cover={true} visible={true} animation="slide-fade-left">
         <WMHeader className="modal-header" onClose={() => props.setShowCryptonBucks()}>
             Add CryptonBucks
         </WMHeader>
@@ -97,16 +97,18 @@ const CryptonBucks = (props) => {
                 : <WMMain className="modal-main">
 
                     <WInput className="modal-input" onChange={updateInput} name='numCryptonBucks' labelAnimation="up" barAnimation="solid" labelText="Amount of CryptonBucks" wType="outlined" inputType='text' />
+                    <div className="modal-spacer">&nbsp;</div>
                     {
                         showErr ? <div className='modal-error'>
                             {errorMsg}
                         </div>
-                            : priceUSD != "0.00" ? <div className='modal-error'>
+                            : priceUSD != "0.00" ? <div className='modal-algo'>
                                     Amount USD: ${priceUSD}, Amount ALGO: {amountAlgo}
                                 </div> :
-                                <div>Loading...</div>
+                                <div className="modal-algo">Loading...</div>
                     }
-                    <div className="modal-button-l" onClick={handleAddAlgorand}>
+                    <div className="modal-spacer">&nbsp;</div>
+                    <div className="modal-button-1" onClick={handleAddAlgorand}>
                         Add
                     </div>
                 </WMMain>

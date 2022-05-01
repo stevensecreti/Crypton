@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Logo from '../navbar/Logo';
 import NavbarOptions from '../navbar/NavbarOptions';
 import Login from '../modals/Login';
-import Update from '../modals/Update';
 import CryptonBucks from '../modals/CryptonBucks';
 import CreateAccount from '../modals/CreateAccount';
 import Welcome from '../main/Welcome';
@@ -34,7 +33,6 @@ const Homescreen = (props) => {
         const [chalGameName, setChalGameName] = useState("");
         const [showLogin, toggleShowLogin] = useState(false);
         const [showCreate, toggleShowCreate] = useState(false);
-        const [showUpdate, toggleShowUpdate] = useState(false);
         const [showAddFriend, toggleShowAddFriend] = useState(false);
         const [showAccount, toggleShowAccount] = useState(false);
         const [showMarket, toggleShowMarket] = useState(false);
@@ -54,6 +52,7 @@ const Homescreen = (props) => {
         const [showChangeEmail, toggleShowChangeEmail] = useState(false);
         const [showChangePassword, toggleShowChangePassword] = useState(false);
         const [showCryptonBucks, toggleShowCryptonBucks] = useState(false);
+
 
         const [QRCode, setQRCode] = useState([{
             show: false,
@@ -175,7 +174,6 @@ const Homescreen = (props) => {
         function clearScreen(){
             toggleShowLogin(false);
             toggleShowCreate(false);
-            toggleShowUpdate(false);
             toggleShowAccount(false);
             toggleShowEducation(false);
             toggleShowMarket(false);
@@ -198,10 +196,6 @@ const Homescreen = (props) => {
 
         const setShowCreate = () => {
             toggleShowCreate(!showCreate);
-        };
-
-        const setShowUpdate = () => {
-            toggleShowUpdate(!showUpdate);
         };
 
         const setShowAccount = () => {
@@ -352,7 +346,6 @@ const Homescreen = (props) => {
                         auth = { auth }
                         setShowCreate = { setShowCreate }
                         setShowLogin = { setShowLogin }
-                        setShowUpdate = { setShowUpdate }
                         setShowAccount = { setShowAccount }
                         setShowEducation = { setShowEducation }
                         setShowMarket = { setShowMarket }
@@ -370,7 +363,8 @@ const Homescreen = (props) => {
                 </div> 
                 <div className = "main" >{
                     auth ?
-                    <MainContents 
+                    <MainContents
+                        showHome={showHome} 
                         showWallet = {showWallet}
                         showGaming = {showGaming}
                         showMarket = {showMarket}
@@ -421,7 +415,6 @@ const Homescreen = (props) => {
                 </div> 
                 {showCreate && (<CreateAccount fetchUser = {props.fetchUser} setShowCreate = { setShowCreate }/>)}
                 {showLogin && ( < Login fetchUser = { props.fetchUser } setShowLogin = { setShowLogin }/>)}
-                {showUpdate && ( < Update fetchUser = { props.fetchUser } setShowUpdate = {setShowUpdate} userId = {props.user._id} user = {props.user}/>)}
                 {showQRCode && (<QRCodeModal QRCode = {QRCode} ></QRCodeModal>)}
                 {showBanner && (<BannerModal setShowBanner = {setShowBanner} ></BannerModal>)}
                 {showPicture && (<PictureModal setShowPicture = {setShowPicture} ></PictureModal>)}

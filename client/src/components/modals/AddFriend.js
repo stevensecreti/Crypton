@@ -36,7 +36,7 @@ const AddFriend = (props) => {
 
     return(
 
-    <WModal className="modal" cover={true} visible={true}>
+    <WModal className="modal" cover={true} visible={true} animation="slide-fade-top">
         <WMHeader className="modal-header" onClose={() => props.setShowAddFriend(false)}>
             Send Friend Request
         </WMHeader>

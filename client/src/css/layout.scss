@@ -104,6 +104,37 @@ body, #root {
 //WELCOMES
 //WELCOMES
 
+//HOME
+//HOME
+//HOME
+.homeImage{
+    height: 100%;
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    z-index: 0;
+}
+.homeImageText{
+    z-index: 1;
+    transform: translate(-25px, -5px);
+}
+.homeText{
+}
+#homeScreenMain{
+    display: flex;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.homeGamesCarousel{
+    height: 10vh;
+}
+//HOME
+//HOME
+//HOME
+
+
 //MODALS
 //MODALS
 //MODALS
@@ -161,6 +192,12 @@ body, #root {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.modal-algo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 //MODALS
 //MODALS
@@ -408,8 +445,9 @@ body, #root {
 
 .gcList{
     width: 80%;
-    height: 80%;
-    margin: auto;
+    height: 70%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 2%;
     overflow-y: scroll;
     display: flex;
@@ -491,14 +529,18 @@ body, #root {
 
 #gameCenterFull{
     flex-direction: column;
+    row-gap: 0px;
+    align-items: center;
+    height: 70vh;
 }
+
 .gc-back{
     width: 50%;
     height: 10%;
-    margin: auto;
     display: flex;
-    align-items: center;
+    margin: auto;
     justify-content: center;
+    align-items: center;
 }
 
 .gameMain{

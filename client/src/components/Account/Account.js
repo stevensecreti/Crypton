@@ -112,14 +112,14 @@ const Account = (props) => {
                 <img src={pfp} id="output" width="200" />
               </div>  
               <div className="accountInfo" id="displayName" onClick={toggleChangeName}>
-                Display Name: {props.displayName}
+                Username: {props.displayName}
               </div>
             </div>
             <div className="accountInfo" onClick={toggleChangeEmail}>
-                Current Email: {props.userEmail}
+                Email: {props.userEmail}
             </div>
             <div className="accountInfo" onClick={toggleChangePassword}>
-                Current Password: ****
+                Password: ****
             </div>
           </div>
           
