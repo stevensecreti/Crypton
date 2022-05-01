@@ -274,7 +274,7 @@ module.exports = {
 				newChalList[i] = chals[i];
 			}
 			newChalList[chals.length] = newChal;
-			const updt = await User.updateOne({email: friend},{challenges: newChalList});
+			const updt = await User.updateOne({userName: friend},{challenges: newChalList});
 			if(updt)
 			{
 				return true;
