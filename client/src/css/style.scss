@@ -592,15 +592,15 @@ input{
     cursor: pointer;
 }
 .mem-main{
-    width: 60%;
+    width: 40%;
     height: auto;
     margin: auto;
 }
 .mem-grid{
     display: grid;
     background-color: #000;
-    grid-template-rows: repeat(3,1fr);
-    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(5,1fr);
+    grid-template-columns: repeat(5,1fr);
 }
 
 //Tetris Stuff

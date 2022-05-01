@@ -29,7 +29,7 @@ const SimonSays = (props) =>
         const newGrid = Array(5)
         .fill()
         .map(() =>
-          Array(3)
+          Array(5)
             .fill()
             .map(() => null));
         const numBlueTiles = Math.floor(Math.random()*4)+2;
@@ -37,7 +37,7 @@ const SimonSays = (props) =>
         for(let i = 0;i<numBlueTiles;i++)
         {
             const rrow = Math.floor(Math.random()*5);
-            const rcol = Math.floor(Math.random()*3);
+            const rcol = Math.floor(Math.random()*5);
             const newTile = rrow+","+rcol;
             if(bTiles.includes(newTile))
             {
@@ -50,7 +50,7 @@ const SimonSays = (props) =>
         }
         for(let i = 0;i<5;i++)
         {
-            for(let j = 0;j<3;j++)
+            for(let j = 0;j<5;j++)
             {
                 const thisTile = i+","+j;
                 if(bTiles.includes(thisTile))

@@ -20,7 +20,7 @@ const MemGrid = (props) =>
         }
         else
         {
-            props.endGame("Simon Says",props.score);
+            props.endGame("Memory",props.score);
         }
     }
 

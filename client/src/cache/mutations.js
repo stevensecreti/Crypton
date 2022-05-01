@@ -68,8 +68,8 @@ export const UPDATE_BANNER = gql`
 	}
 `;
 export const SEND_CHALLENGE = gql`
-	mutation SendChallenge($game: String!, $user: String!, $friend: String!, $coin: String!, $bet: String!){
-		sendChallenge(game: $game, user: $user, friend: $friend, coin: $coin, bet: $bet)
+	mutation SendChallenge($game: String!, $user: String!, $friend: String!, $coin: String!, $bet: String!, $score: Int!){
+		sendChallenge(game: $game, user: $user, friend: $friend, coin: $coin, bet: $bet, score: $score)
 	}
 `;
 

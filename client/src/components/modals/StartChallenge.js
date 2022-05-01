@@ -8,6 +8,7 @@ const StartChallenge = (props) =>{
     const [init, setInit] = useState(false);
     const friends = props.friends;
     const gname = "Start "+props.gname+" Challenge";
+    const score = props.score;
     
     if(!init)
     {
@@ -39,7 +40,7 @@ const StartChallenge = (props) =>{
             console.log("Has Bucks: "+hasBucks);
             if(hasBucks)
             {
-                props.sendChal(parseInt(betAmount)+"",props.gname,chalFriend,"CB");
+                props.sendChal(parseInt(betAmount)+"",props.gname,chalFriend,"CB",score);
                 props.setShowStartChallenge();
             }
             else

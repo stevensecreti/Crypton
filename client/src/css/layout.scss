@@ -558,6 +558,7 @@ body, #root {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 60%;
     row-gap: 20px;
 }
 .gameScore{
@@ -571,6 +572,7 @@ body, #root {
 }
 .gameContent{
     display: flex;
+    width: 100%;
     height: 80%;
     margin-bottom: 5%;
     justify-content: center;

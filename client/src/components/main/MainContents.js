@@ -94,6 +94,8 @@ const MainContents = (props) => {
                 gcBalance = {props.gcBalance}
                 showCryptoBucks = {props.showCryptoBucks}
                 updateCryptonBucks={props.updateCryptonBucks}
+                updateChalScore={props.updateChalScore}
+                showResult={props.showResult}
             >
             </GameCenter>) ||
             props.showHome && (<Home

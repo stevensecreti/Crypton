@@ -32,7 +32,7 @@ const typeDefs = gql `
 		removeFriend(user: String!, friend: String!): Boolean!
 		updateHighscore(game: String!, score: Int!, user: String!): Boolean!
 		updateBanner(banner: String!, user: String!): Boolean!
-		sendChallenge(game: String!, user: String!, friend: String!, coin: String!, bet: String!): Boolean!
+		sendChallenge(game: String!, user: String!, friend: String!, coin: String!, bet: String!, score: Int!): Boolean!
 		declineChallenge(user: String!, index: Int!): Boolean!
 		getChallengeScore(user: String!, game: String!): Int!
 		updateGCBalance(user: String!, amt: Int!, add: Boolean!): Boolean!

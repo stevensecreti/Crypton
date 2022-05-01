@@ -3,6 +3,7 @@ import React, { useState }                            from 'react';
 const GameChoice = (props) =>
 {
     const game = props.req;
+    console.log(game);
     const isChal = props.isChal;
     return(
     <>

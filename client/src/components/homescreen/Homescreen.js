@@ -9,6 +9,7 @@ import QRCodeModal from '../modals/QRCodeModal';
 import StartChallenge from '../modals/StartChallenge';
 import BannerModal from '../modals/BannerModal';
 import PictureModal from '../modals/PictureModal';
+import ChallengeResult from '../modals/ChallengeResult';
 import ChangeName from '../modals/ChangeName';
 import ChangeEmail from '../modals/ChangeEmail';
 import ChangePassword from '../modals/ChangePassword';
@@ -52,6 +53,9 @@ const Homescreen = (props) => {
         const [showChangeEmail, toggleShowChangeEmail] = useState(false);
         const [showChangePassword, toggleShowChangePassword] = useState(false);
         const [showCryptonBucks, toggleShowCryptonBucks] = useState(false);
+        const [showResult, toggleShowResult] = useState(false);
+        const [startChalScore,setStartChalScore] = useState(0);
+        const [chalResult, setChalResult] = useState(false);
 
 
         const [QRCode, setQRCode] = useState([{
@@ -300,8 +304,8 @@ const Homescreen = (props) => {
             const updt = await UpdateHighscore({variables:{game: game,score: score,user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
 
-        const sendChallenge = async (amount,game,friend,coin) => {
-            const updt = await SendChallenge({variables:{game: game,user: email,friend: friend,coin: coin,bet: amount}});
+        const sendChallenge = async (amount,game,friend,coin,score) => {
+            const updt = await SendChallenge({variables:{game: game,user: email,friend: friend,coin: coin,bet: amount,score: score}});
         }
 
         const declineChallenge = async (index,refund,cbucks) => {
@@ -348,6 +352,17 @@ const Homescreen = (props) => {
                 const { data, loading, error } = await UpdateGCBalance({variables:{user: acc, amt: cbucks, add: add}, refetchQueries: [{ query: GET_DB_USER }]});
                 return data.updateGCBalance;
             }
+        }
+
+        const updateChalScore = (score) =>
+        {
+            setStartChalScore(score);
+        }
+
+        const setShowResult = (result) =>
+        {
+            setChalResult(result);
+            toggleShowResult(true);
         }
 
         return( 
@@ -427,6 +442,8 @@ const Homescreen = (props) => {
                     setShowGaming={setShowGaming}
                     setShowMarket={setShowMarket}
                     setShowWallet={setShowWallet}
+                    updateChalScore={updateChalScore}
+                    showResult={setShowResult}
                     />
                     :
                     <Welcome />
@@ -441,8 +458,9 @@ const Homescreen = (props) => {
                 {showChangeEmail && (<ChangeEmail setShowChangeEmail = {setShowChangeEmail} ></ChangeEmail>)}
                 {showChangePassword && (<ChangePassword setShowChangePassword = {setShowChangePassword} ></ChangePassword>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userName={userName}></AddFriend>)}
-                {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends} gname = {chalGameName} sendChal = {sendChallenge} updateCryptonBucks={updateCryptonBucks}></StartChallenge>)}
+                {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends} gname = {chalGameName} sendChal = {sendChallenge} updateCryptonBucks={updateCryptonBucks} score={startChalScore}></StartChallenge>)}
                 {showCryptonBucks && (<CryptonBucks setShowCryptonBucks = {setShowCryptonBucks} addCryptonBucks={addCryptonBucks} account = {account}></CryptonBucks>)}
+                {showResult && (<ChallengeResult win={chalResult} toggleShowResult={toggleShowResult}></ChallengeResult>)}
             </div>
         );
 };

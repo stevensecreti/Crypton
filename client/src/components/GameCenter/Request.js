@@ -5,6 +5,7 @@ const Request = (props) =>
     const name = props.req.split(",")[0];
     const game = props.req.split(",")[1];
     const bet = props.req.split(",")[2];
+    const score = props.req.split(",")[3];
     const index = props.rind;
 
     const acceptChal = () =>
@@ -29,6 +30,9 @@ const Request = (props) =>
             </div>
             <div className='req-info'>
                 {bet}
+            </div>
+            <div className='req-info'>
+                {score}
             </div>
             <div className='req-acc' onClick = {acceptChal}>
                 O

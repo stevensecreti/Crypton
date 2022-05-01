@@ -260,14 +260,14 @@ module.exports = {
 		},
 		sendChallenge: async (_, args) =>
 		{
-			const {game,user,friend,coin,bet} = args;
+			const {game,user,friend,coin,bet,score} = args;
 			const toFriend = await User.findOne({userName: friend});
 			if(!toFriend)
 			{
 				return false;
 			}
 			const chals = toFriend.challenges;
-			const newChal = user+","+game+","+bet+" "+coin;
+			const newChal = user+","+game+","+bet+" "+coin+","+score;
 			const newChalList = Array(chals.length+1);
 			for(let i = 0;i<chals.length;i++)
 			{
