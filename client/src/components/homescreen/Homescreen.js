@@ -305,7 +305,7 @@ const Homescreen = (props) => {
         }
 
         const sendChallenge = async (amount,game,friend,coin,score) => {
-            const updt = await SendChallenge({variables:{game: game,user: email,friend: friend,coin: coin,bet: amount,score: score}});
+            const updt = await SendChallenge({variables:{game: game,user: userName,friend: friend,coin: coin,bet: amount,score: score}});
         }
 
         const declineChallenge = async (index,refund,cbucks) => {
