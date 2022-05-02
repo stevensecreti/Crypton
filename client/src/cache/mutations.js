@@ -110,7 +110,7 @@ export const UPDATE_PASSWORD = gql`
 `;
 
 export const UPDATE_NAME = gql`
-	mutation UpdateName($firstName: String!, $user: String!){
-		updateName(firstName: $firstName, user: $user)
+	mutation UpdateName($firstName: String!, $lastName: String!, $user: String!){
+		updateName(firstName: $firstName, lastName: $lastName, user: $user)
 	}
 `;

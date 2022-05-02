@@ -17,14 +17,15 @@ const ChangePassword = (props) => {
 	};
 
 	const handleChangePassword = async (e) => {
-		console.log(input.password); //SUBMITTED EMAIL
+		console.log(input.password); //SUBMITTED PASSWORD
 
 		if (input.password == "") {
 			alert('All fields must be filled out to update');
 			return;
 		}
 		else {
-			//props.updatePassword(input.password);
+			props.updatePassword(input.password);
+			//props.updatePassword("test6");
 			alert('Password was successfully changed');
 			props.setShowChangePassword(false)
 		}

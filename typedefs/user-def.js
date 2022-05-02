@@ -39,7 +39,7 @@ const typeDefs = gql `
 		updatePfp(pfp: String!, user: String!): Boolean!
 		updateEmail(email: String!, user: String!): Boolean!
 		updatePassword(password: String!, user: String!): Boolean!
-		updateName(firstName: String!, user: String!): Boolean!
+		updateName(firstName: String!, lastName: String!, user: String!): Boolean!
 	}
 `;
 

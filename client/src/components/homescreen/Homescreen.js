@@ -342,9 +342,9 @@ const Homescreen = (props) => {
             UpdateEmail({variables:{email: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
 
-        const updateName = async (first) => {
+        const updateName = async (first, last) => {
             console.log("updateName = async (string) => {");
-            UpdateName({variables:{firstName: first, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
+            UpdateName({variables:{firstName: first, lastName: last, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
 
         const updatePassword = async (string) => {

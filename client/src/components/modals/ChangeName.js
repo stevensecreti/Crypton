@@ -30,7 +30,7 @@ const ChangeName = (props) => {
 		}
 		else {
 			//props.updateName(input.firstName, input.lastName);
-			props.updateName("test8");
+			props.updateName("test8", "test8");
 			alert('Name was successfully changed');
 			props.setShowChangeName(false)
 		}

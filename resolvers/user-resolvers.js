@@ -402,7 +402,7 @@ module.exports = {
 		{
 			console.log("updateName RESOLVER");
 			const{firstName, lastName, user} = args;
-			const updt = await User.updateOne({email: user},{firstName: firstName});
+			const updt = await User.updateOne({email: user},{firstName: firstName},{lastName: lastName});
 			return true;
 		}
 	}
