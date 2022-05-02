@@ -102,3 +102,15 @@ export const UPDATE_EMAIL = gql`
 		updateEmail(email: $email, user: $user)
 	}
 `;
+
+export const UPDATE_PASSWORD = gql`
+	mutation UpdatePassword($password: String!, $user: String!){
+		updatePassword(password: $password, user: $user)
+	}
+`;
+
+export const UPDATE_NAME = gql`
+	mutation UpdateName($firstName: String!, $lastName: String!, $user: String!){
+		updateName(firstName: $firstName, lastName: $lastName, user: $user)
+	}
+`;

@@ -17,31 +17,18 @@ const ChangePassword = (props) => {
 	};
 
 	const handleChangePassword = async (e) => {
-		for (let field in input) {
-			if (!input[field]) {
-				alert('All fields must be filled out to register');
-				return;
-			}
-		
-		}
-		console.log("Before Register:)")
-		const { loading, error, data } = await Register({ variables: { ...input } });
-		if (loading) { toggleLoading(true) };
-		if (error) { return `Error: ${error.message}` 
-			console.log(`Error: ${error.message}`)
-		};
-		if (data) {
-			console.log(data)
-			toggleLoading(false);
-			if(data.register.email === 'already exists') {
-				alert('User with that email already registered');
-			}
-			else {
-				props.fetchUser();
-			}
-			props.setShowChange(false);
+		console.log(input.password); //SUBMITTED PASSWORD
 
-		};
+		if (input.password == "") {
+			alert('All fields must be filled out to update');
+			return;
+		}
+		else {
+			props.updatePassword(input.password);
+			//props.updatePassword("test6");
+			alert('Password was successfully changed');
+			props.setShowChangePassword(false)
+		}
 	};
 
 	return (

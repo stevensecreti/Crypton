@@ -75,6 +75,8 @@ const Homescreen = (props) => {
         const [GetChallengeScore] = useMutation(mutations.GET_CHALLENGE_SCORE);
         const [UpdatePfp] = useMutation(mutations.UPDATE_PFP);
         const [UpdateEmail] = useMutation(mutations.UPDATE_EMAIL);
+        const [UpdatePassword] = useMutation(mutations.UPDATE_PASSWORD);
+        const [UpdateName] = useMutation(mutations.UPDATE_NAME);
         const [AcceptFriendRequest] = useMutation(mutations.ACCEPT_FRIEND_REQUEST);
         const [UpdateGCBalance] = useMutation(mutations.UPDATE_GC_BALANCE);
 
@@ -336,8 +338,17 @@ const Homescreen = (props) => {
         }
 
         const updateEmail = async (string) => {
-            console.log("updateEmail = async (string) => {");
+            //console.log("updateEmail = async (string) => {");
             UpdateEmail({variables:{email: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
+        }
+
+        const updateName = async (first, last) => {
+            console.log("updateName = async (string) => {");
+            UpdateName({variables:{firstName: first, lastName: last, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
+        }
+
+        const updatePassword = async (string) => {
+            UpdatePassword({variables:{password: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
 
         const addCryptonBucks = async (cbucks, amtAlgo) =>
@@ -427,6 +438,8 @@ const Homescreen = (props) => {
                     updatePfp={updatePfp}
                     email = {email}
                     updateEmail={updateEmail}
+                    updateName={updateName}
+                    updatePassword={updatePassword}
                     friendsList={friends}
                     friendRequests={friendRequests}
                     highscores={highscores}
@@ -463,10 +476,10 @@ const Homescreen = (props) => {
                 {showQRCode && (<QRCodeModal QRCode = {QRCode} ></QRCodeModal>)}
                 {showBanner && (<BannerModal setShowBanner = {setShowBanner} ></BannerModal>)}
                 {showPicture && (<PictureModal setShowPicture = {setShowPicture} ></PictureModal>)}
-                {showChangeName && (<ChangeName setShowChangeName = {setShowChangeName} ></ChangeName>)}
+                {showChangeName && (<ChangeName setShowChangeName = {setShowChangeName} updateName = {updateName} ></ChangeName>)}
                 {showChangeEmail && (<ChangeEmail setShowChangeEmail = {setShowChangeEmail} updateEmail = {updateEmail} ></ChangeEmail>)}
-                {showChangePassword && (<ChangePassword setShowChangePassword = {setShowChangePassword} ></ChangePassword>)}
-                {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userName={userName}></AddFriend>)}
+                {showChangePassword && (<ChangePassword setShowChangePassword = {setShowChangePassword} updatePassword = {updatePassword} ></ChangePassword>)}
+                {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userName={userName} ></AddFriend>)}
                 {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends} gname = {chalGameName} sendChal = {sendChallenge} updateCryptonBucks={updateCryptonBucks} score={startChalScore}></StartChallenge>)}
                 {showCryptonBucks && (<CryptonBucks setShowCryptonBucks = {setShowCryptonBucks} addCryptonBucks={addCryptonBucks} account = {account}></CryptonBucks>)}
                 {showResult && (<ChallengeResult win={chalResult} toggleShowResult={toggleShowResult}></ChallengeResult>)}

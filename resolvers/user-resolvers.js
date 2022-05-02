@@ -40,8 +40,8 @@ module.exports = {
 			// Set tokens if login info was valid
 			const accessToken = tokens.generateAccessToken(user);
 			const refreshToken = tokens.generateRefreshToken(user);
-			res.cookie('refresh-token', refreshToken, { httpOnly: true , sameSite: 'None', secure: true}); 
-			res.cookie('access-token', accessToken, { httpOnly: true , sameSite: 'None', secure: true});
+			res.cookie('refresh-token', refreshToken, { httpOnly: false , sameSite: 'Lax', secure: false}); 
+			res.cookie('access-token', accessToken, { httpOnly: false , sameSite: 'Lax', secure: false});
 			username = user.userName;
 			if(username === undefined) { username = user.email.split('@')[0]; }
 			const updatedUsername = await User.updateOne({email: email}, {userName: username});
@@ -90,8 +90,8 @@ module.exports = {
 			// are automatically logged in on account creation.
 			const accessToken = tokens.generateAccessToken(user);
 			const refreshToken = tokens.generateRefreshToken(user);
-			res.cookie('refresh-token', refreshToken, { httpOnly: true , sameSite: 'None', secure: true}); 
-			res.cookie('access-token', accessToken, { httpOnly: true , sameSite: 'None', secure: true}); 
+			res.cookie('refresh-token', refreshToken, { httpOnly: false , sameSite: 'Lax', secure: false}); 
+			res.cookie('access-token', accessToken, { httpOnly: false , sameSite: 'Lax', secure: false}); 
 			return user;
 		},
 		/** 
@@ -382,6 +382,31 @@ module.exports = {
 			//console.log("UPDATE Pfp RESOLVER");
 			const{pfp, user} = args;
 			const updt = await User.updateOne({email: user},{pfp: pfp});
+			return true;
+		},
+		updateEmail: async (_, args) =>
+		{
+			//console.log("updateEmail RESOLVER");
+			const{email, user} = args;
+			const updt = await User.updateOne({email: user},{email: email});
+			return true;
+		},
+		updatePassword: async (_, args) =>
+		{
+			console.log("updatePassword RESOLVER");
+			const{password, user} = args;
+			//const updt = await User.updateOne({email: user},{password: password});
+			const hashed = await bcrypt.hash(password, 10);
+			const updated = await User.updateOne({email: user}, { password: hashed });
+			return true;
+		},
+		updateName: async (_, args) =>
+		{
+			console.log("updateName RESOLVER");
+			const{firstName, lastName, user} = args;
+			//const updt = await User.updateOne({email: user},{firstName: firstName},{lastName: lastName});
+			const updt = await User.updateOne({email: user}, { firstName: firstName });
+			const updt2 = await User.updateOne({email: user}, { lastName: lastName });
 			return true;
 		}
 	}
