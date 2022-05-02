@@ -74,6 +74,7 @@ const Homescreen = (props) => {
         const [DeclineChallenge] = useMutation(mutations.DECLINE_CHALLENGE);
         const [GetChallengeScore] = useMutation(mutations.GET_CHALLENGE_SCORE);
         const [UpdatePfp] = useMutation(mutations.UPDATE_PFP);
+        const [UpdateEmail] = useMutation(mutations.UPDATE_EMAIL);
         const [AcceptFriendRequest] = useMutation(mutations.ACCEPT_FRIEND_REQUEST);
         const [UpdateGCBalance] = useMutation(mutations.UPDATE_GC_BALANCE);
 
@@ -103,8 +104,8 @@ const Homescreen = (props) => {
             pfp = props.user.pfp;
             banner = props.user.banner;
             challenges = props.user.challenges;
-            console.log("HIGHSCORES: " + highscores);
-            console.log("Challenges: " + gcBalance);
+            //console.log("HIGHSCORES: " + highscores);
+            //console.log("Challenges: " + gcBalance);
         } else {
             displayName = "";
         }
@@ -334,6 +335,11 @@ const Homescreen = (props) => {
             UpdatePfp({variables:{pfp: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
         }
 
+        const updateEmail = async (string) => {
+            console.log("updateEmail = async (string) => {");
+            UpdateEmail({variables:{email: string, user: email}, refetchQueries: [{ query: GET_DB_USER }]});
+        }
+
         const addCryptonBucks = async (cbucks, amtAlgo) =>
         {
             console.log("AddCryptonBucks in Homescreen, amount of cBucks: , amountof algo: ", cbucks, amtAlgo);
@@ -385,6 +391,7 @@ const Homescreen = (props) => {
                         displayName = {displayName}
                         banner = {banner}
                         pfp = {pfp}
+                        email = {email}
                         /> 
                     </> 
                     </div> 
@@ -418,6 +425,8 @@ const Homescreen = (props) => {
                     updateBanner={updateBanner}
                     pfp = {pfp}
                     updatePfp={updatePfp}
+                    email = {email}
+                    updateEmail={updateEmail}
                     friendsList={friends}
                     friendRequests={friendRequests}
                     highscores={highscores}
@@ -455,7 +464,7 @@ const Homescreen = (props) => {
                 {showBanner && (<BannerModal setShowBanner = {setShowBanner} ></BannerModal>)}
                 {showPicture && (<PictureModal setShowPicture = {setShowPicture} ></PictureModal>)}
                 {showChangeName && (<ChangeName setShowChangeName = {setShowChangeName} ></ChangeName>)}
-                {showChangeEmail && (<ChangeEmail setShowChangeEmail = {setShowChangeEmail} ></ChangeEmail>)}
+                {showChangeEmail && (<ChangeEmail setShowChangeEmail = {setShowChangeEmail} updateEmail = {updateEmail} ></ChangeEmail>)}
                 {showChangePassword && (<ChangePassword setShowChangePassword = {setShowChangePassword} ></ChangePassword>)}
                 {showAddFriend && (<AddFriend setShowAddFriend = {setShowAddFriend} userName={userName}></AddFriend>)}
                 {showStartChallenge && (<StartChallenge setShowStartChallenge = {setShowStartChallenge} friends = {friends} gname = {chalGameName} sendChal = {sendChallenge} updateCryptonBucks={updateCryptonBucks} score={startChalScore}></StartChallenge>)}

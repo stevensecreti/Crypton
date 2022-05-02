@@ -60,6 +60,8 @@ const MainContents = (props) => {
                 updateBanner = {props.updateBanner}
                 pfp = {props.pfp}
                 updatePfp = {props.updatePfp}
+                email = {props.email}
+                updateEmail = {props.updateEmail}
                 user = {props.user}
               ></Account>) ||
              props.showProfile &&
