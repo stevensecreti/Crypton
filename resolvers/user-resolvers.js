@@ -395,7 +395,9 @@ module.exports = {
 		{
 			console.log("updatePassword RESOLVER");
 			const{password, user} = args;
-			const updt = await User.updateOne({email: user},{password: password});
+			//const updt = await User.updateOne({email: user},{password: password});
+			const hashed = await bcrypt.hash(password, 10);
+			const updated = await User.updateOne({email: user}, { password: hashed });
 			return true;
 		},
 		updateName: async (_, args) =>
