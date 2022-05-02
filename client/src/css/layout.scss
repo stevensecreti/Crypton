@@ -31,7 +31,7 @@ body, #root {
     margin: 0px;
     min-height: 100vh;
     //disallow overflow in y direction
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 .homescreen{
