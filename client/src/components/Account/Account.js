@@ -117,7 +117,7 @@ const Account = (props) => {
                 <img src={pfp} id="output" width="200" />
               </div>  
               <div className="accountInfo" id="displayName" onClick={toggleChangeName}>
-                Username: {props.displayName}
+                Name: {props.displayName}
               </div>
             </div>
             <div className="accountInfo" onClick={toggleChangeEmail}>
