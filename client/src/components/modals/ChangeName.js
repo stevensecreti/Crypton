@@ -1,5 +1,5 @@
 import React, { useState } 	from 'react';
-import { REGISTER }			from '../../cache/mutations';
+import { UPDATE_NAME }			from '../../cache/mutations';
 import { useMutation }    	from '@apollo/client';
 
 import { WModal, WMHeader, WMMain, WMFooter, WButton, WInput, WRow, WCol } from 'wt-frontend';
@@ -7,7 +7,7 @@ import { WModal, WMHeader, WMMain, WMFooter, WButton, WInput, WRow, WCol } from 
 const ChangeName = (props) => {
 	const [input, setInput] = useState({ email: '', password: '', firstName: '', lastName: '' });
 	const [loading, toggleLoading] = useState(false);
-	const [Register] = useMutation(REGISTER);
+	const [UpdateName] = useMutation(UPDATE_NAME);
 
 	
 	const updateInput = (e) => {
@@ -29,9 +29,11 @@ const ChangeName = (props) => {
 			return;
 		}
 		else {
-			//props.updateName(input.firstName, input.lastName);
-			props.updateName("test8", "test8");
-			alert('Name was successfully changed');
+			console.log(input.firstName, input.lastName);
+			props.updateName(input.firstName, input.lastName);
+			//props.updateName("test10", "test10");
+			//const { loading, error, data } = await UpdateName({ variables: { ...input } });
+			alert('First Name was successfully changed');
 			props.setShowChangeName(false)
 		}
 	};
