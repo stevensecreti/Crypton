@@ -19,6 +19,7 @@ const Account = (props) => {
     const pfp = props.user.pfp;
     const email = props.user.email; //CURRENT EMAIL
     //console.log(email) //CURRENT EMAIL
+    const name = props.user.name; //CURRENT NAME
 
     ChartJS.register(...registerables);
 
@@ -49,7 +50,7 @@ const Account = (props) => {
       }
 
       const toggleChangeEmail = () => {
-        console.log("toggleChangeEmail")
+        //console.log("toggleChangeEmail")
         props.setShowChangeEmail();
         //props.updateEmail();
         //props.updateEmail("test7")

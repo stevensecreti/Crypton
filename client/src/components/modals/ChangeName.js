@@ -17,31 +17,23 @@ const ChangeName = (props) => {
 	};
 
 	const handleChangeName = async (e) => {
-		for (let field in input) {
-			if (!input[field]) {
-				alert('All fields must be filled out to register');
-				return;
-			}
-		
+		//console.log(input.firstName);
+		//console.log(input.lastName);
+		if (input.firstName == "") {
+			alert('All fields must be filled out to update');
+			return;
 		}
-		console.log("Before Register:)")
-		const { loading, error, data } = await Register({ variables: { ...input } });
-		if (loading) { toggleLoading(true) };
-		if (error) { return `Error: ${error.message}` 
-			console.log(`Error: ${error.message}`)
-		};
-		if (data) {
-			console.log(data)
-			toggleLoading(false);
-			if(data.register.email === 'already exists') {
-				alert('User with that email already registered');
-			}
-			else {
-				props.fetchUser();
-			}
-			props.setShowChange(false);
-
-		};
+		else if(input.lastName == "")
+		{
+			alert('All fields must be filled out to update');
+			return;
+		}
+		else {
+			//props.updateName(input.firstName, input.lastName);
+			props.updateName("test8", "test8");
+			alert('Name was successfully changed');
+			props.setShowChangeName(false)
+		}
 	};
 
 	return (
