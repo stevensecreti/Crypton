@@ -38,6 +38,8 @@ const typeDefs = gql `
 		updateGCBalance(user: String!, amt: Int!, add: Boolean!): Boolean!
 		updatePfp(pfp: String!, user: String!): Boolean!
 		updateEmail(email: String!, user: String!): Boolean!
+		updatePassword(password: String!, user: String!): Boolean!
+		updateName(firstName: String!, user: String!): Boolean!
 	}
 `;
 

@@ -62,6 +62,7 @@ const MainContents = (props) => {
                 updatePfp = {props.updatePfp}
                 email = {props.email}
                 updateEmail = {props.updateEmail}
+                updateName = {props.updateName}
                 user = {props.user}
               ></Account>) ||
              props.showProfile &&
