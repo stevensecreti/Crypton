@@ -130,6 +130,7 @@ const NavbarOptions = (props) => {
             displayName = { props.displayName }
             banner = { props.banner }
             pfp = { props.pfp }
+            email = { props.email }
             setShowUpdate = { props.setShowUpdate }
             setShowAccount = { props.setShowAccount }
             setShowMarket = { props.setShowMarket }

@@ -37,6 +37,7 @@ const typeDefs = gql `
 		getChallengeScore(user: String!, game: String!): Int!
 		updateGCBalance(user: String!, amt: Int!, add: Boolean!): Boolean!
 		updatePfp(pfp: String!, user: String!): Boolean!
+		updateEmail(email: String!, user: String!): Boolean!
 	}
 `;
 

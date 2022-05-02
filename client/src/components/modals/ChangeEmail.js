@@ -16,31 +16,17 @@ const ChangeEmail = (props) => {
 	};
 
 	const handleChangeEmail = async (e) => {
-		for (let field in input) {
-			if (!input[field]) {
-				alert('All fields must be filled out to register');
-				return;
-			}
-		
-		}
-		console.log("Before Register:)")
-		const { loading, error, data } = await Register({ variables: { ...input } });
-		if (loading) { toggleLoading(true) };
-		if (error) { return `Error: ${error.message}` 
-			console.log(`Error: ${error.message}`)
-		};
-		if (data) {
-			console.log(data)
-			toggleLoading(false);
-			if(data.register.email === 'already exists') {
-				alert('User with that email already registered');
-			}
-			else {
-				props.fetchUser();
-			}
-			props.setShowChange(false);
+		//console.log(input.email); //SUBMITTED EMAIL
 
-		};
+		if (input.email == "") {
+			alert('All fields must be filled out to update');
+			return;
+		}
+		else {
+			props.updateEmail(input.email);
+			alert('Email was successfully changed');
+			props.setShowChangeEmail(false)
+		}
 	};
 
 	return (

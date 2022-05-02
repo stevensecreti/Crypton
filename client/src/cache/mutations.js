@@ -96,3 +96,9 @@ export const UPDATE_PFP = gql`
 		updatePfp(pfp: $pfp, user: $user)
 	}
 `;
+
+export const UPDATE_EMAIL = gql`
+	mutation UpdateEmail($email: String!, $user: String!){
+		updateEmail(email: $email, user: $user)
+	}
+`;

@@ -17,6 +17,8 @@ const Account = (props) => {
     const accountHex = props.accountHex;
     const banner = props.user.banner;
     const pfp = props.user.pfp;
+    const email = props.user.email; //CURRENT EMAIL
+    //console.log(email) //CURRENT EMAIL
 
     ChartJS.register(...registerables);
 
@@ -47,7 +49,10 @@ const Account = (props) => {
       }
 
       const toggleChangeEmail = () => {
+        console.log("toggleChangeEmail")
         props.setShowChangeEmail();
+        //props.updateEmail();
+        //props.updateEmail("test7")
       }
 
       const toggleChangePassword = () => {
@@ -85,7 +90,6 @@ const Account = (props) => {
         const img = await res.json();
         props.updatePfp(img.secure_url);
       }
-
 
     return(
       <div className="screenContainer">
@@ -131,3 +135,5 @@ const Account = (props) => {
     );
 }
 export default Account;
+
+//props.updateEmail("test7")
